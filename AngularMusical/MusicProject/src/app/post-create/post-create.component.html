@@ -1,0 +1,23 @@
+<div class="container custom-container">
+    <div class="col-md-12">
+    <h3 class="mb-3 text-center">Aggiungi Brano</h3>
+    <div class="form-group">
+    <input type="text" [(ngModel)]="branoDetails.titolo" class="form-control" placeholder="Titolo">
+    </div>
+    <div class="form-group">
+    <input type="text" [(ngModel)]="branoDetails.band" class="form-control" placeholder="Band">
+    </div>
+    <div class="form-group">
+    <input type="text" [(ngModel)]="branoDetails.disco" class="form-control" placeholder="Disco">
+    </div>
+    <div class="form-group">
+    <input type="text" [(ngModel)]="branoDetails.anno" class="form-control" placeholder="Anno">
+    </div>
+    <div class="form-group">
+    <input type="text" [(ngModel)]="branoDetails.durata" class="form-control" placeholder="Durata">
+    </div>
+    <div class="form-group">
+    <button class="btn btn-success btn-lg btn-block" (click)="addBrano()">Aggiungi</button>
+    </div>
+    </div>
+</div>
