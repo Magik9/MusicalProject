@@ -1,0 +1,6 @@
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\bin\Debug\MusicAPI.BLL.dll
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\bin\Debug\MusicAPI.BLL.pdb
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\obj\Debug\MusicAPI.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\obj\Debug\MusicAPI.BLL.dll
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\obj\Debug\MusicAPI.BLL.pdb
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\obj\Debug\MusicAPI.BLL.csprojAssemblyReference.cache
