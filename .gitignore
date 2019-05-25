@@ -1,6 +1,5 @@
 .Net API/MusicAPI/.vs/MusicAPI/v15/Server/sqlite3/db.lock
-.Net API/MusicAPI/.vs/MusicAPI/v15/Server/sqlite3/db.lock
-
+.Net API\MusicAPI\.vs\MusicAPI\v15\.suo
 *.swp
 *.*~
 project.lock.json

@@ -163,6 +163,9 @@ namespace MusicAPI.Controllers.API
             using (var context = new MusicContext())
             {
                 Brano brano = context.Brani.FirstOrDefault(b => b.id == updated.id);
+                Disco disco = context.Dischi.FirstOrDefault(d => d.Titolo == updated.disco);
+                if (disco != null)
+                    brano.Disco_Id = disco.id;
                 brano.titolo = updated.titolo;
                 brano.durata = updated.durata;
 
