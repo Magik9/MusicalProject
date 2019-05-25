@@ -4,3 +4,7 @@ C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\obj\De
 C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\obj\Debug\MusicAPI.BLL.dll
 C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\obj\Debug\MusicAPI.BLL.pdb
 C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\obj\Debug\MusicAPI.BLL.csprojAssemblyReference.cache
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\bin\Debug\AutoMapper.dll
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\bin\Debug\AutoMapper.pdb
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\bin\Debug\AutoMapper.xml
+C:\Users\Gabriele\Documents\MusicalProject\.Net API\MusicAPI\MusicAPI.BLL\obj\Debug\MusicAPI.BLL.csproj.CopyComplete

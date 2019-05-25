@@ -9,10 +9,12 @@ using MusicAPI.BLL.DTO;
 
 namespace MusicAPI.Controllers.API
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [RoutePrefix("Music")]
     public class MusicController : ApiController
     {
         [HttpGet]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        
         [Route("Brano")]
         public BranoDTO Brano(int id)
         {
@@ -38,7 +40,6 @@ namespace MusicAPI.Controllers.API
         }
 
         [HttpGet]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("Bands")]
         public List<BandDTO> ListaBands()
         {
@@ -61,7 +62,6 @@ namespace MusicAPI.Controllers.API
         }
 
         [HttpGet]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("Dischi")]
         public List<DiscoDTO> ListaDischi()
         {
@@ -92,7 +92,6 @@ namespace MusicAPI.Controllers.API
         }
 
         [HttpGet]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("Brani")]
         public List<BranoDTO> ListaBrani()
         {
@@ -119,7 +118,6 @@ namespace MusicAPI.Controllers.API
         }
 
         [HttpPost]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("AddBrano")]
         public void AddBrano(BranoDTO bdto)
         {
@@ -147,7 +145,6 @@ namespace MusicAPI.Controllers.API
         }
 
         [HttpDelete]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("DeleteBrano")]
         public void DeleteBrano(int id)
         {
@@ -160,7 +157,6 @@ namespace MusicAPI.Controllers.API
         }
 
         [HttpPut]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("UpdateBrano")]
         public void UpdateBrano(BranoDTO updated)
         {

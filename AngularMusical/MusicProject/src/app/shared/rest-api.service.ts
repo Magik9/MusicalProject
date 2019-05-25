@@ -10,7 +10,7 @@ providedIn: 'root'
 })
 export class RestApiService {
 // Define API
-apiURL = 'http://localhost:57490';
+apiURL = 'http://localhost:57490/Music';
 constructor(private http: HttpClient) { }
 /*========================================
 CRUD Methods for consuming RESTful API
