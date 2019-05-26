@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,8 +48,81 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DB\Tables\Brano.cs" />
+    <Compile Include="DBContext\MusicContext.cs" />
+    <Compile Include="Migrations\201905211316178_migration1.cs" />
+    <Compile Include="Migrations\201905211316178_migration1.Designer.cs">
+      <DependentUpon>201905211316178_migration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905211328324_migration2.cs" />
+    <Compile Include="Migrations\201905211328324_migration2.Designer.cs">
+      <DependentUpon>201905211328324_migration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905211335478_migration3.cs" />
+    <Compile Include="Migrations\201905211335478_migration3.Designer.cs">
+      <DependentUpon>201905211335478_migration3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905221907016_migration4.cs" />
+    <Compile Include="Migrations\201905221907016_migration4.Designer.cs">
+      <DependentUpon>201905221907016_migration4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905221920339_migration5.cs" />
+    <Compile Include="Migrations\201905221920339_migration5.Designer.cs">
+      <DependentUpon>201905221920339_migration5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905230754319_migration6.cs" />
+    <Compile Include="Migrations\201905230754319_migration6.Designer.cs">
+      <DependentUpon>201905230754319_migration6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905230816160_migration7.cs" />
+    <Compile Include="Migrations\201905230816160_migration7.Designer.cs">
+      <DependentUpon>201905230816160_migration7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905230943416_migration8.cs" />
+    <Compile Include="Migrations\201905230943416_migration8.Designer.cs">
+      <DependentUpon>201905230943416_migration8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905230945460_migration9.cs" />
+    <Compile Include="Migrations\201905230945460_migration9.Designer.cs">
+      <DependentUpon>201905230945460_migration9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TablesClasses\Band.cs" />
+    <Compile Include="TablesClasses\Brano.cs" />
+    <Compile Include="TablesClasses\Disco.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201905211316178_migration1.resx">
+      <DependentUpon>201905211316178_migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905211328324_migration2.resx">
+      <DependentUpon>201905211328324_migration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905211335478_migration3.resx">
+      <DependentUpon>201905211335478_migration3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221907016_migration4.resx">
+      <DependentUpon>201905221907016_migration4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221920339_migration5.resx">
+      <DependentUpon>201905221920339_migration5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905230754319_migration6.resx">
+      <DependentUpon>201905230754319_migration6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905230816160_migration7.resx">
+      <DependentUpon>201905230816160_migration7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905230943416_migration8.resx">
+      <DependentUpon>201905230943416_migration8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905230945460_migration9.resx">
+      <DependentUpon>201905230945460_migration9.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

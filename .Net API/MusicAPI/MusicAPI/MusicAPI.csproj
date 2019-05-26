@@ -180,46 +180,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905211316178_migration1.cs" />
-    <Compile Include="Migrations\201905211316178_migration1.Designer.cs">
-      <DependentUpon>201905211316178_migration1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905211328324_migration2.cs" />
-    <Compile Include="Migrations\201905211328324_migration2.Designer.cs">
-      <DependentUpon>201905211328324_migration2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905211335478_migration3.cs" />
-    <Compile Include="Migrations\201905211335478_migration3.Designer.cs">
-      <DependentUpon>201905211335478_migration3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905221907016_migration4.cs" />
-    <Compile Include="Migrations\201905221907016_migration4.Designer.cs">
-      <DependentUpon>201905221907016_migration4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905221920339_migration5.cs" />
-    <Compile Include="Migrations\201905221920339_migration5.Designer.cs">
-      <DependentUpon>201905221920339_migration5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905230754319_migration6.cs" />
-    <Compile Include="Migrations\201905230754319_migration6.Designer.cs">
-      <DependentUpon>201905230754319_migration6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905230816160_migration7.cs" />
-    <Compile Include="Migrations\201905230816160_migration7.Designer.cs">
-      <DependentUpon>201905230816160_migration7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905230943416_migration8.cs" />
-    <Compile Include="Migrations\201905230943416_migration8.Designer.cs">
-      <DependentUpon>201905230943416_migration8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905230945460_migration9.cs" />
-    <Compile Include="Migrations\201905230945460_migration9.Designer.cs">
-      <DependentUpon>201905230945460_migration9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ClassiTabelle\Band.cs" />
-    <Compile Include="Models\ClassiTabelle\Brano.cs" />
-    <Compile Include="Models\ClassiTabelle\Disco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -252,7 +212,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Compile Include="Models\DAL\MusicContext.cs" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -276,7 +235,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -306,35 +264,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905211316178_migration1.resx">
-      <DependentUpon>201905211316178_migration1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905211328324_migration2.resx">
-      <DependentUpon>201905211328324_migration2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905211335478_migration3.resx">
-      <DependentUpon>201905211335478_migration3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905221907016_migration4.resx">
-      <DependentUpon>201905221907016_migration4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905221920339_migration5.resx">
-      <DependentUpon>201905221920339_migration5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905230754319_migration6.resx">
-      <DependentUpon>201905230754319_migration6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905230816160_migration7.resx">
-      <DependentUpon>201905230816160_migration7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905230943416_migration8.resx">
-      <DependentUpon>201905230943416_migration8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905230945460_migration9.resx">
-      <DependentUpon>201905230945460_migration9.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MusicAPI.BLL\MusicAPI.BLL.csproj">
