@@ -1,4 +1,4 @@
-namespace MusicAPI.DAL.Migrations
+namespace ClassLibrary2.Migrations
 {
     using System;
     using System.Data.Entity;

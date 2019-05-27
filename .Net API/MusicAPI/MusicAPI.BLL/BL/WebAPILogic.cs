@@ -25,7 +25,6 @@ namespace MusicAPI.BLL.BL
                             d => d.id == brano.Disco_Id).Band_id).nome;
                     bdto.disco = context.Dischi.FirstOrDefault(d => d.id == brano.Disco_Id).Titolo;
                 }
-
             }
             return bdto;
         }
@@ -47,10 +46,8 @@ namespace MusicAPI.BLL.BL
                     anno = context.Dischi.FirstOrDefault(d => d.id == b.Disco_Id).anno,
                     durata = b.durata
                 }).ToList();
-
             }
             return result;
-
         }
 
         public List<DiscoDTO> GetDischi()
