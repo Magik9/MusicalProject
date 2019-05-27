@@ -1,4 +1,4 @@
-namespace MusicAPI.Areas.HelpPage
+namespace Music.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

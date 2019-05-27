@@ -1,18 +1,18 @@
-namespace ClassLibrary2.Migrations
+namespace Music.DAL.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MusicAPI.DAL.DBContext.MusicContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Music.DAL.DBContext.MusicContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(MusicAPI.DAL.DBContext.MusicContext context)
+        protected override void Seed(Music.DAL.DBContext.MusicContext context)
         {
             //  This method will be called after migrating to the latest version.
 

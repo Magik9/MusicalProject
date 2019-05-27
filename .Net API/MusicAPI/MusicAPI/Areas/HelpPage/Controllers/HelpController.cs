@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using MusicAPI.Areas.HelpPage.ModelDescriptions;
-using MusicAPI.Areas.HelpPage.Models;
+using Music.Areas.HelpPage.ModelDescriptions;
+using Music.Areas.HelpPage.Models;
 
-namespace MusicAPI.Areas.HelpPage.Controllers
+namespace Music.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

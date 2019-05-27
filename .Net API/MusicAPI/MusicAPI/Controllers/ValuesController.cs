@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace MusicAPI.Controllers
+namespace Music.Controllers
 {
     public class ValuesController : ApiController
     {

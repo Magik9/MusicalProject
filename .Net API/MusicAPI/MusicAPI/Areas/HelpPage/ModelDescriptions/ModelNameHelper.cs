@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace MusicAPI.Areas.HelpPage.ModelDescriptions
+namespace Music.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

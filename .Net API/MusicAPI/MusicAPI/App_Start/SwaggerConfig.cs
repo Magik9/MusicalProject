@@ -1,11 +1,11 @@
 using System.Web.Http;
 using WebActivatorEx;
-using MusicAPI;
+using Music.API;
 using Swashbuckle.Application;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace MusicAPI
+namespace Music.API
 {
     public class SwaggerConfig
     {
@@ -249,8 +249,8 @@ namespace MusicAPI
                         // "apiKeyIn" can either be "query" or "header"
                         //
                         //c.EnableApiKeySupport("apiKey", "header");
-                        
                     });
         }
-    }
+    
+        }
 }

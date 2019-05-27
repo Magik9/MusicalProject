@@ -7,8 +7,8 @@
     <ProjectGuid>{5F4445CA-0A0C-4678-A825-B63B22D16C2F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibrary2</RootNamespace>
-    <AssemblyName>ClassLibrary2</AssemblyName>
+    <RootNamespace>Music.DAL</RootNamespace>
+    <AssemblyName>Music.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -51,34 +51,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\MusicContext.cs" />
-    <Compile Include="Migrations\201905270746138_Initial.cs" />
-    <Compile Include="Migrations\201905270746138_Initial.Designer.cs">
-      <DependentUpon>201905270746138_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905270747326_Initial1.cs" />
-    <Compile Include="Migrations\201905270747326_Initial1.Designer.cs">
-      <DependentUpon>201905270747326_Initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201905271520238_Test.cs" />
+    <Compile Include="Migrations\201905271520238_Test.Designer.cs">
+      <DependentUpon>201905271520238_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TablesClasses\Band.cs" />
     <Compile Include="TablesClasses\Brano.cs" />
     <Compile Include="TablesClasses\Disco.cs" />
+    <Compile Include="TablesClasses\EntityBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905270746138_Initial.resx">
-      <DependentUpon>201905270746138_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905270747326_Initial1.resx">
-      <DependentUpon>201905270747326_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <EmbeddedResource Include="Migrations\201905271520238_Test.resx">
+      <DependentUpon>201905271520238_Test.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

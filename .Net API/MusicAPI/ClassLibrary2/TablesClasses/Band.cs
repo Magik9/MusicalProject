@@ -1,20 +1,19 @@
-﻿using System;
+﻿using ClassLibrary2.TablesClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace MusicAPI.DAL.TablesClasses
+namespace Music.DAL.TablesClasses
 {
-    public class Band
-    {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int id{ get; set; }
-        public string nome { get; set; }
-        public string genere { get; set; }
-        public int nMembri { get; set; }
-        public int anno { get; set; }
+    [Table("Band")]
+    public class Band:EntityBase
 
-        public virtual List<Disco> Dischi { get; set; }
+    {
+        public string Nome { get; set; }
+        public string Genere { get; set; }
+        public int AnnoFondazione { get; set; }
+
     }
 }

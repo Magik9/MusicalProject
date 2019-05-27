@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace MusicAPI.Areas.HelpPage.ModelDescriptions
+namespace Music.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

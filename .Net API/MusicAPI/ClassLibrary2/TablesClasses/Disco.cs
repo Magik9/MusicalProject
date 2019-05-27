@@ -1,22 +1,23 @@
-﻿using System;
+﻿using ClassLibrary2.TablesClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace MusicAPI.DAL.TablesClasses
+namespace Music.DAL.TablesClasses
 {
-    public class Disco
+    [Table("Disco")]
+
+    public class Disco:EntityBase
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+       
         public string Titolo { get; set; }
-        public int anno { get; set; }
+        public int Anno { get; set; }
 
         [ForeignKey("Band")]
-        public int Band_id { get; set; }
+        public int Band_Id { get; set; }
         public virtual Band Band { get; set; }
 
-        public virtual ICollection<Brano> Brani { get; set; }
     }
 }

@@ -1,22 +1,20 @@
-﻿using MusicAPI.BLL.DTO;
-using MusicAPI.BLL.BL;
+﻿using Music.BLL.DTO;
+using Music.BLL.BL;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace MusicAPI.Controllers.API
+namespace Music.Controllers.API
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     [RoutePrefix("Music")]
     public class MusicController : ApiController
     {
         [HttpGet]
-        
         [Route("Brano")]
         public BranoDTO Brano(int id)
         {
             return new WebAPILogic().GetSingleBrano(id);
-
         }
 
         [HttpGet]

@@ -1,6 +1,6 @@
 using System;
 
-namespace MusicAPI.Areas.HelpPage.ModelDescriptions
+namespace Music.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

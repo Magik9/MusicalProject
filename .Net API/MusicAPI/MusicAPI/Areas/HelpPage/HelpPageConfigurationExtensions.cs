@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using MusicAPI.Areas.HelpPage.ModelDescriptions;
-using MusicAPI.Areas.HelpPage.Models;
+using Music.Areas.HelpPage.ModelDescriptions;
+using Music.Areas.HelpPage.Models;
 
-namespace MusicAPI.Areas.HelpPage
+namespace Music.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

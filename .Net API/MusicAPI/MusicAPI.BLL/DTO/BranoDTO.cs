@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicAPI.BLL.DTO
+namespace Music.BLL.DTO
 {
     public class BranoDTO
     {

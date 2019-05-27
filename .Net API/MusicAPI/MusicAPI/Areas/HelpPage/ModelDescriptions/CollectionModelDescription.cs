@@ -1,4 +1,4 @@
-namespace MusicAPI.Areas.HelpPage.ModelDescriptions
+namespace Music.Areas.HelpPage.ModelDescriptions
 {
     public class CollectionModelDescription : ModelDescription
     {

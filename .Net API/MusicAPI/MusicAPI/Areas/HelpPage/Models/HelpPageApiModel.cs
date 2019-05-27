@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using MusicAPI.Areas.HelpPage.ModelDescriptions;
+using Music.Areas.HelpPage.ModelDescriptions;
 
-namespace MusicAPI.Areas.HelpPage.Models
+namespace Music.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

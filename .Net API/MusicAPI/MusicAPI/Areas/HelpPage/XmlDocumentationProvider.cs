@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using MusicAPI.Areas.HelpPage.ModelDescriptions;
+using Music.Areas.HelpPage.ModelDescriptions;
 
-namespace MusicAPI.Areas.HelpPage
+namespace Music.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

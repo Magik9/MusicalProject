@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace MusicAPI.Areas.HelpPage
+namespace Music.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

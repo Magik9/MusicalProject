@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace MusicAPI.Areas.HelpPage.ModelDescriptions
+namespace Music.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

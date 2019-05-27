@@ -1,8 +1,9 @@
 ﻿
-
+using AutoMapper;
 using System.Collections.Generic;
+using Music.DAL.TablesClasses;
 
-namespace MusicAPI.BLL.DTO
+namespace Music.BLL.DTO
 {
     public class BandDTO
     {

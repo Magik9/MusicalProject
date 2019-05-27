@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 
-namespace MusicAPI.Controllers
+namespace Music.Controllers
 {
     public class HomeController : Controller
     {

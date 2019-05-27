@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace MusicAPI.Areas.HelpPage
+namespace Music.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {
