@@ -13,6 +13,8 @@ namespace Music.BLL
                     .ForMember(x => x.disco, opt => opt.MapFrom(y => y.Disco.Titolo))
                     .ForMember(x => x.anno, opt => opt.MapFrom(y => y.Disco.Anno))
                     .ForMember(x => x.band, opt => opt.MapFrom(y => y.Disco.Band.Nome));
+                cfg.CreateMap<Disco, DiscoDTO>();
+                cfg.CreateMap<Band, BandDTO>();
             });
         }
     }

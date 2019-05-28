@@ -12,11 +12,9 @@ namespace Music.DAL.TablesClasses
     {   
         public string Titolo { get; set; }
         public string Durata { get; set; }
-        public int a { get; set; }
 
         [ForeignKey("Disco")]
         public int Disco_Id { get; set; }
         public virtual Disco Disco { get; set; }
-
     }
 }
