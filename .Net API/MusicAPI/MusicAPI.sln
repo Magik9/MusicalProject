@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.API", "MusicAPI\Music.API.csproj", "{FFB8AA5A-B809-41F8-8037-075F6BD92459}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.API", "Music.API\Music.API.csproj", "{FFB8AA5A-B809-41F8-8037-075F6BD92459}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.BLL", "MusicAPI.BLL\Music.BLL.csproj", "{DB6B3045-7E3D-43E1-9144-AA86F93ECD19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.BLL", "Music.BLL\Music.BLL.csproj", "{DB6B3045-7E3D-43E1-9144-AA86F93ECD19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.DAL", "ClassLibrary2\Music.DAL.csproj", "{5F4445CA-0A0C-4678-A825-B63B22D16C2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.DAL", "Music.DAL\Music.DAL.csproj", "{5F4445CA-0A0C-4678-A825-B63B22D16C2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

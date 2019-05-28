@@ -14,6 +14,5 @@ namespace Music.DAL.TablesClasses
         public string Nome { get; set; }
         public string Genere { get; set; }
         public int AnnoFondazione { get; set; }
-
     }
 }
