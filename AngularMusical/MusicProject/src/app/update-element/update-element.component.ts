@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 import { RestApiService } from "../shared/rest-api.service";
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -14,6 +15,7 @@ export class UpdateElementComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   Brano: any = {};
   constructor(
+    private location: Location,
     public restApi: RestApiService,
     public actRoute: ActivatedRoute,
     public router: Router
@@ -28,7 +30,7 @@ export class UpdateElementComponent implements OnInit {
   updateBrano() {
     if(window.confirm('Are you sure, you want to update?')){
     this.restApi.updateBrano(this.id, this.Brano).subscribe(data => {
-      this.router.navigate(['/get-list'])
+      this.location.back();
   })
   }
   }

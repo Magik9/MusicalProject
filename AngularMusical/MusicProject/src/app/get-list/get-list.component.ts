@@ -42,5 +42,5 @@ deleteBrano(id) {
     this.loadBrani()
     })
     }
-}  
+    }  
 }

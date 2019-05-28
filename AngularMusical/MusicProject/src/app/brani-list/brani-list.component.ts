@@ -14,11 +14,19 @@ export class BraniListComponent implements OnInit {
     public restApi: RestApiService,
     public actRoute: ActivatedRoute
   ) { }
-
   ngOnInit() {
+    this.loadBraniDisco();
+  }
+  deleteBrano(id) {
+    if (window.confirm('Are you sure, you want to delete?')){
+    this.restApi.deleteBrano(id).subscribe(data => {
+      this.loadBraniDisco();
+    })
+    }
+  }
+  loadBraniDisco() {
     this.restApi.getBraniDisco(this.id).subscribe((data: {}) => {
       this.Brani = data;
   })
-}
-
+  }
 }

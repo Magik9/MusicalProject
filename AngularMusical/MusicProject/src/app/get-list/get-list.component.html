@@ -1,6 +1,59 @@
  <!-- Employees list table, it hides when there is no employee -->
  <div class="container custom-container">
     <div class="row">
+
+            <div class="col-sm">
+                    <h3 class="mb-3 text-center">Lista Brani</h3>
+                <table class="table table-bordered table-striped table-responsive-mdd table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Titolo</th>
+                                <th scope="col">Band</th>
+                                <th scope="col">Disco</th>
+                                <th scope="col">Anno</th>
+                                <th scope="col">Durata</th>
+                                <th colspan="2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let brano of Brani">
+                                <td>{{brano.id}}</td>
+                                <td>{{brano.titolo}}</td>
+                                <td>{{brano.band}}</td>
+                                <td>{{brano.disco}}</td>
+                                <td>{{brano.anno}}</td>
+                                <td>{{brano.durata}}</td>
+                                <td>
+                                    <button class="btn btn-success btn-lg btn-block" routerLink="/update-element/{{brano.id}}">Edit</button>
+                                </td>
+                                <td>
+                                        <button class="btn btn-success btn-lg btn-block" (click)="deleteBrano(brano.id)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+
+            <div class="col-sm">
+                    <h3 class="mb-3 text-center">Lista Dischi</h3>
+                    <table class="table table-bordered table-striped table-responsive-mdd table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Titolo</th>
+                                    <th scope="col">Anno</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let disco of Dischi" routerLink="/brani-disco/{{disco.id}}">
+                                    <td>{{disco.id}}</td>
+                                    <td>{{disco.Titolo}}</td>
+                                    <td>{{disco.anno}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
     
             <div class="col-sm">
                     <h3 class="mb-3 text-center">Lista Gruppi</h3>    
@@ -26,58 +79,6 @@
                     </table>
                     </div>
             
-                    <div class="col-sm">
-                    <h3 class="mb-3 text-center">Lista Dischi</h3>
-                    <table class="table table-bordered table-striped table-responsive-mdd table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Titolo</th>
-                                    <th scope="col">Anno</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let disco of Dischi" routerLink="/brani-disco/{{disco.id}}">
-                                    <td>{{disco.id}}</td>
-                                    <td>{{disco.Titolo}}</td>
-                                    <td>{{disco.anno}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-
-        <div class="col-sm">
-                <h3 class="mb-3 text-center">Lista Brani</h3>
-            <table class="table table-bordered table-striped table-responsive-mdd table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Titolo</th>
-                            <th scope="col">Band</th>
-                            <th scope="col">Disco</th>
-                            <th scope="col">Anno</th>
-                            <th scope="col">Durata</th>
-                            <th colspan="2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let brano of Brani">
-                            <td>{{brano.id}}</td>
-                            <td>{{brano.titolo}}</td>
-                            <td>{{brano.band}}</td>
-                            <td>{{brano.disco}}</td>
-                            <td>{{brano.anno}}</td>
-                            <td>{{brano.durata}}</td>
-                            <td>
-                                <button class="btn btn-success btn-lg btn-block" routerLink="/update-element/{{brano.id}}">Edit</button>
-                            </td>
-                            <td>
-                                    <button class="btn btn-success btn-lg btn-block" (click)="deleteBrano(brano.id)">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-        </div>
     </div>
  </div>
 
