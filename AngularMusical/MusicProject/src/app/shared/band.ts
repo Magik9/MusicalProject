@@ -1,5 +1,5 @@
 export class Band {
-    anno: number;
+    AnnoFondazione: number;
     genere: string;
     id: number;
     nMembri: number;

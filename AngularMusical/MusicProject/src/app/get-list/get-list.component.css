@@ -1,4 +1,6 @@
-app-get-list.flex {
-    margin: 5%;
-    border: 1px solid black !important;
-}
+
+tr {
+    line-height: 50px;
+    min-height: 50px;
+    height: 50px;
+ }

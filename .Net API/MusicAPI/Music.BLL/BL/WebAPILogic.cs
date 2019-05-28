@@ -24,6 +24,21 @@ namespace Music.BLL.BL
             return branoDTO;
         }
 
+        public List<BranoDTO> GetBraniDisco(int id)
+        {
+            List<BranoDTO> result = new List<BranoDTO>();
+            using (var context = new MusicContext())
+            {
+                var disco = context.Dischi.FirstOrDefault(b => b.Id == id);
+                if (disco != null)
+                {
+                    result = context.Brani.Where(x => x.Disco_Id == id).ToList()
+                        .Select(b => Mapper.Map<BranoDTO>(b)).ToList();
+                }
+            }
+            return result;
+        }
+
         public List<BranoDTO> GetBrani()
         {
             List<BranoDTO> result = new List<BranoDTO>();

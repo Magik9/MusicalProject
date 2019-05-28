@@ -29,6 +29,13 @@ getBrano(id): Observable<Brano> {
   catchError(this.handleError)
   )
   }  
+getBraniDisco(id): Observable<Brano> {
+  return this.http.get<Brano>(this.apiURL + '/Brani-Disco/?id=' + id)
+  .pipe(
+  retry(1),
+  catchError(this.handleError)
+  )
+  }  
 getBrani(): Observable<Brano> {
 return this.http.get<Brano>(this.apiURL + '/Brani')
 .pipe(

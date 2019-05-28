@@ -18,6 +18,13 @@ namespace Music.Controllers.API
         }
 
         [HttpGet]
+        [Route("Brani-Disco")]
+        public List<BranoDTO> BraniDisco(int id)
+        {
+            return new WebAPILogic().GetBraniDisco(id);
+        }
+
+        [HttpGet]
         [Route("Bands")]
         public List<BandDTO> ListaBands()
         {

@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { GetListComponent } from './get-list/get-list.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { UpdateElementComponent } from './update-element/update-element.component';
+import { BraniListComponent } from './brani-list/brani-list.component';
 // Components
 
 
@@ -18,6 +19,7 @@ import { UpdateElementComponent } from './update-element/update-element.componen
     GetListComponent,
     PostCreateComponent,
     UpdateElementComponent,
+    BraniListComponent,
   ],
   imports: [
     BrowserModule,

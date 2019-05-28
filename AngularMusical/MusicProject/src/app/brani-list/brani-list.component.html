@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped table-responsive-mdd table-hover">
+  <thead>
+      <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Titolo</th>
+          <th scope="col">Band</th>
+          <th scope="col">Disco</th>
+          <th scope="col">Anno</th>
+          <th scope="col">Durata</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let brano of Brani">
+          <td>{{brano.id}}</td>
+          <td>{{brano.titolo}}</td>
+          <td>{{brano.band}}</td>
+          <td>{{brano.disco}}</td>
+          <td>{{brano.anno}}</td>
+          <td>{{brano.durata}}</td>
+          <td>
+              <span class="edit" routerLink="/update-element/{{brano.id}}">Edit</span>
+              <span class="delete" (click)="deleteBrano(brano.id)">Delete</span>
+          </td>
+      </tr>
+  </tbody>
+</table>
