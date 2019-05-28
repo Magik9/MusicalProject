@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.API", "MusicAPI\Music
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.BLL", "MusicAPI.BLL\Music.BLL.csproj", "{DB6B3045-7E3D-43E1-9144-AA86F93ECD19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicAPI.DAL", "ClassLibrary2\MusicAPI.DAL.csproj", "{5F4445CA-0A0C-4678-A825-B63B22D16C2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.DAL", "ClassLibrary2\Music.DAL.csproj", "{5F4445CA-0A0C-4678-A825-B63B22D16C2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

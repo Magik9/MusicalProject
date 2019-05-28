@@ -68,9 +68,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary2\MusicAPI.DAL.csproj">
+    <ProjectReference Include="..\ClassLibrary2\Music.DAL.csproj">
       <Project>{5f4445ca-0a0c-4678-a825-b63b22d16c2f}</Project>
-      <Name>MusicAPI.DAL</Name>
+      <Name>Music.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
