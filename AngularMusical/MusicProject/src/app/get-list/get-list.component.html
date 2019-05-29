@@ -17,7 +17,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let brano of Brani" [ngbPopover]="popOver" popoverTitle="Pop title" class="my-custom-class">
+                            <tr *ngFor="let brano of Brani" [ngbPopover]="popOver" triggers="mouseenter:mouseleave" popoverTitle="Pop title" class="my-custom-class">
                                 
                                 <ng-template #popOver>
                                     <app-popover-triggers [data]="brano"></app-popover-triggers>
