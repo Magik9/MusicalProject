@@ -17,7 +17,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let brano of Brani">
+                            <tr *ngFor="let brano of Brani" [ngbPopover]="popOver" popoverTitle="Pop title" class="my-custom-class">
+                                
+                                <ng-template #popOver>
+                                    <app-popover-triggers [data]="brano"></app-popover-triggers>
+                                </ng-template>
+                               
                                 <td>{{brano.id}}</td>
                                 <td>{{brano.titolo}}</td>
                                 <td>{{brano.band}}</td>
@@ -28,8 +33,11 @@
                                     <button class="btn btn-success btn-lg btn-block" routerLink="/update-element/{{brano.id}}">Edit</button>
                                 </td>
                                 <td>
-                                        <button class="btn btn-success btn-lg btn-block" (click)="deleteBrano(brano.id)">Delete</button>
+                                    <button class="btn btn-success btn-lg btn-block" (click)="deleteBrano(brano.id)">Delete</button>
                                 </td>
+                                
+                                  
+                                
                             </tr>
                         </tbody>
                     </table>
