@@ -29,7 +29,7 @@ export class UpdateElementComponent implements OnInit {
 
   updateBrano() {
     if(window.confirm('Are you sure, you want to update?')){
-    this.restApi.updateBrano(this.id, this.Brano).subscribe(data => {
+    this.restApi.updateBrano(this.Brano).subscribe(data => {
       this.location.back();
   })
   }

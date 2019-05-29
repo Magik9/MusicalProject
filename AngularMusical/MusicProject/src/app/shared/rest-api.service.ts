@@ -10,7 +10,9 @@ providedIn: 'root'
 })
 export class RestApiService {
 // Define API
-apiURL = 'http://localhost:57490/Music';
+apiBands = 'http://localhost:57490/Bands/';
+apiBrani = 'http://localhost:57490/Brani/';
+apiDischi = 'http://localhost:57490/Dischi/';
 constructor(private http: HttpClient) { }
 /*========================================
 CRUD Methods for consuming RESTful API
@@ -23,42 +25,42 @@ headers: new HttpHeaders({
 }  
 // HttpClient API get() method => Fetch employees list
 getBrano(id): Observable<Brano> {
-  return this.http.get<Brano>(this.apiURL + '/Brano/?id=' + id)
+  return this.http.get<Brano>(this.apiBrani + id)
   .pipe(
   retry(1),
   catchError(this.handleError)
   )
   }  
 getBraniDisco(id): Observable<Brano> {
-  return this.http.get<Brano>(this.apiURL + '/Brani-Disco/?id=' + id)
+  return this.http.get<Brano>(this.apiBrani + 'Disco/' + id)
   .pipe(
   retry(1),
   catchError(this.handleError)
   )
   }  
 getBrani(): Observable<Brano> {
-return this.http.get<Brano>(this.apiURL + '/Brani')
+return this.http.get<Brano>(this.apiBrani)
 .pipe(
 retry(1),
 catchError(this.handleError)
 )
 }
 getDischi(): Observable<Disco> {
-  return this.http.get<Disco>(this.apiURL + '/Dischi')
+  return this.http.get<Disco>(this.apiDischi)
   .pipe(
   retry(1),
   catchError(this.handleError)
   )
   }
 getBands(): Observable<Band> {
-  return this.http.get<Band>(this.apiURL + '/Bands')
+  return this.http.get<Band>(this.apiBands)
   .pipe(
   retry(1),
   catchError(this.handleError)
   )
   }
   createBrano(brano): Observable<Brano> {
-    return this.http.post<Brano>(this.apiURL + '/AddBrano', JSON.stringify(brano), this.httpOptions)
+    return this.http.post<Brano>(this.apiBrani + 'Add', JSON.stringify(brano), this.httpOptions)
     .pipe(
     retry(1),
     catchError(this.handleError)
@@ -68,14 +70,14 @@ getBands(): Observable<Band> {
     /*let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append("Access-Control-Allow-Origin", "*");
     this.httpOptions.headers = headers;*/
-    return this.http.delete<Brano>(this.apiURL + '/DeleteBrano/?id=' + id, this.httpOptions)
+    return this.http.delete<Brano>(this.apiBrani + '/Delete/' + id, this.httpOptions)
     .pipe(
     retry(1),
     catchError(this.handleError)
   )
   }
-  updateBrano(id, brano): Observable<Brano> {
-    return this.http.put<Brano>(this.apiURL + '/UpdateBrano/?id=' + id, JSON.stringify(brano), this.httpOptions)
+  updateBrano(brano): Observable<Brano> {
+    return this.http.put<Brano>(this.apiBrani + 'Update', JSON.stringify(brano), this.httpOptions)
     .pipe(
     retry(1),
     catchError(this.handleError)
