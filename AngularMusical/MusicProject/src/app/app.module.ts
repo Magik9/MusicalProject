@@ -10,8 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { GetListComponent } from './get-list/get-list.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { UpdateElementComponent } from './update-element/update-element.component';
-import { BraniListComponent } from './brani-list/brani-list.component';
+import { BraniDiscoComponent } from './brani-disco/brani-disco.component';
 import { PopoverTriggersComponent } from './popover-triggers/popover-triggers.component';
+import { BraniAllComponent } from './brani-all/brani-all.component';
+import { DischiAllComponent } from './dischi-all/dischi-all.component';
 // Components
 
 
@@ -21,8 +23,10 @@ import { PopoverTriggersComponent } from './popover-triggers/popover-triggers.co
     GetListComponent,
     PostCreateComponent,
     UpdateElementComponent,
-    BraniListComponent,
-    PopoverTriggersComponent
+    BraniDiscoComponent,
+    PopoverTriggersComponent,
+    BraniAllComponent,
+    DischiAllComponent
   ],
   imports: [
     BrowserModule,

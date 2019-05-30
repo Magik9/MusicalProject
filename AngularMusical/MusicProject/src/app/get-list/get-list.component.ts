@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from "../shared/rest-api.service";
+
 @Component({
 selector: 'app-get-list',
 host: {
@@ -13,7 +14,7 @@ Brani: any = [];
 Dischi: any = [];
 Bands: any = [];
 constructor(
-public restApi: RestApiService
+public restApi: RestApiService,
 ) { }
 ngOnInit() {
 this.loadBrani();

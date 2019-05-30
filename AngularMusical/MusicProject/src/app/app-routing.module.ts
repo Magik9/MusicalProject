@@ -3,14 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { GetListComponent } from './get-list/get-list.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { UpdateElementComponent } from './update-element/update-element.component';
-import { BraniListComponent } from './brani-list/brani-list.component';
+import { BraniDiscoComponent } from './brani-disco/brani-disco.component';
+import { BraniAllComponent } from './brani-all/brani-all.component';
+import { DischiAllComponent } from './dischi-all/dischi-all.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'get-list' },
+  { path: '', pathMatch: 'full', redirectTo: 'brani-all' },
+  {path: 'brani-all', component: BraniAllComponent},
+  {path: 'dischi-all', component: DischiAllComponent},
   {path: 'get-list', component: GetListComponent},
   {path: 'post-create', component: PostCreateComponent},
   {path: 'update-element/:id', component: UpdateElementComponent},
-  {path: 'brani-disco/:id', component: BraniListComponent}
+  {path: 'brani-disco/:id', component: BraniDiscoComponent}
 ];
 
 @NgModule({

@@ -1,5 +1,4 @@
- <!-- Employees list table, it hides when there is no employee -->
- <div class="container custom-container">
+<div class="container custom-container"> 
     <div class="row">
 
             <div class="col-sm">
@@ -17,12 +16,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let brano of Brani" [ngbPopover]="popOver" triggers="mouseenter:mouseleave" popoverTitle="Pop title" class="my-custom-class">
-                                
-                                <ng-template #popOver>
-                                    <app-popover-triggers [data]="brano"></app-popover-triggers>
-                                </ng-template>
-                               
+                         
+                            <tr *ngFor="let brano of Brani" [ngbPopover]="popOver" triggers="mouseenter:mouseleave" popoverTitle="Pop title" container="body">
+                                    <ng-template #popOver>
+                                            <app-popover-triggers [data]="brano"></app-popover-triggers>
+                                    </ng-template>
                                 <td>{{brano.id}}</td>
                                 <td>{{brano.titolo}}</td>
                                 <td>{{brano.band}}</td>
@@ -35,10 +33,9 @@
                                 <td>
                                     <button class="btn btn-success btn-lg btn-block" (click)="deleteBrano(brano.id)">Delete</button>
                                 </td>
-                                
-                                  
-                                
+
                             </tr>
+           
                         </tbody>
                     </table>
             </div>
@@ -89,4 +86,6 @@
             
     </div>
  </div>
+
+ 
 
