@@ -6,7 +6,6 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Music.BLL;
 using MusicAPI;
-using Autofac;
 
 namespace Music
 {
@@ -21,8 +20,6 @@ namespace Music
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             AutoMapperConfiguration.Configure();
-
-            //AutofacConfiguration.Register(GlobalConfiguration.Configuration);
         }
 
     }

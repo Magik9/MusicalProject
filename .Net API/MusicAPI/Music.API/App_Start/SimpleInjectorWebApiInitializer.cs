@@ -3,7 +3,6 @@
 namespace Music.API.App_Start
 {
     using System.Web.Http;
-    using Music.BLL.BL;
     using SimpleInjector;
     using SimpleInjector.Integration.WebApi;
     using SimpleInjector.Lifestyles;
@@ -29,9 +28,8 @@ namespace Music.API.App_Start
         private static void InitializeContainer(Container container)
         {
 
-
             // For instance:
-             container.Register<BranoService>(Lifestyle.Scoped);
+            // container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
         }
     }
 }
