@@ -14,11 +14,18 @@ namespace Music.API.Controllers.API
     [RoutePrefix("Dischi")]
     public class DiscoController : ApiController
     {
+        private DiscoService _discoService = null;
+
+        public DiscoController(DiscoService service)
+        {
+            _discoService = service;
+        }
+
         [HttpGet]
         [Route("")]
         public List<DiscoDTO> ListaDischi()
         {
-            return new DiscoService().GetDischi();
+            return _discoService.GetDischi();
         }
     }
 }

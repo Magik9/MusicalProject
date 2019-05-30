@@ -20,10 +20,9 @@ namespace Music
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            AutoMapperConfiguration config = new AutoMapperConfiguration();
             AutoMapperConfiguration.Configure();
 
-             AutofacConfiguration.Register(GlobalConfiguration.Configuration);
+            //AutofacConfiguration.Register(GlobalConfiguration.Configuration);
         }
 
     }
