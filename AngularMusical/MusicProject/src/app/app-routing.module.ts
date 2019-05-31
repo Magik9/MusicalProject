@@ -6,11 +6,15 @@ import { UpdateElementComponent } from './update-element/update-element.componen
 import { BraniDiscoComponent } from './brani-disco/brani-disco.component';
 import { BraniAllComponent } from './brani-all/brani-all.component';
 import { DischiAllComponent } from './dischi-all/dischi-all.component';
+import { BandAllComponent } from './band-all/band-all.component';
+import { DischiBandComponent } from './dischi-band/dischi-band.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'brani-all' },
   {path: 'brani-all', component: BraniAllComponent},
   {path: 'dischi-all', component: DischiAllComponent},
+  {path: 'dischi-band/:id', component: DischiBandComponent},
+  {path: 'band-all', component: BandAllComponent},
   {path: 'get-list', component: GetListComponent},
   {path: 'post-create', component: PostCreateComponent},
   {path: 'update-element/:id', component: UpdateElementComponent},

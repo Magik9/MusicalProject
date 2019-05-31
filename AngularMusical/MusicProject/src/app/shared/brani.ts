@@ -1,3 +1,4 @@
+
 export class Brano {
     id: number;
     titolo: string;
@@ -5,5 +6,7 @@ export class Brano {
     anno: number;
     band: string;
     disco: string;
+    disco_id: number;
+    band_id: number;
 }
 

@@ -1,0 +1,30 @@
+<div class="container custom-container">
+  <h3 class="mb-3 text-center">Lista Gruppi</h3>    
+  <table class="table table-bordered table-striped table-responsive-mdd table-hover">
+      <thead>
+          <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Genere</th>
+              <th scope="col">Membri</th>
+              <th scope="col">Anno</th>
+              <th colspan="2">Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let band of Bands">
+              <td>{{band.id}}</td>
+              <td>{{band.nome}}</td>
+              <td>{{band.genere}}</td>
+              <td>{{band.nMembri}}</td>
+              <td>{{band.AnnoFondazione}}</td>
+              <td>
+                <button class="btn btn-success btn-lg btn-block">Edit</button>
+            </td>
+            <td>
+                <button class="btn btn-success btn-lg btn-block">Delete</button>
+            </td>
+          </tr>
+      </tbody>
+  </table>
+  </div>

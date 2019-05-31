@@ -20,8 +20,8 @@
                     </ng-template>
                 <td>{{brano.id}}</td>
                 <td>{{brano.titolo}}</td>
-                <td>{{brano.band}}</td>
-                <td>{{brano.disco}}</td>
+                <td routerLink="/dischi-band/{{brano.Band_Id}}">{{brano.band}}</td>
+                <td routerLink="/brani-disco/{{brano.Disco_Id}}">{{brano.disco}}</td>
                 <td>{{brano.anno}}</td>
                 <td>{{brano.durata}}</td>
                 <td>

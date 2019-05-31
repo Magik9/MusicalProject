@@ -14,6 +14,8 @@ import { BraniDiscoComponent } from './brani-disco/brani-disco.component';
 import { PopoverTriggersComponent } from './popover-triggers/popover-triggers.component';
 import { BraniAllComponent } from './brani-all/brani-all.component';
 import { DischiAllComponent } from './dischi-all/dischi-all.component';
+import { BandAllComponent } from './band-all/band-all.component';
+import { DischiBandComponent } from './dischi-band/dischi-band.component';
 // Components
 
 
@@ -26,7 +28,9 @@ import { DischiAllComponent } from './dischi-all/dischi-all.component';
     BraniDiscoComponent,
     PopoverTriggersComponent,
     BraniAllComponent,
-    DischiAllComponent
+    DischiAllComponent,
+    BandAllComponent,
+    DischiBandComponent
   ],
   imports: [
     BrowserModule,

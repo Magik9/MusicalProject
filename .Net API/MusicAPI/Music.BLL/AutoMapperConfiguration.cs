@@ -12,7 +12,8 @@ namespace Music.BLL
                 cfg.CreateMap<Brano, BranoDTO>()
                     .ForMember(x => x.disco, opt => opt.MapFrom(y => y.Disco.Titolo))
                     .ForMember(x => x.anno, opt => opt.MapFrom(y => y.Disco.Anno))
-                    .ForMember(x => x.band, opt => opt.MapFrom(y => y.Disco.Band.Nome));
+                    .ForMember(x => x.band, opt => opt.MapFrom(y => y.Disco.Band.Nome))
+                    .ForMember(x => x.Band_Id, opt => opt.MapFrom(y => y.Disco.Band.Id));
                 cfg.CreateMap<Disco, DiscoDTO>();
                 cfg.CreateMap<Band, BandDTO>();
             });

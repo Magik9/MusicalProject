@@ -27,5 +27,12 @@ namespace Music.API.Controllers.API
         {
             return _discoService.GetDischi();
         }
+
+        [HttpGet]
+        [Route("Band/{id:int}")]
+        public List<DiscoDTO> ListaDischi(int id)
+        {
+            return _discoService.GetDischiBand(id);
+        }
     }
 }

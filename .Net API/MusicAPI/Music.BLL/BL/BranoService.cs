@@ -60,11 +60,8 @@ namespace Music.BLL.BL
                 brano.CreatedOn = DateTime.Now;
                 brano.ModifiedOn = DateTime.Now;
 
-                var disco = context.Dischi.FirstOrDefault(d => d.Titolo == bdto.disco);
-                if (disco != null)
-                    brano.Disco_Id = disco.Id;
-                else
-                    brano.Disco_Id = context.Dischi.ToList().Last().Id;
+                DiscoService ds = new DiscoService();
+                brano.Disco_Id = ds.AddDiscoOrDefault(bdto);
 
                 context.Brani.Add(brano);
                 context.SaveChanges();

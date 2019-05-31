@@ -1,5 +1,5 @@
 <div class="container custom-container">
-        <h3 class="mb-3 text-center">Brani di: {{Brani[0].disco}}</h3>
+        <h3 class="mb-3 text-center">Brani di: {{Disco}}</h3>
 <table class="table table-bordered table-striped table-responsive-mdd table-hover">
   <thead>
       <tr>
@@ -10,17 +10,18 @@
           <th scope="col">Anno</th>
           <th scope="col">Durata</th>
           <th colspan="2">Actions</th>
+
       </tr>
   </thead>
   <tbody>
       <tr *ngFor="let brano of Brani">
-          <td>{{brano.id}}</td>
-          <td>{{brano.titolo}}</td>
-          <td>{{brano.band}}</td>
-          <td>{{brano.disco}}</td>
-          <td>{{brano.anno}}</td>
-          <td>{{brano.durata}}</td>
-          <td>
+        <td>{{brano.id}}</td>
+        <td>{{brano.titolo}}</td>
+        <td routerLink="/dischi-band/{{brano.Band_Id}}">{{brano.band}}</td>
+        <td routerLink="/brani-disco/{{brano.Disco_Id}}">{{brano.disco}}</td>
+        <td>{{brano.anno}}</td>
+        <td>{{brano.durata}}</td>
+        <td>
             <button class="btn btn-success btn-lg btn-block" routerLink="/update-element/{{brano.id}}">Edit</button>
         </td>
         <td>

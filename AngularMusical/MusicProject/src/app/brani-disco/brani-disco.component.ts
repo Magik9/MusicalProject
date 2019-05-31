@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BraniDiscoComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
+  Disco: any;
   Brani: any = [];
   constructor(
     public restApi: RestApiService,
@@ -27,6 +28,7 @@ export class BraniDiscoComponent implements OnInit {
   loadBraniDisco() {
     this.restApi.getBraniDisco(this.id).subscribe((data: {}) => {
       this.Brani = data;
+      this.Disco = this.Brani[0].disco;
   })
   }
 }

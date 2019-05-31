@@ -52,6 +52,13 @@ getDischi(): Observable<Disco> {
   catchError(this.handleError)
   )
   }
+getDischiBand(id): Observable<Disco> {
+  return this.http.get<Disco>(this.apiDischi + "Band/" + id)
+  .pipe(
+  retry(1),
+  catchError(this.handleError)
+  )
+  }
 getBands(): Observable<Band> {
   return this.http.get<Band>(this.apiBands)
   .pipe(
