@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from "../shared/rest-api.service";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-brani-all',
@@ -10,6 +11,7 @@ export class BraniAllComponent implements OnInit {
   Brani: any = [];
   constructor(
     public restApi: RestApiService,
+    public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {

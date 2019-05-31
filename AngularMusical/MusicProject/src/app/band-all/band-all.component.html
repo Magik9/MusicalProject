@@ -12,7 +12,7 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let band of Bands">
+          <tr *ngFor="let band of Bands" routerLink="/dischi-band/{{band.id}}">
               <td>{{band.id}}</td>
               <td>{{band.nome}}</td>
               <td>{{band.genere}}</td>

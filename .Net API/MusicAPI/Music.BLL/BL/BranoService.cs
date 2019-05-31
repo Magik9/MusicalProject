@@ -10,6 +10,13 @@ namespace Music.BLL.BL
 {
     public class BranoService
     {
+        private DiscoService _discoService = null;
+
+        public BranoService(DiscoService discoService)
+        {
+            _discoService = discoService;
+        }
+
         public BranoDTO GetSingleBrano(int id)
         {
             BranoDTO branoDTO = null;
@@ -60,8 +67,7 @@ namespace Music.BLL.BL
                 brano.CreatedOn = DateTime.Now;
                 brano.ModifiedOn = DateTime.Now;
 
-                DiscoService ds = new DiscoService();
-                brano.Disco_Id = ds.AddDiscoOrDefault(bdto);
+                brano.Disco_Id = _discoService.AddDiscoOrDefault(bdto);
 
                 context.Brani.Add(brano);
                 context.SaveChanges();

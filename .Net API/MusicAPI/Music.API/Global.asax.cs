@@ -6,6 +6,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Music.BLL;
 using MusicAPI;
+using SimpleInjector;
+using SimpleInjector.Integration.WebApi;
 
 namespace Music
 {
@@ -20,6 +22,9 @@ namespace Music
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             AutoMapperConfiguration.Configure();
+
+            GlobalConfiguration.Configuration.DependencyResolver =
+                new SimpleInjectorWebApiDependencyResolver(new Container());
         }
 
     }

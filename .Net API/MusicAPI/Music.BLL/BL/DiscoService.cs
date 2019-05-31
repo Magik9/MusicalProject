@@ -12,6 +12,13 @@ namespace Music.BLL.BL
 
     public class DiscoService
     {
+        private BandService _bandService = null;
+
+        public DiscoService(BandService bandService)
+        {
+            _bandService = bandService;
+        }
+
         public List<DiscoDTO> GetDischi()
         {
             List<DiscoDTO> result = new List<DiscoDTO>();
@@ -72,7 +79,7 @@ namespace Music.BLL.BL
                     disco.CreatedOn = DateTime.Now;
                     disco.ModifiedOn = DateTime.Now;
                     disco.Id = context.Dischi.ToList().Last().Id;
-                    disco.Band_Id = new BandService().AddBandOrDefault(bdto);
+                    disco.Band_Id = _bandService.AddBandOrDefault(bdto);
 
                     context.Dischi.Add(disco);
                     context.SaveChanges();
