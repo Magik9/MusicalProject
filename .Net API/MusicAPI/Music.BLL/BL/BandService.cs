@@ -44,5 +44,14 @@ namespace Music.BLL.BL
             }
 
         }
+
+        public void DeleteBand(int id)
+        {
+            using (var context = new MusicContext())
+            {
+                context.Bands.Remove(context.Bands.FirstOrDefault(x => x.Id == id));
+                context.SaveChanges();
+            }
+        }
     }
 }

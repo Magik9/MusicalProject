@@ -68,27 +68,35 @@ namespace Music.BLL.BL
 
             public int AddDiscoOrDefault(BranoDTO bdto)
             {
-            Disco disco = new Disco();
-            using (var context = new MusicContext())
+                Disco disco = new Disco();
+                using (var context = new MusicContext())
                 {
                     var d = context.Dischi.FirstOrDefault(x => x.Titolo == bdto.disco);
-                if (d == null)
-                {
-                    disco.Titolo = bdto.disco;
-                    disco.Anno = bdto.anno;
-                    disco.CreatedOn = DateTime.Now;
-                    disco.ModifiedOn = DateTime.Now;
-                    disco.Id = context.Dischi.ToList().Last().Id;
-                    disco.Band_Id = _bandService.AddBandOrDefault(bdto);
+                    if (d == null)
+                    {
+                        disco.Titolo = bdto.disco;
+                        disco.Anno = bdto.anno;
+                        disco.CreatedOn = DateTime.Now;
+                        disco.ModifiedOn = DateTime.Now;
+                        disco.Id = context.Dischi.ToList().Last().Id;
+                        disco.Band_Id = _bandService.AddBandOrDefault(bdto);
 
-                    context.Dischi.Add(disco);
-                    context.SaveChanges();
-                    return disco.Id;
+                        context.Dischi.Add(disco);
+                        context.SaveChanges();
+                        return disco.Id;
+                    }
+                    else
+                        return d.Id;         
                 }
-                else
-                    return d.Id;         
-                }
-
             }
+
+        public void DeleteDisco(int id)
+        {
+            using (var context = new MusicContext())
+            {
+                context.Dischi.Remove(context.Dischi.FirstOrDefault(x => x.Id == id));
+                context.SaveChanges();
+            }
+        }
     }
 }

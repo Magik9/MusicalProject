@@ -28,7 +28,7 @@ export class BraniDiscoComponent implements OnInit {
   loadBraniDisco() {
     this.restApi.getBraniDisco(this.id).subscribe((data: {}) => {
       this.Brani = data;
-      this.Disco = this.Brani[0].disco;
+      this.Disco = "ciao";
   })
   }
 }

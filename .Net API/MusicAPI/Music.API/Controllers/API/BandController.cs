@@ -24,11 +24,18 @@ namespace Music.Controllers.API
             return _bandService.GetBands();
         }
 
-        
+        [HttpDelete]
+        [Route("Delete/{id:int}")]
+        public void DeleteSingleBand(int id)
+        {
+            _bandService.DeleteBand(id);
+        }
 
-        
 
-        
+
+
+
+
 
     }
 }

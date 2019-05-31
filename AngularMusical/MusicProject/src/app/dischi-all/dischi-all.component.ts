@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from "../shared/rest-api.service";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dischi-all',
@@ -11,6 +12,7 @@ export class DischiAllComponent implements OnInit {
   Dischi: any = [];
   constructor(
     public restApi: RestApiService,
+    public actRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -22,4 +24,11 @@ export class DischiAllComponent implements OnInit {
     this.Dischi = data;
     })
     }
+    deleteDisco(id) {
+      if (window.confirm('Are you sure, you want to delete?')){
+      this.restApi.deleteDisco(id).subscribe(data => {
+      this.loadDischi();
+      })
+      }
+      } 
 }

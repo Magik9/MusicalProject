@@ -34,5 +34,12 @@ namespace Music.API.Controllers.API
         {
             return _discoService.GetDischiBand(id);
         }
+
+        [HttpDelete]
+        [Route("Delete/{id:int}")]
+        public void DeleteSingleDisco(int id)
+        {
+            _discoService.DeleteDisco(id);
+        }
     }
 }

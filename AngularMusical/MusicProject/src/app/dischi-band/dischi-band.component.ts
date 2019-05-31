@@ -23,7 +23,7 @@ export class DischiBandComponent implements OnInit {
   loadDischiBand() {
     this.restApi.getDischiBand(this.id).subscribe((data: {}) => {
       this.Dischi = data;
-      this.Band = this.Dischi[0].Band;
+      this.Band = "ciao";
   })
   }
 

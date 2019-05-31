@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from "../shared/rest-api.service";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-band-all',
@@ -12,6 +13,7 @@ export class BandAllComponent implements OnInit {
   Bands: any = [];
   constructor(
     public restApi: RestApiService,
+    public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -23,4 +25,11 @@ export class BandAllComponent implements OnInit {
     this.Bands = data;
     })
     }
+    deleteBand(id) {
+      if (window.confirm('Are you sure, you want to delete?')){
+      this.restApi.deleteBand(id).subscribe(data => {
+      this.loadBands();
+      })
+      }
+      } 
 }
