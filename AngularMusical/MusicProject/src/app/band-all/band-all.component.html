@@ -13,16 +13,16 @@
       </thead>
       <tbody>
           <tr *ngFor="let band of Bands">
-              <td>{{band.id}}</td>
-              <td routerLink="/dischi-band/{{band.id}}">{{band.nome}}</td>
+              <td>{{band.Id}}</td>
+              <td routerLink="/dischi-band/{{band.Id}}">{{band.nome}}</td>
               <td>{{band.genere}}</td>
               <td>{{band.nMembri}}</td>
-              <td>{{band.AnnoFondazione}}</td>
+              <td>{{band.annoFondazione}}</td>
               <td>
                 <button class="btn btn-success btn-lg btn-block">Edit</button>
             </td>
             <td>
-                <button class="btn btn-success btn-lg btn-block" (click)="deleteBand(band.id)">Delete</button>
+                <button class="btn btn-success btn-lg btn-block" (click)="deleteBand(band.Id)">Delete</button>
             </td>
           </tr>
       </tbody>

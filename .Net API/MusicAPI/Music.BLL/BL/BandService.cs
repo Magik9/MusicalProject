@@ -22,16 +22,15 @@ namespace Music.BLL.BL
             return result;
         }
 
-        public int AddBandOrDefault(BranoDTO bdto)
+        public int AddBandIfNotExist(BandDTO bandDto)
         {
             Band band = new Band();
             using (var context = new MusicContext())
             {
-                var b = context.Bands.FirstOrDefault(x => x.Nome == bdto.band);
+                var b = context.Bands.FirstOrDefault(x => x.Nome == bandDto.nome);
                 if (b == null)
                 {
-                    band.Nome = bdto.band;
-                    band.Id = context.Bands.ToList().Last().Id;
+                    band.Nome = bandDto.nome;
                     band.CreatedOn = DateTime.Now;
                     band.ModifiedOn = DateTime.Now;
 
@@ -39,10 +38,19 @@ namespace Music.BLL.BL
                     context.SaveChanges();
                     return band.Id;
                 }
-                else
                     return b.Id;
             }
+        }
 
+        public int AddBandIfNotExist(DiscoDTO discoDTO)
+        {
+            BandDTO bandDTO = new BandDTO()
+            {
+                nome = discoDTO.band,
+                annoFondazione = discoDTO.anno,
+                genere = discoDTO.genere
+            };
+            return AddBandIfNotExist(bandDTO);
         }
 
         public void DeleteBand(int id)

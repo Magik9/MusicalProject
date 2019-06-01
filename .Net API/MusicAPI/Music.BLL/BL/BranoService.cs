@@ -62,12 +62,11 @@ namespace Music.BLL.BL
             using (var context = new MusicContext())
             {
                 Brano brano = new Brano();
-                brano.Titolo = bdto.titolo;
-                brano.Durata = bdto.durata;
+                Mapper.Map(bdto, brano);
                 brano.CreatedOn = DateTime.Now;
                 brano.ModifiedOn = DateTime.Now;
 
-                brano.Disco_Id = _discoService.AddDiscoOrDefault(bdto);
+                brano.Disco_Id = _discoService.AddDiscoIfNotExist(bdto);
 
                 context.Brani.Add(brano);
                 context.SaveChanges();

@@ -42,52 +42,38 @@ namespace Music.BLL.BL
             return result;
         }
 
-        public bool AddDiscoDTO(DiscoDTO ddto)
+        public int AddDiscoIfNotExist(DiscoDTO ddto)
         {
-            List<DiscoDTO> result = new List<DiscoDTO>();
+            Disco disco = new Disco();
             using (var context = new MusicContext())
             {
-                Disco disco = new Disco();
-                var d = context.Dischi.FirstOrDefault(x => x.Titolo == ddto.Titolo);
+                var d = context.Dischi.FirstOrDefault(x => x.Titolo == ddto.titolo);
                 if (d == null)
                 {
-                    disco.Titolo = ddto.Titolo;
+                    disco.Titolo = ddto.titolo;
                     disco.Anno = ddto.anno;
                     disco.CreatedOn = DateTime.Now;
                     disco.ModifiedOn = DateTime.Now;
-                    disco.Id = context.Dischi.ToList().Last().Id;
+                    disco.Band_Id = _bandService.AddBandIfNotExist(ddto);
 
                     context.Dischi.Add(disco);
                     context.SaveChanges();
-                    return true;
+                    return disco.Id;
                 }
-                else
-                    return false;
+                    return d.Id;
             }
         }
 
-            public int AddDiscoOrDefault(BranoDTO bdto)
+            public int AddDiscoIfNotExist(BranoDTO branoDto)
             {
-                Disco disco = new Disco();
-                using (var context = new MusicContext())
+                DiscoDTO discoDto = new DiscoDTO()
                 {
-                    var d = context.Dischi.FirstOrDefault(x => x.Titolo == bdto.disco);
-                    if (d == null)
-                    {
-                        disco.Titolo = bdto.disco;
-                        disco.Anno = bdto.anno;
-                        disco.CreatedOn = DateTime.Now;
-                        disco.ModifiedOn = DateTime.Now;
-                        disco.Id = context.Dischi.ToList().Last().Id;
-                        disco.Band_Id = _bandService.AddBandOrDefault(bdto);
-
-                        context.Dischi.Add(disco);
-                        context.SaveChanges();
-                        return disco.Id;
-                    }
-                    else
-                        return d.Id;         
-                }
+                    Id = branoDto.Disco_Id,
+                    titolo = branoDto.disco,
+                    anno = branoDto.anno,
+                    band = branoDto.band
+                };
+                return AddDiscoIfNotExist(discoDto);
             }
 
         public void DeleteDisco(int id)

@@ -77,21 +77,21 @@ getBands(): Observable<Band> {
     /*let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append("Access-Control-Allow-Origin", "*");
     this.httpOptions.headers = headers;*/
-    return this.http.delete<Brano>(this.apiBrani + '/Delete/' + id, this.httpOptions)
+    return this.http.delete<Brano>(this.apiBrani + 'Delete/' + id, this.httpOptions)
     .pipe(
     retry(1),
     catchError(this.handleError)
   )
   }
   deleteDisco(id){
-    return this.http.delete<Disco>(this.apiDischi + '/Delete/' + id, this.httpOptions)
+    return this.http.delete<Disco>(this.apiDischi + 'Delete/' + id, this.httpOptions)
     .pipe(
     retry(1),
     catchError(this.handleError)
   )
   }
   deleteBand(id){
-    return this.http.delete<Band>(this.apiBands + '/Delete/' + id, this.httpOptions)
+    return this.http.delete<Band>(this.apiBands + 'Delete/' + id, this.httpOptions)
     .pipe(
     retry(1),
     catchError(this.handleError)

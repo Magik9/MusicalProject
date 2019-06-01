@@ -7,10 +7,10 @@ namespace Music.BLL.DTO
 {
     public class BandDTO
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string nome { get; set; }
         public string genere { get; set; }
-        public int AnnoFondazione { get; set; }
+        public int annoFondazione { get; set; }
 
 
     }

@@ -5,20 +5,22 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Titolo</th>
+                    <th scope="col">Band</th>
                     <th scope="col">Anno</th>
                     <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let disco of Dischi">
-                    <td>{{disco.id}}</td>
-                    <td routerLink="/brani-disco/{{disco.id}}">{{disco.Titolo}}</td>
+                    <td>{{disco.Id}}</td>
+                    <td routerLink="/brani-disco/{{disco.Id}}">{{disco.titolo}}</td>
+                    <td>{{disco.band}}</td>
                     <td>{{disco.anno}}</td>
                     <td>
                         <button class="btn btn-success btn-lg btn-block">Edit</button>
                     </td>
                     <td>
-                        <button class="btn btn-success btn-lg btn-block" (click)="deleteDisco(disco.id)">Delete</button>
+                        <button class="btn btn-success btn-lg btn-block" (click)="deleteDisco(disco.Id)">Delete</button>
                     </td>
                 </tr>
                 

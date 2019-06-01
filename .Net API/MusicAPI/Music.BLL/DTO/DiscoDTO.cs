@@ -8,11 +8,10 @@ namespace Music.BLL.DTO
 {
     public class DiscoDTO
     {
-        public int id { get; set; }
-        public string Titolo { get; set; }
+        public int Id { get; set; }
+        public string titolo { get; set; }
         public int anno { get; set; }
-
-        public List<BranoDTO> Brani { get; set; }
-
+        public string band { get; set; }
+        public string genere { get; set; }
     }
 }

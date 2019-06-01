@@ -1,6 +1,8 @@
 export class Disco {
     id: number;
-    Titolo: string;
+    titolo: string;
     anno: number;
     band_id: number;
+    band: string;
+    genere: string;
 }

@@ -10,9 +10,9 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let disco of Dischi" routerLink="/brani-disco/{{disco.id}}">
-                  <td>{{disco.id}}</td>
-                  <td>{{disco.Titolo}}</td>
+              <tr *ngFor="let disco of Dischi" routerLink="/brani-disco/{{disco.Id}}">
+                  <td>{{disco.Id}}</td>
+                  <td>{{disco.titolo}}</td>
                   <td>{{disco.anno}}</td>
                   <td>
                       <button class="btn btn-success btn-lg btn-block">Edit</button>
