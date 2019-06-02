@@ -74,33 +74,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\MusicContext.cs" />
-    <Compile Include="Migrations\201905280903277_initial.cs" />
-    <Compile Include="Migrations\201905280903277_initial.Designer.cs">
-      <DependentUpon>201905280903277_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201906012313507_initial1.cs" />
+    <Compile Include="Migrations\201906012313507_initial1.Designer.cs">
+      <DependentUpon>201906012313507_initial1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905280908360_initial1.cs" />
-    <Compile Include="Migrations\201905280908360_initial1.Designer.cs">
-      <DependentUpon>201905280908360_initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905280915032_initial3.cs" />
-    <Compile Include="Migrations\201905280915032_initial3.Designer.cs">
-      <DependentUpon>201905280915032_initial3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905280927028_initial4.cs" />
-    <Compile Include="Migrations\201905280927028_initial4.Designer.cs">
-      <DependentUpon>201905280927028_initial4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905280938573_progress.cs" />
-    <Compile Include="Migrations\201905280938573_progress.Designer.cs">
-      <DependentUpon>201905280938573_progress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905281054189_progress1.cs" />
-    <Compile Include="Migrations\201905281054189_progress1.Designer.cs">
-      <DependentUpon>201905281054189_progress1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905281137347_progress2.cs" />
-    <Compile Include="Migrations\201905281137347_progress2.Designer.cs">
-      <DependentUpon>201905281137347_progress2.cs</DependentUpon>
+    <Compile Include="Migrations\201906012314183_initial2.cs" />
+    <Compile Include="Migrations\201906012314183_initial2.Designer.cs">
+      <DependentUpon>201906012314183_initial2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,28 +109,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905280903277_initial.resx">
-      <DependentUpon>201905280903277_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906012313507_initial1.resx">
+      <DependentUpon>201906012313507_initial1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280908360_initial1.resx">
-      <DependentUpon>201905280908360_initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280915032_initial3.resx">
-      <DependentUpon>201905280915032_initial3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280927028_initial4.resx">
-      <DependentUpon>201905280927028_initial4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280938573_progress.resx">
-      <DependentUpon>201905280938573_progress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905281054189_progress1.resx">
-      <DependentUpon>201905281054189_progress1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905281137347_progress2.resx">
-      <DependentUpon>201905281137347_progress2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906012314183_initial2.resx">
+      <DependentUpon>201906012314183_initial2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

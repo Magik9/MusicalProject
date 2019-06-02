@@ -18,5 +18,6 @@ namespace Music.DAL.TablesClasses
         public int Band_Id { get; set; }
         public virtual Band Band { get; set; }
 
+        public virtual List<Brano> Brani { get; set; }
     }
 }

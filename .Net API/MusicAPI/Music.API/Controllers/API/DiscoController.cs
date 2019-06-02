@@ -14,32 +14,25 @@ namespace Music.API.Controllers.API
     [RoutePrefix("Dischi")]
     public class DiscoController : ApiController
     {
-        private DiscoService _discoService = null;
-
-        public DiscoController(DiscoService service)
-        {
-            _discoService = service;
-        }
-
         [HttpGet]
         [Route("")]
         public List<DiscoDTO> ListaDischi()
         {
-            return _discoService.GetDischi();
+            return DiscoService.GetDischi();
         }
 
         [HttpGet]
         [Route("Band/{id:int}")]
         public List<DiscoDTO> ListaDischi(int id)
         {
-            return _discoService.GetDischiBand(id);
+            return DiscoService.GetDischiBand(id);
         }
 
         [HttpDelete]
         [Route("Delete/{id:int}")]
         public void DeleteSingleDisco(int id)
         {
-            _discoService.DeleteDisco(id);
+            DiscoService.DeleteDisco(id);
         }
     }
 }

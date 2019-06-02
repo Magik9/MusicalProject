@@ -10,16 +10,11 @@ using System.Linq;
 namespace Music.BLL.BL
 {
 
-    public class DiscoService
+    public static class DiscoService
     {
-        private BandService _bandService = null;
+        
 
-        public DiscoService(BandService bandService)
-        {
-            _bandService = bandService;
-        }
-
-        public List<DiscoDTO> GetDischi()
+        public static List<DiscoDTO> GetDischi()
         {
             List<DiscoDTO> result = new List<DiscoDTO>();
             using (var context = new MusicContext())
@@ -30,7 +25,7 @@ namespace Music.BLL.BL
             return result;
         }
 
-        public List<DiscoDTO> GetDischiBand(int id)
+        public static List<DiscoDTO> GetDischiBand(int id)
         {
             List<DiscoDTO> result = new List<DiscoDTO>();
             using (var context = new MusicContext())
@@ -42,41 +37,52 @@ namespace Music.BLL.BL
             return result;
         }
 
-        public int AddDiscoIfNotExist(DiscoDTO ddto)
+        public static void SaveDiscoOnDB(Disco disco)
         {
-            Disco disco = new Disco();
             using (var context = new MusicContext())
             {
-                var d = context.Dischi.FirstOrDefault(x => x.Titolo == ddto.titolo);
-                if (d == null)
-                {
-                    disco.Titolo = ddto.titolo;
-                    disco.Anno = ddto.anno;
-                    disco.CreatedOn = DateTime.Now;
-                    disco.ModifiedOn = DateTime.Now;
-                    disco.Band_Id = _bandService.AddBandIfNotExist(ddto);
+                disco.CreatedOn = DateTime.Now;
+                disco.ModifiedOn = DateTime.Now;
 
-                    context.Dischi.Add(disco);
-                    context.SaveChanges();
-                    return disco.Id;
-                }
-                    return d.Id;
+                context.Dischi.Add(disco);
+                context.SaveChanges();
             }
         }
 
-            public int AddDiscoIfNotExist(BranoDTO branoDto)
-            {
-                DiscoDTO discoDto = new DiscoDTO()
-                {
-                    Id = branoDto.Disco_Id,
-                    titolo = branoDto.disco,
-                    anno = branoDto.anno,
-                    band = branoDto.band
-                };
-                return AddDiscoIfNotExist(discoDto);
-            }
+        public static Disco DiscoFrom(DiscoDTO discoDTO)
+        {
+            Disco disco = new Disco();
+            Mapper.Map(discoDTO, disco);
 
-        public void DeleteDisco(int id)
+            return disco;
+        }
+
+        public static Disco AddDiscoIfNotExist(DiscoDTO discoDTO)
+        {
+            using (var context = new MusicContext())
+            {
+                Disco disco;
+                BandDTO bandDTO = Mapper.Map<BandDTO>(discoDTO);
+                Band band = BandService.AddBandIfNotExist(bandDTO);
+                if (band != null)
+                {
+                    disco = context.Dischi.FirstOrDefault(x => x.Band_Id == band.Id);
+                    if (disco == null)
+                    {
+                        disco = Mapper.Map<Disco>(discoDTO);
+                        disco.Band_Id = band.Id;
+                    }
+                    return disco;
+                }
+                disco = DiscoFrom(discoDTO);
+                disco.Band_Id = context.Bands.ToList().Last().Id;
+                SaveDiscoOnDB(disco);
+
+                return null;
+            }
+        }
+
+        public static void DeleteDisco(int id)
         {
             using (var context = new MusicContext())
             {

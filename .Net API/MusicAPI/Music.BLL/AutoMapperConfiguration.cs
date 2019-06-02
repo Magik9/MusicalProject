@@ -18,11 +18,29 @@ namespace Music.BLL
                     .ForMember(s => s.Disco, opt => opt.Ignore())
                     .ForPath(s => s.Disco.Band, opt => opt.Ignore());
 
+                cfg.CreateMap<BranoDTO, DiscoDTO>()
+                    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Disco_Id))
+                    .ForMember(d => d.titolo, opt => opt.MapFrom(s => s.disco));
+
+                cfg.CreateMap<BranoDTO, Disco>()
+                    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Disco_Id))
+                    .ForMember(d => d.Titolo, opt => opt.MapFrom(s => s.disco));
+
+                cfg.CreateMap<BranoDTO, BandDTO>()
+                    .ForMember(d => d.nome, opt => opt.MapFrom(s => s.band))
+                    .ForMember(d => d.annoFondazione, opt => opt.MapFrom(s => s.anno));
+
                 cfg.CreateMap<Disco, DiscoDTO>()
-                .ReverseMap();
+                    .ForMember(d => d.band, opt => opt.MapFrom(s => s.Band.Nome))
+                    .ReverseMap()
+                    .ForMember(s => s.Band, opt => opt.Ignore());
+
+                cfg.CreateMap<DiscoDTO, BandDTO>()
+                    .ForMember(d => d.nome, opt => opt.MapFrom(s => s.band))
+                    .ForMember(d => d.annoFondazione, opt => opt.MapFrom(s => s.anno));
 
                 cfg.CreateMap<Band, BandDTO>()
-                .ReverseMap();
+                    .ReverseMap();
             });
         }
     }

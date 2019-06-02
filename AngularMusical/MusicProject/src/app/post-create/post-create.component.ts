@@ -25,7 +25,7 @@ export class PostCreateComponent implements OnInit {
 
   addBrano() {
     this.restApi.createBrano(this.branoDetails).subscribe((data: {}) => {
-      this.router.navigate(['/get-list'])
+      this.router.navigate(['/brani-all'])
     })
     }
 

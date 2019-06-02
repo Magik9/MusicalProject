@@ -9,9 +9,9 @@ using System.Linq;
 
 namespace Music.BLL.BL
 {
-    public class BandService
+    public static class BandService
     {
-        public List<BandDTO> GetBands()
+        public static List<BandDTO> GetBands()
         {
             List<BandDTO> result = new List<BandDTO>();
             using (var context = new MusicContext())
@@ -22,38 +22,67 @@ namespace Music.BLL.BL
             return result;
         }
 
-        public int AddBandIfNotExist(BandDTO bandDto)
+        public static void SaveBandOnDB(Band band)
         {
-            Band band = new Band();
             using (var context = new MusicContext())
             {
-                var b = context.Bands.FirstOrDefault(x => x.Nome == bandDto.nome);
-                if (b == null)
-                {
-                    band.Nome = bandDto.nome;
-                    band.CreatedOn = DateTime.Now;
-                    band.ModifiedOn = DateTime.Now;
+                band.CreatedOn = DateTime.Now;
+                band.ModifiedOn = DateTime.Now;
 
-                    context.Bands.Add(band);
-                    context.SaveChanges();
-                    return band.Id;
-                }
-                    return b.Id;
+                context.Bands.Add(band);
+                context.SaveChanges();
             }
+        }
+
+        public static Band BandFrom(BandDTO bandDTO)
+        {
+            Band band = new Band();
+            Mapper.Map(bandDTO, band);
+
+            return band;
+        }
+
+        /*public static Band BandFrom(BranoDTO branoDTO)
+        {
+            BandDTO bandDTO = new BandDTO();
+            Mapper.Map(branoDTO, bandDTO);
+
+            return BandFrom(bandDTO);
+        }*/
+
+        public static Band AddBandIfNotExist(BandDTO bandDTO)
+        {
+            using (var context = new MusicContext())
+            {
+                Band band = context.Bands.FirstOrDefault(x => x.Nome == bandDTO.nome);
+                if (band == null)
+                {
+                    band = BandFrom(bandDTO);
+                    SaveBandOnDB(band);
+
+                    return null;
+                }
+                    return band;
+            }
+        }
+
+        /*public int AddBandIfNotExist(BranoDTO branoDTO)
+        {
+            BandDTO bandDTO = new BandDTO();
+            Mapper.Map(branoDTO, bandDTO);
+
+            return AddBandIfNotExist(bandDTO);
         }
 
         public int AddBandIfNotExist(DiscoDTO discoDTO)
         {
-            BandDTO bandDTO = new BandDTO()
-            {
-                nome = discoDTO.band,
-                annoFondazione = discoDTO.anno,
-                genere = discoDTO.genere
-            };
-            return AddBandIfNotExist(bandDTO);
-        }
+            BandDTO bandDTO = new BandDTO();
+            Mapper.Map(discoDTO, bandDTO);
 
-        public void DeleteBand(int id)
+            return AddBandIfNotExist(bandDTO);
+        }*/
+
+        public static void DeleteBand(int id)
         {
             using (var context = new MusicContext())
             {

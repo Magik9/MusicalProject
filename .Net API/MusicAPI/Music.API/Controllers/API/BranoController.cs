@@ -11,53 +11,46 @@ namespace Music.API.Controllers.API
     [RoutePrefix("Brani")]
     public class BranoController : ApiController
     {
-        private BranoService _branoService { get; set; }
-
-        public BranoController(BranoService service)
-        {
-            _branoService = service;
-        }
-
         [HttpGet]
         [Route("{id:int}")]
         public BranoDTO Brano(int id)
         {
-            return _branoService.GetSingleBrano(id);
+            return BranoService.GetSingleBrano(id);
         }
 
         [HttpGet]
         [Route("")]
         public List<BranoDTO> ListaBrani()
         {
-            return _branoService.GetBrani();
+            return BranoService.GetBrani();
         }
 
         [HttpGet]
         [Route("Disco/{id:int}")]
         public List<BranoDTO> BraniDisco(int id)
         {
-            return _branoService.GetBraniDisco(id);
+            return BranoService.GetBraniDisco(id);
         }
 
         [HttpPost]
         [Route("Add")]
         public void AddBrano(BranoDTO bdto)
         {
-            _branoService.SaveNewBrano(bdto);
+            BranoService.SaveNewBrano(bdto);
         }
 
         [HttpPut]
         [Route("Update")]
         public void UpdateBrano(BranoDTO updated)
         {
-            _branoService.UpdateSingleBrano(updated);
+            BranoService.UpdateSingleBrano(updated);
         }
 
         [HttpDelete]
         [Route("Delete/{id:int}")]
         public void DeleteBrano(int id)
         {
-            _branoService.DeleteSingleBrano(id);
+            BranoService.DeleteSingleBrano(id);
         }
 
     }

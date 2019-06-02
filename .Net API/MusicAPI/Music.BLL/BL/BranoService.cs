@@ -8,16 +8,9 @@ using System.Linq;
 
 namespace Music.BLL.BL
 {
-    public class BranoService
+    public static class BranoService
     {
-        private DiscoService _discoService = null;
-
-        public BranoService(DiscoService discoService)
-        {
-            _discoService = discoService;
-        }
-
-        public BranoDTO GetSingleBrano(int id)
+        public static BranoDTO GetSingleBrano(int id)
         {
             BranoDTO branoDTO = null;
             using (var context = new MusicContext())
@@ -31,7 +24,7 @@ namespace Music.BLL.BL
             return branoDTO;
         }
 
-        public List<BranoDTO> GetBraniDisco(int id)
+        public static List<BranoDTO> GetBraniDisco(int id)
         {
             List<BranoDTO> result = new List<BranoDTO>();
             using (var context = new MusicContext())
@@ -46,7 +39,7 @@ namespace Music.BLL.BL
             return result;
         }
 
-        public List<BranoDTO> GetBrani()
+        public static List<BranoDTO> GetBrani()
         {
             List<BranoDTO> result = new List<BranoDTO>();
             using (var context = new MusicContext())
@@ -57,23 +50,41 @@ namespace Music.BLL.BL
             return result;
         }
 
-        public void SaveNewBrano(BranoDTO bdto)
+        public static void SaveBranoOnDB(Brano brano)
         {
             using (var context = new MusicContext())
             {
-                Brano brano = new Brano();
-                Mapper.Map(bdto, brano);
                 brano.CreatedOn = DateTime.Now;
                 brano.ModifiedOn = DateTime.Now;
-
-                brano.Disco_Id = _discoService.AddDiscoIfNotExist(bdto);
 
                 context.Brani.Add(brano);
                 context.SaveChanges();
             }
         }
 
-        public void DeleteSingleBrano(int id)
+        public static void SaveNewBrano(BranoDTO branoDTO)
+        {
+            using (var context = new MusicContext())
+            {
+                if (!string.IsNullOrEmpty(branoDTO.disco) && !string.IsNullOrEmpty(branoDTO.band))
+                {
+                    DiscoDTO discoDTO = Mapper.Map<DiscoDTO>(branoDTO);
+                    Disco disco = DiscoService.AddDiscoIfNotExist(discoDTO);
+
+                        branoDTO.Disco_Id = 
+                            disco != null
+                            ?
+                            disco.Id
+                            :
+                            context.Dischi.ToList().Last().Id;
+
+                    Brano brano = Mapper.Map<Brano>(branoDTO);
+                    SaveBranoOnDB(brano);
+                }
+            }
+        }
+
+        public static void DeleteSingleBrano(int id)
         {
             using (var context = new MusicContext())
             {
@@ -83,7 +94,7 @@ namespace Music.BLL.BL
             }
         }
 
-        public void UpdateSingleBrano(BranoDTO updated)
+        public static void UpdateSingleBrano(BranoDTO updated)
         {
             using (var context = new MusicContext())
             {
