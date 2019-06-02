@@ -62,6 +62,14 @@ namespace Music.BLL.BL
             }
         }
 
+        public static Brano BranoFrom(BranoDTO branoDTO)
+        {
+            Brano brano = new Brano();
+            Mapper.Map(branoDTO, brano);
+
+            return brano;
+        }
+
         public static void SaveNewBrano(BranoDTO branoDTO)
         {
             using (var context = new MusicContext())
@@ -71,14 +79,14 @@ namespace Music.BLL.BL
                     DiscoDTO discoDTO = Mapper.Map<DiscoDTO>(branoDTO);
                     Disco disco = DiscoService.AddDiscoIfNotExist(discoDTO);
 
-                        branoDTO.Disco_Id = 
-                            disco != null
-                            ?
-                            disco.Id
-                            :
-                            context.Dischi.ToList().Last().Id;
+                    branoDTO.Disco_Id =
+                        disco != null
+                        ?
+                        disco.Id
+                        :
+                        context.Dischi.ToList().Last().Id;
 
-                    Brano brano = Mapper.Map<Brano>(branoDTO);
+                    Brano brano = BranoFrom(branoDTO);
                     SaveBranoOnDB(brano);
                 }
             }

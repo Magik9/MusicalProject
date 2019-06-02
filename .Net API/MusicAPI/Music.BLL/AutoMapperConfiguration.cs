@@ -33,7 +33,8 @@ namespace Music.BLL
                 cfg.CreateMap<Disco, DiscoDTO>()
                     .ForMember(d => d.band, opt => opt.MapFrom(s => s.Band.Nome))
                     .ReverseMap()
-                    .ForMember(s => s.Band, opt => opt.Ignore());
+                    .ForMember(s => s.Band, opt => opt.Ignore())
+                    .ForPath(s => s.Band_Id, opt => opt.Ignore());
 
                 cfg.CreateMap<DiscoDTO, BandDTO>()
                     .ForMember(d => d.nome, opt => opt.MapFrom(s => s.band))

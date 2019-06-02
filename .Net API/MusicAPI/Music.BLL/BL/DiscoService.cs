@@ -61,21 +61,22 @@ namespace Music.BLL.BL
         {
             using (var context = new MusicContext())
             {
-                Disco disco;
+                Disco disco = new Disco();
                 BandDTO bandDTO = Mapper.Map<BandDTO>(discoDTO);
                 Band band = BandService.AddBandIfNotExist(bandDTO);
                 if (band != null)
                 {
-                    disco = context.Dischi.FirstOrDefault(x => x.Band_Id == band.Id);
-                    if (disco == null)
-                    {
-                        disco = Mapper.Map<Disco>(discoDTO);
+                    var d = context.Bands.SelectMany(y => y.Dischi).FirstOrDefault(x => x.Titolo == discoDTO.titolo);
+                    if (d == null)
                         disco.Band_Id = band.Id;
-                    }
-                    return disco;
+                    else
+                        return d;
                 }
-                disco = DiscoFrom(discoDTO);
-                disco.Band_Id = context.Bands.ToList().Last().Id;
+                else
+                    disco.Band_Id = context.Bands.ToList().Last().Id;
+
+                disco.Anno = discoDTO.anno;
+                disco.Titolo = discoDTO.titolo;
                 SaveDiscoOnDB(disco);
 
                 return null;

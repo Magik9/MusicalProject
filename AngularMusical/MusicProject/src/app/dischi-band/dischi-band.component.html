@@ -1,23 +1,23 @@
 <div class="container custom-container">
   <h3 class="mb-3 text-center">Lista Dischi di: {{Band}}</h3>
-  <table class="table table-bordered table-striped table-responsive-mdd table-hover">
+  <table class="table table-bordered table-striped table-responsive-mdd text-center">
           <thead>
               <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">Disco</th>
-                  <th scope="col">Anno</th>
-                  <th colspan="2">Action</th>
+                  <th style="width: 5%" scope="col">Id</th>
+                  <th style="width: 45%" scope="col">Disco</th>
+                  <th style="width: 20%" scope="col">Anno</th>
+                  <th style="width: 30%" colspan="2">Action</th>
               </tr>
           </thead>
           <tbody>
               <tr *ngFor="let disco of Dischi" routerLink="/brani-disco/{{disco.Id}}">
-                  <td>{{disco.Id}}</td>
-                  <td>{{disco.titolo}}</td>
-                  <td>{{disco.anno}}</td>
-                  <td>
+                  <td style="width: 5%">{{disco.Id}}</td>
+                  <td style="width: 45%">{{disco.titolo}}</td>
+                  <td style="width: 20%">{{disco.anno}}</td>
+                  <td style="width: 10%">
                       <button class="btn btn-success btn-lg btn-block">Edit</button>
                   </td>
-                  <td>
+                  <td style="width: 10%">
                       <button class="btn btn-success btn-lg btn-block">Delete</button>
                   </td>
               </tr>

@@ -42,14 +42,6 @@ namespace Music.BLL.BL
             return band;
         }
 
-        /*public static Band BandFrom(BranoDTO branoDTO)
-        {
-            BandDTO bandDTO = new BandDTO();
-            Mapper.Map(branoDTO, bandDTO);
-
-            return BandFrom(bandDTO);
-        }*/
-
         public static Band AddBandIfNotExist(BandDTO bandDTO)
         {
             using (var context = new MusicContext())
@@ -65,22 +57,6 @@ namespace Music.BLL.BL
                     return band;
             }
         }
-
-        /*public int AddBandIfNotExist(BranoDTO branoDTO)
-        {
-            BandDTO bandDTO = new BandDTO();
-            Mapper.Map(branoDTO, bandDTO);
-
-            return AddBandIfNotExist(bandDTO);
-        }
-
-        public int AddBandIfNotExist(DiscoDTO discoDTO)
-        {
-            BandDTO bandDTO = new BandDTO();
-            Mapper.Map(discoDTO, bandDTO);
-
-            return AddBandIfNotExist(bandDTO);
-        }*/
 
         public static void DeleteBand(int id)
         {
