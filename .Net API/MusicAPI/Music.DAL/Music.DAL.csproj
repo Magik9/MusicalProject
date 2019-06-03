@@ -116,5 +116,10 @@
       <DependentUpon>201906012314183_initial2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RepositoryBand\" />
+    <Folder Include="RepositoryBrano\" />
+    <Folder Include="RepositoryDisco\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

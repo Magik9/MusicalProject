@@ -88,10 +88,8 @@ namespace Music.BLL.BL
         {
             using (var context = new MusicContext())
             {
-                var dischi = context.Bands.SingleOrDefault(x => x.Id == from.Id)
-                    .Dischi.ToList();
-                foreach (var d in dischi)
-                    d.Band_Id = to.Id;
+                context.Bands.SingleOrDefault(x => x.Id == from.Id)
+                    .Dischi.ForEach(y => y.Band_Id = to.Id);
 
                 context.SaveChanges();
             }
