@@ -105,8 +105,15 @@ namespace Music.BLL.BL
             {
                 BandDTO bandDTO = Mapper.Map<BandDTO>(discoDTO);
                 Band band = BandService.AddBandIfNotExist(bandDTO);
-                if (band != null)
+                if (band != null) //se la band esiste gia
+                {
+                    var d = context.Bands.SingleOrDefault(b => b.Id == band.Id)
+                        .Dischi.SingleOrDefault(x => x.Titolo == discoDTO.titolo && x.Id != discoDTO.Id);
+                    if (d == null)
                         discoDTO.Band_Id = band.Id;
+                    else
+                        return;
+                }
                 else
                     discoDTO.Band_Id = context.Bands.ToList().Last().Id;
 

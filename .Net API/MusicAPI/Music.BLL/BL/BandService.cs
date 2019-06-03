@@ -84,6 +84,19 @@ namespace Music.BLL.BL
             }
         }
 
+        public static void MoveBand(BandDTO from, Band to)
+        {
+            using (var context = new MusicContext())
+            {
+                var dischi = context.Bands.SingleOrDefault(x => x.Id == from.Id)
+                    .Dischi.ToList();
+                foreach (var d in dischi)
+                    d.Band_Id = to.Id;
+
+                context.SaveChanges();
+            }
+        }
+
         public static void UpdateBand(BandDTO bandDTO)
         {
             using (var context = new MusicContext())
@@ -91,6 +104,8 @@ namespace Music.BLL.BL
                 Band band = context.Bands.SingleOrDefault(x => x.Nome == bandDTO.nome && x.Id != bandDTO.Id);
                 if (band == null)
                     UpdateBandOnDB(bandDTO);
+                else
+                    MoveBand(bandDTO, band);
             }
         }
 
