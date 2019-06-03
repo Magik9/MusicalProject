@@ -84,6 +84,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryBand\BandRepo.cs" />
+    <Compile Include="RepositoryBrano\BranoRepo.cs" />
+    <Compile Include="RepositoryDisco\DiscoRepo.cs" />
     <Compile Include="TablesClasses\Art-Strum.cs" />
     <Compile Include="TablesClasses\Artista.cs" />
     <Compile Include="TablesClasses\Band-Art.cs" />
@@ -116,10 +119,6 @@
       <DependentUpon>201906012314183_initial2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="RepositoryBand\" />
-    <Folder Include="RepositoryBrano\" />
-    <Folder Include="RepositoryDisco\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

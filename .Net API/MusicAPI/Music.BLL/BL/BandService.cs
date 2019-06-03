@@ -5,62 +5,44 @@ using Music.DAL.TablesClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Music.DAL.RepositoryBand;
 
 
 namespace Music.BLL.BL
 {
-    public static class BandService
+    public class BandService
     {
-        public static BandDTO GetSingleBand(int id)
+        private BandRepo _bandRepo = null;
+
+        public BandService(BandRepo bandRepo)
         {
-            BandDTO bandDTO = null;
-            using (var context = new MusicContext())
-            {
-                var band = context.Bands.FirstOrDefault(d => d.Id == id);
-                if (band != null)
-                {
-                    bandDTO = Mapper.Map<BandDTO>(band);
-                }
-            }
-            return bandDTO;
+            _bandRepo = bandRepo;
         }
 
-        public static List<BandDTO> GetBands()
+        public BandDTO GetBand(int id)
         {
-            List<BandDTO> result = new List<BandDTO>();
-            using (var context = new MusicContext())
-            {
-                result = context.Bands.ToList()
-                    .Select(b => Mapper.Map<BandDTO>(b)).ToList();
-            }
-            return result;
+            Band band = _bandRepo.GetSingleBand(id);
+
+            return Mapper.Map<BandDTO>(band);
         }
 
-        public static void SaveBandOnDB(Band band)
+        public List<BandDTO> GetBands()
         {
-            using (var context = new MusicContext())
-            {
-                band.CreatedOn = DateTime.Now;
-                band.ModifiedOn = DateTime.Now;
+            List<BandDTO> bands = _bandRepo.GetBands()
+                .Select(x => Mapper.Map<BandDTO>(x)).ToList();
 
-                context.Bands.Add(band);
-                context.SaveChanges();
-            }
+            return bands;
         }
 
-        public static void UpdateBandOnDB(BandDTO bandDTO)
+        public void UpdateBandOnDB(BandDTO bandDTO)
         {
-            using (var context = new MusicContext())
-            {
-                Band band = context.Bands.SingleOrDefault(x => x.Id == bandDTO.Id);
-                Mapper.Map(bandDTO, band);
-                band.ModifiedOn = DateTime.Now;
+            Band band = _bandRepo.GetSingleBand(bandDTO.Id);
+            Mapper.Map(bandDTO, band);
 
-                context.SaveChanges();
-            }
+            _bandRepo.UpdateBand(band);
         }
 
-        public static Band BandFrom(BandDTO bandDTO)
+        public Band BandFrom(BandDTO bandDTO)
         {
             Band band = new Band();
             Mapper.Map(bandDTO, band);
@@ -68,52 +50,36 @@ namespace Music.BLL.BL
             return band;
         }
 
-        public static Band AddBandIfNotExist(BandDTO bandDTO)
+        public Band AddBandIfNotExist(BandDTO bandDTO)
         {
-            using (var context = new MusicContext())
-            {
-                Band band = context.Bands.FirstOrDefault(x => x.Nome == bandDTO.nome);
-                if (band == null)
-                {
-                    band = BandFrom(bandDTO);
-                    SaveBandOnDB(band);
+            Band band = _bandRepo.GetBands()
+              .FirstOrDefault(x =>
+              string.Equals(x.Nome, bandDTO.nome, StringComparison.OrdinalIgnoreCase));
 
-                    return null;
-                }
-                    return band;
+            if (band == null)
+            {
+                band = BandFrom(bandDTO);
+                _bandRepo.SaveNewBand(band);
+
+                return null;
             }
+            return band;
         }
 
-        public static void MoveBand(BandDTO from, Band to)
+        public void UpdateBand(BandDTO bandDTO)
         {
-            using (var context = new MusicContext())
-            {
-                context.Bands.SingleOrDefault(x => x.Id == from.Id)
-                    .Dischi.ForEach(y => y.Band_Id = to.Id);
-
-                context.SaveChanges();
-            }
-        }
-
-        public static void UpdateBand(BandDTO bandDTO)
-        {
-            using (var context = new MusicContext())
-            {
-                Band band = context.Bands.SingleOrDefault(x => x.Nome == bandDTO.nome && x.Id != bandDTO.Id);
+                Band band = _bandRepo.GetBands()
+                  .SingleOrDefault(x => x.Nome == bandDTO.nome && x.Id != bandDTO.Id);
                 if (band == null)
                     UpdateBandOnDB(bandDTO);
                 else
-                    MoveBand(bandDTO, band);
-            }
+                    _bandRepo.MoveBand(bandDTO.Id, band.Id);
         }
 
-        public static void DeleteBand(int id)
+        public void DeleteBand(int id)
         {
-            using (var context = new MusicContext())
-            {
-                context.Bands.Remove(context.Bands.FirstOrDefault(x => x.Id == id));
-                context.SaveChanges();
-            }
+            _bandRepo.DeleteBand(id);
         }
+
     }
 }

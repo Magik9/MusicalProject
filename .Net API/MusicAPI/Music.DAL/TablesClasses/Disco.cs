@@ -17,5 +17,7 @@ namespace Music.DAL.TablesClasses
         [ForeignKey("Band")]
         public int Band_Id { get; set; }
         public virtual Band Band { get; set; }
+
+        public virtual List<Brano> Brani { get; set; }
     }
 }

@@ -10,32 +10,39 @@ namespace Music.Controllers.API
     [RoutePrefix("Bands")]
     public class BandController : ApiController
     {
+        private BandService _bandService = null;
+
+        public BandController(BandService bandService)
+        {
+            _bandService = bandService;
+        }
+
         [HttpGet]
         [Route("{id:int}")]
         public BandDTO Band(int id)
         {
-            return BandService.GetSingleBand(id);
+            return _bandService.GetBand(id);
         }
 
         [HttpGet]
         [Route("")]
         public List<BandDTO> ListaBands()
         {
-            return BandService.GetBands();
+            return _bandService.GetBands();
         }
 
         [HttpPut]
         [Route("Update")]
         public void UpdateBand(BandDTO bandDTO)
         {
-            BandService.UpdateBand(bandDTO);
+            _bandService.UpdateBand(bandDTO);
         }
 
         [HttpDelete]
         [Route("Delete/{id:int}")]
         public void DeleteSingleBand(int id)
         {
-            BandService.DeleteBand(id);
+            _bandService.DeleteBand(id);
         }
 
     }
