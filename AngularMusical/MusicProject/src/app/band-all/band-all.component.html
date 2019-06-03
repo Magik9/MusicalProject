@@ -19,7 +19,7 @@
               <td>{{band.nMembri}}</td>
               <td>{{band.annoFondazione}}</td>
               <td>
-                <button class="btn btn-success btn-lg btn-block">Edit</button>
+                <button class="btn btn-success btn-lg btn-block" routerLink="/update-band/{{band.Id}}">Edit</button>
             </td>
             <td>
                 <button class="btn btn-success btn-lg btn-block" (click)="deleteBand(band.Id)">Delete</button>

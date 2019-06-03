@@ -15,6 +15,13 @@ namespace Music.API.Controllers.API
     public class DiscoController : ApiController
     {
         [HttpGet]
+        [Route("{id:int}")]
+        public DiscoDTO Disco(int id)
+        {
+            return DiscoService.GetSingleDisco(id);
+        }
+
+        [HttpGet]
         [Route("")]
         public List<DiscoDTO> ListaDischi()
         {
@@ -26,6 +33,13 @@ namespace Music.API.Controllers.API
         public List<DiscoDTO> ListaDischi(int id)
         {
             return DiscoService.GetDischiBand(id);
+        }
+
+        [HttpPut]
+        [Route("Update")]
+        public void UpdateDisco(DiscoDTO discoDTO)
+        {
+            DiscoService.UpdateDisco(discoDTO);
         }
 
         [HttpDelete]

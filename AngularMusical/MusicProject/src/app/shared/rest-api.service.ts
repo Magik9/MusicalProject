@@ -45,6 +45,13 @@ retry(1),
 catchError(this.handleError)
 )
 }
+getDisco(id): Observable<Disco> {
+  return this.http.get<Disco>(this.apiDischi + id)
+  .pipe(
+  retry(1),
+  catchError(this.handleError)
+  )
+  }  
 getDischi(): Observable<Disco> {
   return this.http.get<Disco>(this.apiDischi)
   .pipe(
@@ -59,6 +66,13 @@ getDischiBand(id): Observable<Disco> {
   catchError(this.handleError)
   )
   }
+getBand(id): Observable<Band> {
+  return this.http.get<Band>(this.apiBands + id)
+  .pipe(
+  retry(1),
+  catchError(this.handleError)
+  )
+  } 
 getBands(): Observable<Band> {
   return this.http.get<Band>(this.apiBands)
   .pipe(
@@ -99,6 +113,20 @@ getBands(): Observable<Band> {
   }
   updateBrano(brano): Observable<Brano> {
     return this.http.put<Brano>(this.apiBrani + 'Update', JSON.stringify(brano), this.httpOptions)
+    .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+  }
+  updateDisco(disco): Observable<Disco> {
+    return this.http.put<Disco>(this.apiDischi + 'Update', JSON.stringify(disco), this.httpOptions)
+    .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+  }
+  updateBand(band): Observable<Band> {
+    return this.http.put<Band>(this.apiBands + 'Update', JSON.stringify(band), this.httpOptions)
     .pipe(
     retry(1),
     catchError(this.handleError)

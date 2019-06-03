@@ -16,6 +16,8 @@ import { BraniAllComponent } from './brani-all/brani-all.component';
 import { DischiAllComponent } from './dischi-all/dischi-all.component';
 import { BandAllComponent } from './band-all/band-all.component';
 import { DischiBandComponent } from './dischi-band/dischi-band.component';
+import { UpdateDiscoComponent } from './update-disco/update-disco.component';
+import { UpdateBandComponent } from './update-band/update-band.component';
 // Components
 
 
@@ -30,7 +32,9 @@ import { DischiBandComponent } from './dischi-band/dischi-band.component';
     BraniAllComponent,
     DischiAllComponent,
     BandAllComponent,
-    DischiBandComponent
+    DischiBandComponent,
+    UpdateDiscoComponent,
+    UpdateBandComponent
   ],
   imports: [
     BrowserModule,

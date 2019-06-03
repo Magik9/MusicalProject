@@ -10,15 +10,15 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let disco of Dischi" routerLink="/brani-disco/{{disco.Id}}">
+              <tr *ngFor="let disco of Dischi">
                   <td style="width: 5%">{{disco.Id}}</td>
-                  <td style="width: 45%">{{disco.titolo}}</td>
+                  <td style="width: 45%" routerLink="/brani-disco/{{disco.Id}}">{{disco.titolo}}</td>
                   <td style="width: 20%">{{disco.anno}}</td>
                   <td style="width: 10%">
-                      <button class="btn btn-success btn-lg btn-block">Edit</button>
+                      <button class="btn btn-success btn-lg btn-block" routerLink="/update-disco/{{disco.Id}}">Edit</button>
                   </td>
                   <td style="width: 10%">
-                      <button class="btn btn-success btn-lg btn-block">Delete</button>
+                      <button class="btn btn-success btn-lg btn-block" (click)="deleteDisco(disco.Id)">Delete</button>
                   </td>
               </tr>
               

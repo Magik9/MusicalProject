@@ -17,14 +17,21 @@ export class DischiBandComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadDischiBand();
+    this.loadDischiBand(this.id);
   }
 
-  loadDischiBand() {
-    this.restApi.getDischiBand(this.id).subscribe((data: {}) => {
+  loadDischiBand(idBand) {
+    this.restApi.getDischiBand(idBand).subscribe((data: {}) => {
       this.Dischi = data;
       this.Band = this.Dischi[0].band;
   })
   }
+  deleteDisco(idDisco) {
+    if (window.confirm('Are you sure, you want to delete?')){
+    this.restApi.deleteDisco(idDisco).subscribe(data => {
+    this.loadDischiBand(this.id);
+    })
+    }
+    } 
 
 }

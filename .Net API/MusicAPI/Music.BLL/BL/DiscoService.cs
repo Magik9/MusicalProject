@@ -12,7 +12,19 @@ namespace Music.BLL.BL
 
     public static class DiscoService
     {
-        
+        public static DiscoDTO GetSingleDisco(int id)
+        {
+            DiscoDTO discoDTO = null;
+            using (var context = new MusicContext())
+            {
+                var disco = context.Dischi.FirstOrDefault(d => d.Id == id);
+                if (disco != null)
+                {
+                    discoDTO = Mapper.Map<DiscoDTO>(disco);
+                }
+            }
+            return discoDTO;
+        }
 
         public static List<DiscoDTO> GetDischi()
         {
@@ -37,7 +49,7 @@ namespace Music.BLL.BL
             return result;
         }
 
-        public static void SaveDiscoOnDB(Disco disco)
+        public static void SaveNewDiscoOnDB(Disco disco)
         {
             using (var context = new MusicContext())
             {
@@ -49,12 +61,16 @@ namespace Music.BLL.BL
             }
         }
 
-        public static Disco DiscoFrom(DiscoDTO discoDTO)
+        public static void UpdateDiscoOnDB(DiscoDTO discoDTO)
         {
-            Disco disco = new Disco();
-            Mapper.Map(discoDTO, disco);
+            using (var context = new MusicContext())
+            {
+                Disco oldDisco = context.Dischi.SingleOrDefault(x => x.Id == discoDTO.Id);
+                Mapper.Map(discoDTO, oldDisco);
+                oldDisco.ModifiedOn = DateTime.Now;
 
-            return disco;
+                context.SaveChanges();
+            }
         }
 
         public static Disco AddDiscoIfNotExist(DiscoDTO discoDTO)
@@ -66,20 +82,35 @@ namespace Music.BLL.BL
                 Band band = BandService.AddBandIfNotExist(bandDTO);
                 if (band != null)
                 {
-                    var d = context.Bands.SelectMany(y => y.Dischi).FirstOrDefault(x => x.Titolo == discoDTO.titolo);
+                    var d = context.Bands.SingleOrDefault(b => b.Id == band.Id)
+                        .Dischi.SingleOrDefault(x => x.Titolo == discoDTO.titolo);
                     if (d == null)
-                        disco.Band_Id = band.Id;
+                        discoDTO.Band_Id = band.Id;
                     else
                         return d;
                 }
                 else
-                    disco.Band_Id = context.Bands.ToList().Last().Id;
+                    discoDTO.Band_Id = context.Bands.ToList().Last().Id;
 
-                disco.Anno = discoDTO.anno;
-                disco.Titolo = discoDTO.titolo;
-                SaveDiscoOnDB(disco);
+                Mapper.Map(discoDTO, disco);
+                SaveNewDiscoOnDB(disco);
 
                 return null;
+            }
+        }
+
+        public static void UpdateDisco(DiscoDTO discoDTO)
+        {
+            using (var context = new MusicContext())
+            {
+                BandDTO bandDTO = Mapper.Map<BandDTO>(discoDTO);
+                Band band = BandService.AddBandIfNotExist(bandDTO);
+                if (band != null)
+                        discoDTO.Band_Id = band.Id;
+                else
+                    discoDTO.Band_Id = context.Bands.ToList().Last().Id;
+
+                UpdateDiscoOnDB(discoDTO);
             }
         }
 

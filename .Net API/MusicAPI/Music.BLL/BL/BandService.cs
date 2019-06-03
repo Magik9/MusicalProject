@@ -11,6 +11,20 @@ namespace Music.BLL.BL
 {
     public static class BandService
     {
+        public static BandDTO GetSingleBand(int id)
+        {
+            BandDTO bandDTO = null;
+            using (var context = new MusicContext())
+            {
+                var band = context.Bands.FirstOrDefault(d => d.Id == id);
+                if (band != null)
+                {
+                    bandDTO = Mapper.Map<BandDTO>(band);
+                }
+            }
+            return bandDTO;
+        }
+
         public static List<BandDTO> GetBands()
         {
             List<BandDTO> result = new List<BandDTO>();
@@ -30,6 +44,18 @@ namespace Music.BLL.BL
                 band.ModifiedOn = DateTime.Now;
 
                 context.Bands.Add(band);
+                context.SaveChanges();
+            }
+        }
+
+        public static void UpdateBandOnDB(BandDTO bandDTO)
+        {
+            using (var context = new MusicContext())
+            {
+                Band band = context.Bands.SingleOrDefault(x => x.Id == bandDTO.Id);
+                Mapper.Map(bandDTO, band);
+                band.ModifiedOn = DateTime.Now;
+
                 context.SaveChanges();
             }
         }
@@ -55,6 +81,16 @@ namespace Music.BLL.BL
                     return null;
                 }
                     return band;
+            }
+        }
+
+        public static void UpdateBand(BandDTO bandDTO)
+        {
+            using (var context = new MusicContext())
+            {
+                Band band = context.Bands.SingleOrDefault(x => x.Nome == bandDTO.nome && x.Id != bandDTO.Id);
+                if (band == null)
+                    UpdateBandOnDB(bandDTO);
             }
         }
 
