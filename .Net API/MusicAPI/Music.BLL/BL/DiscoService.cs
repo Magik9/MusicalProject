@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Music.BLL.DTO;
-using Music.DAL.DBContext;
 using Music.DAL.RepositoryBand;
 using Music.DAL.RepositoryDisco;
 using Music.DAL.TablesClasses;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -48,14 +46,6 @@ namespace Music.BLL.BL
             return dischi;
         }
 
-        public void UpdateDiscoOnDB(DiscoDTO discoDTO)
-        {
-            Disco oldDisco = _discoRepo.GetDischi().SingleOrDefault(x => x.Id == discoDTO.Id);
-            Mapper.Map(discoDTO, oldDisco);
-
-            _discoRepo.UpdateDisco(oldDisco);
-        }
-
         public Disco AddDiscoIfNotExist(DiscoDTO discoDTO)
         {
             Disco disco = new Disco();
@@ -78,6 +68,14 @@ namespace Music.BLL.BL
             _discoRepo.SaveNewDisco(disco);
 
             return null;
+        }
+
+        public void UpdateDiscoOnDB(DiscoDTO discoDTO)
+        {
+            Disco oldDisco = _discoRepo.GetDischi().SingleOrDefault(x => x.Id == discoDTO.Id);
+            Mapper.Map(discoDTO, oldDisco);
+
+            _discoRepo.UpdateDisco(oldDisco);
         }
 
         public void UpdateDisco(DiscoDTO discoDTO)

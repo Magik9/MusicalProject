@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Music.BLL.DTO;
-using Music.DAL.DBContext;
 using Music.DAL.TablesClasses;
 using System;
 using System.Collections.Generic;

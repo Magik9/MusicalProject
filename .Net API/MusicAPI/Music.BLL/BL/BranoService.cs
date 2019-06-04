@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Music.BLL.DTO;
-using Music.DAL.DBContext;
 using Music.DAL.RepositoryBrano;
 using Music.DAL.RepositoryDisco;
 using Music.DAL.TablesClasses;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -76,9 +74,9 @@ namespace Music.BLL.BL
         public void UpdateBrano(BranoDTO branoDTO)
         {
             Brano brano = _branoRepo.GetSingleBrano(branoDTO.id);
-            Disco disco = _discoRepo.GetDischi().FirstOrDefault(d => d.Titolo == branoDTO.disco);
+            Disco disco = _discoRepo.GetDischi().SingleOrDefault(d => d.Titolo == branoDTO.disco && d.Id != branoDTO.Disco_Id && d.Band.Nome == branoDTO.band);
             if (disco != null)
-                brano.Disco_Id = disco.Id;
+                _branoRepo.GetSingleBrano(branoDTO.id).Disco_Id = disco.Id;
 
             brano.Titolo = branoDTO.titolo;
             brano.Durata = branoDTO.durata;

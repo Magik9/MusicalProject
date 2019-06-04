@@ -44,7 +44,6 @@ namespace Music.DAL.RepositoryBrano
         public void UpdateSingleBrano(Brano brano)
         {
             brano.ModifiedOn = DateTime.Now;
-
             _context.SaveChanges();
         }
 
