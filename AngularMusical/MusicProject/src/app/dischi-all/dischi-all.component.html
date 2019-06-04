@@ -12,9 +12,12 @@
             </thead>
             <tbody>
                 <tr *ngFor="let disco of Dischi">
-                    <td>{{disco.Id}}</td>
+                        <ng-template #popOver>
+                                <app-popover-triggers [disco]="disco"></app-popover-triggers>
+                        </ng-template>
+                    <td routerLink="/brani-disco/{{disco.Id}}" [ngbPopover]="popOver" triggers="mouseenter:mouseleave" popoverTitle="Disco: {{disco.titolo}}" container="body">{{disco.Id}}</td>
                     <td routerLink="/brani-disco/{{disco.Id}}">{{disco.titolo}}</td>
-                    <td>{{disco.band}}</td>
+                    <td routerLink="/dischi-band/{{disco.Band_Id}}">{{disco.band}}</td>
                     <td>{{disco.anno}}</td>
                     <td>
                         <button class="btn btn-success btn-lg btn-block" routerLink="/update-disco/{{disco.Id}}">Edit</button>
