@@ -11,7 +11,5 @@ namespace Music.BLL.DTO
         public string nome { get; set; }
         public string genere { get; set; }
         public int annoFondazione { get; set; }
-
-
     }
 }

@@ -16,11 +16,9 @@ export class PostCreateComponent implements OnInit {
   constructor(
     public restApi: RestApiService, 
     public router: Router,
-    //public getComponent: GetListComponent
   ) { }
 
   ngOnInit() {
-
   }
 
   addBrano() {

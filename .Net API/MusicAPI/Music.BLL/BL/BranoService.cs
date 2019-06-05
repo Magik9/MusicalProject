@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Music.BLL.BO;
 using Music.BLL.DTO;
 using Music.DAL.RepositoryBrano;
 using Music.DAL.RepositoryDisco;
@@ -44,29 +45,30 @@ namespace Music.BLL.BL
             return brani;
         }
 
-        public Brano BranoFrom(BranoDTO branoDTO)
+        public Brano BranoFrom(BranoBO branoBO)
         {
             Brano brano = new Brano();
-            Mapper.Map(branoDTO, brano);
+            Mapper.Map(branoBO, brano);
 
             return brano;
         }
 
-        public void AddNewBrano(BranoDTO branoDTO)
+        public void AddNewBrano(BranoBO branoBO)
         {
-            if (!string.IsNullOrEmpty(branoDTO.disco) && !string.IsNullOrEmpty(branoDTO.band))
+            if (!string.IsNullOrEmpty(branoBO.disco) && !string.IsNullOrEmpty(branoBO.band))
             {
-                DiscoDTO discoDTO = Mapper.Map<DiscoDTO>(branoDTO);
-                Disco disco = _discoService.AddDiscoIfNotExist(discoDTO);
+                Disco newDisco = Mapper.Map<Disco>(branoBO);
+                Disco disco = _discoService.AddDiscoIfNotExist(newDisco);
 
-                branoDTO.Disco_Id =
+                Brano brano = BranoFrom(branoBO);
+
+                brano.Disco_Id =
                     disco != null
                     ?
                     disco.Id
                     :
                     _discoRepo.GetDischi().Last().Id;
 
-                Brano brano = BranoFrom(branoDTO);
                 _branoRepo.SaveNewBrano(brano);
             }
         }
@@ -74,7 +76,7 @@ namespace Music.BLL.BL
         public void UpdateBrano(BranoDTO branoDTO)
         {
             Brano brano = _branoRepo.GetSingleBrano(branoDTO.id);
-            Disco disco = _discoRepo.GetDischi().SingleOrDefault(d => d.Titolo == branoDTO.disco && d.Id != branoDTO.Disco_Id && d.Band.Nome == branoDTO.band);
+            Disco disco = _discoRepo.GetDischi().SingleOrDefault(d => d.Titolo == branoDTO.disco && d.Band.Nome == branoDTO.band);
             if (disco != null)
                 _branoRepo.GetSingleBrano(branoDTO.id).Disco_Id = disco.Id;
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Music.BLL.BO;
 using Music.BLL.DTO;
 using Music.DAL.RepositoryBand;
 using Music.DAL.RepositoryDisco;
@@ -9,16 +10,15 @@ using System.Linq;
 
 namespace Music.BLL.BL
 {
-
     public class DiscoService
     {
         private DiscoRepo _discoRepo = null;
         private BandService _bandService = null;
         private BandRepo _bandRepo = null;
 
-        public DiscoService(DiscoRepo discoRepo, BandService bandService, BandRepo bandRepo)
+        public DiscoService(DiscoRepo ilmiodiscoRepo, BandService bandService, BandRepo bandRepo)
         {
-            _discoRepo = discoRepo;
+            _discoRepo = ilmiodiscoRepo;
             _bandService = bandService;
             _bandRepo = bandRepo;
         }
@@ -46,56 +46,60 @@ namespace Music.BLL.BL
             return dischi;
         }
 
-        public Disco AddDiscoIfNotExist(DiscoDTO discoDTO)
+        public Disco AddDiscoIfNotExist(Disco newDisco)
         {
-            Disco disco = new Disco();
-            BandDTO bandDTO = Mapper.Map<BandDTO>(discoDTO);
-            Band band = _bandService.AddBandIfNotExist(bandDTO);
+            Band band = _bandService.AddBandIfNotExist(newDisco.Band);
             if (band != null)
             {
                 var d = _bandRepo.GetSingleBand(band.Id)
-                    .Dischi.SingleOrDefault(x => x.Titolo == discoDTO.titolo && x.Id != discoDTO.Id);
+                    .Dischi.SingleOrDefault(x => x.Titolo == newDisco.Titolo);
 
-                if (d == null)
-                    discoDTO.Band_Id = band.Id;
-                else
+                if (d != null)
                     return d;
+
+                newDisco.Band_Id = band.Id;
             }
             else
-                discoDTO.Band_Id = _bandRepo.GetBands().Last().Id;
+                newDisco.Band_Id = _bandRepo.GetBands().Last().Id;
 
-            Mapper.Map(discoDTO, disco);
-            _discoRepo.SaveNewDisco(disco);
+            _discoRepo.SaveNewDisco(newDisco);
 
             return null;
         }
 
-        public void UpdateDiscoOnDB(DiscoDTO discoDTO)
+        public void UpdateDiscoOnDB(DiscoBO discoBO)
         {
-            Disco oldDisco = _discoRepo.GetDischi().SingleOrDefault(x => x.Id == discoDTO.Id);
-            Mapper.Map(discoDTO, oldDisco);
+            Disco oldDisco = _discoRepo.GetDischi().SingleOrDefault(x => x.Id == discoBO.Id);
+            Mapper.Map(discoBO, oldDisco);
 
             _discoRepo.UpdateDisco(oldDisco);
         }
 
-        public void UpdateDisco(DiscoDTO discoDTO)
+        public void UpdateDisco(DiscoBO discoBO)
         {
-             BandDTO bandDTO = Mapper.Map<BandDTO>(discoDTO);
-             Band band = _bandService.AddBandIfNotExist(bandDTO);
-             if (band != null) //se la band esiste gia
-             {
+            Disco disco = _discoRepo.GetSingleDisco(discoBO.Id);
+            Band band = _bandService.AddBandIfNotExist(disco.Band);
+            if (band != null) //se la band esiste gia
+            {
                 var d = _bandRepo.GetSingleBand(band.Id)
-                     .Dischi.SingleOrDefault(x => x.Titolo == discoDTO.titolo && x.Id != discoDTO.Id);
+                     .Dischi.SingleOrDefault(x => x.Titolo == discoBO.titolo && x.Id != discoBO.Id);
 
                 if (d == null)
-                    discoDTO.Band_Id = band.Id;
+                {
+                    disco.Band_Id = band.Id;
+                }
                 else
-                    _discoRepo.MoveDisco(discoDTO.Id, d.Id);
-             }
-             else
-                discoDTO.Band_Id = _bandRepo.GetBands().Last().Id;
-
-             UpdateDiscoOnDB(discoDTO);
+                {
+                    _discoRepo.MoveDisco(disco.Id, d.Id);
+                }
+            }
+            else
+            {
+                disco.Band_Id = _bandRepo.GetBands().Last().Id;
+            }
+            
+            disco.Titolo = discoBO.titolo;   
+             _discoRepo.UpdateDisco(disco);
         }
 
         public void DeleteDisco(int id)

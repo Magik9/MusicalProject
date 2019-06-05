@@ -14,7 +14,5 @@ namespace Music.BLL.DTO
         public string disco { get; set; }
         public int anno { get; set; }
         public string durata { get; set; }
-        public int Disco_Id { get; set; }
-        public int Band_Id { get; set; }
     }
 }

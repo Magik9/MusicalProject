@@ -1,4 +1,5 @@
 ﻿using Music.BLL.BL;
+using Music.BLL.BO;
 using Music.BLL.DTO;
 using System.Collections.Generic;
 
@@ -41,9 +42,9 @@ namespace Music.API.Controllers.API
 
         [HttpPost]
         [Route("Add")]
-        public void AddBrano(BranoDTO bdto)
+        public void AddBrano(BranoBO branoBO)
         {
-            _branoService.AddNewBrano(bdto);
+            _branoService.AddNewBrano(branoBO);
         }
 
         [HttpPut]
@@ -51,6 +52,7 @@ namespace Music.API.Controllers.API
         public void UpdateBrano(BranoDTO branoDTO)
         {
             _branoService.UpdateBrano(branoDTO);
+            
         }
 
         [HttpDelete]

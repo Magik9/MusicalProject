@@ -74,13 +74,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\MusicContext.cs" />
-    <Compile Include="Migrations\201906012313507_initial1.cs" />
-    <Compile Include="Migrations\201906012313507_initial1.Designer.cs">
-      <DependentUpon>201906012313507_initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201906041117471_initial.cs" />
+    <Compile Include="Migrations\201906041117471_initial.Designer.cs">
+      <DependentUpon>201906041117471_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906012314183_initial2.cs" />
-    <Compile Include="Migrations\201906012314183_initial2.Designer.cs">
-      <DependentUpon>201906012314183_initial2.cs</DependentUpon>
+    <Compile Include="Migrations\201906041148137_initial1.cs" />
+    <Compile Include="Migrations\201906041148137_initial1.Designer.cs">
+      <DependentUpon>201906041148137_initial1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,13 +112,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906012313507_initial1.resx">
-      <DependentUpon>201906012313507_initial1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906041117471_initial.resx">
+      <DependentUpon>201906041117471_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906012314183_initial2.resx">
-      <DependentUpon>201906012314183_initial2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906041148137_initial1.resx">
+      <DependentUpon>201906041148137_initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,9 +1,7 @@
-﻿using Music.DAL.TablesClasses;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
+
 
 namespace Music.DAL.TablesClasses
 {
@@ -11,9 +9,12 @@ namespace Music.DAL.TablesClasses
 
     public class Disco:EntityBase
     {
+        [Required]
         public string Titolo { get; set; }
+        
         public int Anno { get; set; }
 
+        [Required]
         [ForeignKey("Band")]
         public int Band_Id { get; set; }
         public virtual Band Band { get; set; }

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Music.DAL.RepositoryBand;
-
+using Music.BLL.BO;
 
 namespace Music.BLL.BL
 {
@@ -41,23 +41,22 @@ namespace Music.BLL.BL
             _bandRepo.UpdateBand(band);
         }
 
-        public Band BandFrom(BandDTO bandDTO)
+        public Band BandFrom(BandBO bandBO)
         {
             Band band = new Band();
-            Mapper.Map(bandDTO, band);
+            Mapper.Map(bandBO, band);
 
             return band;
         }
 
-        public Band AddBandIfNotExist(BandDTO bandDTO)
+        public Band AddBandIfNotExist(Band newBand)
         {
             Band band = _bandRepo.GetBands()
               .FirstOrDefault(x =>
-              string.Equals(x.Nome, bandDTO.nome, StringComparison.OrdinalIgnoreCase));
+              string.Equals(x.Nome, newBand.Nome, StringComparison.OrdinalIgnoreCase));
 
             if (band == null)
             {
-                band = BandFrom(bandDTO);
                 _bandRepo.SaveNewBand(band);
 
                 return null;
@@ -68,7 +67,7 @@ namespace Music.BLL.BL
         public void UpdateBand(BandDTO bandDTO)
         {
                 Band band = _bandRepo.GetBands()
-                  .SingleOrDefault(x => x.Nome == bandDTO.nome && x.Id != bandDTO.Id);
+                  .SingleOrDefault(x => x.Nome == bandDTO.nome);
                 if (band == null)
                     UpdateBandOnDB(bandDTO);
                 else

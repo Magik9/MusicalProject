@@ -1,4 +1,5 @@
 ﻿using Music.BLL.BL;
+using Music.BLL.BO;
 using Music.BLL.DTO;
 using System;
 using System.Collections.Generic;
@@ -44,9 +45,9 @@ namespace Music.API.Controllers.API
 
         [HttpPut]
         [Route("Update")]
-        public void UpdateDisco(DiscoDTO discoDTO)
+        public void UpdateDisco(DiscoBO discoBO)
         {
-            _discoService.UpdateDisco(discoDTO);
+            _discoService.UpdateDisco(discoBO);
         }
 
         [HttpDelete]

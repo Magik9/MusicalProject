@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Music.DAL.TablesClasses;
 using Music.BLL.DTO;
+using Music.BLL.BO;
 
 namespace Music.BLL
 {
@@ -12,35 +13,37 @@ namespace Music.BLL
                 cfg.CreateMap<Brano, BranoDTO>()
                     .ForMember(x => x.disco, opt => opt.MapFrom(y => y.Disco.Titolo))
                     .ForMember(x => x.anno, opt => opt.MapFrom(y => y.Disco.Anno))
-                    .ForMember(x => x.band, opt => opt.MapFrom(y => y.Disco.Band.Nome))
-                    .ForMember(x => x.Band_Id, opt => opt.MapFrom(y => y.Disco.Band.Id))
-                    .ReverseMap()
-                    .ForMember(s => s.Disco, opt => opt.Ignore())
-                    .ForPath(s => s.Disco.Band, opt => opt.Ignore());
-
-                cfg.CreateMap<BranoDTO, DiscoDTO>()
-                    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Disco_Id))
-                    .ForMember(d => d.titolo, opt => opt.MapFrom(s => s.disco));
-
-                cfg.CreateMap<BranoDTO, Disco>()
-                    .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Disco_Id))
-                    .ForMember(d => d.Titolo, opt => opt.MapFrom(s => s.disco));
-
-                cfg.CreateMap<BranoDTO, BandDTO>()
-                    .ForMember(d => d.nome, opt => opt.MapFrom(s => s.band))
-                    .ForMember(d => d.annoFondazione, opt => opt.MapFrom(s => s.anno));
+                    .ForMember(x => x.band, opt => opt.MapFrom(y => y.Disco.Band.Nome));
 
                 cfg.CreateMap<Disco, DiscoDTO>()
                     .ForMember(d => d.band, opt => opt.MapFrom(s => s.Band.Nome))
                     .ReverseMap()
                     .ForMember(s => s.Band, opt => opt.Ignore());
 
-                cfg.CreateMap<DiscoDTO, BandDTO>()
-                    .ForMember(d => d.nome, opt => opt.MapFrom(s => s.band))
-                    .ForMember(d => d.annoFondazione, opt => opt.MapFrom(s => s.anno));
+                cfg.CreateMap<BranoBO, Disco>()
+                    .ForMember(d => d.Titolo, opt => opt.MapFrom(s => s.disco))
+                    .ForPath(d => d.Band.Nome, opt => opt.MapFrom(s => s.band));
 
-                cfg.CreateMap<Band, BandDTO>()
-                    .ReverseMap();
+                cfg.CreateMap<DiscoBO, Disco>()
+                    .ForMember(d => d.Titolo, opt => opt.MapFrom(s => s.titolo))
+                    .ForMember(d => d.Anno, opt => opt.MapFrom(s => s.anno))
+                    .ForPath(d => d.Band.Nome, opt => opt.MapFrom(s => s.band));
+
+                /*cfg.CreateMap<BranoDTO, DiscoDTO>()
+                    .ForMember(d => d.titolo, opt => opt.MapFrom(s => s.disco));*/
+
+                /*cfg.CreateMap<BranoDTO, BandDTO>()
+                    .ForMember(d => d.nome, opt => opt.MapFrom(s => s.band))
+                    .ForMember(d => d.annoFondazione, opt => opt.MapFrom(s => s.anno));*/
+
+
+
+                /*cfg.CreateMap<DiscoDTO, BandDTO>()
+                    .ForMember(d => d.nome, opt => opt.MapFrom(s => s.band))
+                    .ForMember(d => d.annoFondazione, opt => opt.MapFrom(s => s.anno));*/
+
+                /*cfg.CreateMap<Band, BandDTO>()
+                    .ReverseMap();*/
             });
         }
     }

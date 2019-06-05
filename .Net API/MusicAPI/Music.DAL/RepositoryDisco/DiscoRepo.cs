@@ -43,11 +43,11 @@ namespace Music.DAL.RepositoryDisco
 
         public void SaveNewDisco(Disco disco)
         {
-             disco.CreatedOn = DateTime.Now;
-             disco.ModifiedOn = DateTime.Now;
-
-             _context.Dischi.Add(disco);
-             _context.SaveChanges();
+            disco.CreatedOn = DateTime.Now;
+            disco.ModifiedOn = DateTime.Now;
+            
+            _context.Dischi.Add(disco);
+            _context.SaveChanges();
         }
 
         public void UpdateDisco(Disco disco)
@@ -59,8 +59,8 @@ namespace Music.DAL.RepositoryDisco
 
         public void DeleteDisco(int id)
         {
-                _context.Dischi.Remove(_context.Dischi.FirstOrDefault(x => x.Id == id));
-                _context.SaveChanges();
+            _context.Dischi.Remove(_context.Dischi.FirstOrDefault(x => x.Id == id));
+            _context.SaveChanges();
         }
     }
 }

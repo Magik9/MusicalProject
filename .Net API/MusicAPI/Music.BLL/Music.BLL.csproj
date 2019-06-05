@@ -79,14 +79,15 @@
     <Compile Include="BL\BandService.cs" />
     <Compile Include="BL\BranoService.cs" />
     <Compile Include="BL\DiscoService.cs" />
+    <Compile Include="BO\BandBO.cs" />
+    <Compile Include="BO\BranoBO.cs" />
+    <Compile Include="BO\DiscoBO.cs" />
     <Compile Include="DTO\BranoDTO.cs" />
     <Compile Include="DTO\BandDTO.cs" />
     <Compile Include="DTO\DiscoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BO\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <Content Include="NLog.config">
