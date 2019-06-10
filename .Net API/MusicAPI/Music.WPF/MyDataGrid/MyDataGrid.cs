@@ -24,6 +24,8 @@ namespace Music.WPF.MyDataGrid
 
             CreateButtonColumn("Update", "Update").AddHandler(ButtonBase.ClickEvent,  new RoutedEventHandler(MakeUpdateHappen));
             CreateButtonColumn("Delete", "Delete").AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(MakeDeleteHappen));
+
+            CellEditEnding += EventHandler_CellEndEdit;
         }
 
         
@@ -65,6 +67,12 @@ namespace Music.WPF.MyDataGrid
         private void MakeDeleteHappen(object sender, RoutedEventArgs e)
         {
             DeleteHappened?.Invoke(sender, e);
+        }
+
+
+        void EventHandler_CellEndEdit(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            //this.CommitEdit();
         }
 
 

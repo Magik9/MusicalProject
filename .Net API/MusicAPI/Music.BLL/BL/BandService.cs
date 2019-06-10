@@ -57,7 +57,7 @@ namespace Music.BLL.BL
 
             if (band == null)
             {
-                _bandRepo.SaveNewBand(band);
+                _bandRepo.SaveNewBand(newBand);
 
                 return null;
             }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Windows.Controls.Primitives;
 using APIClient;
+using Music.WPF.AddBranoWindow;
 using Music.WPF.MyDataGrid;
 
 namespace Music.WPF
@@ -80,6 +81,25 @@ namespace Music.WPF
             var row = ((ButtonBase)sender).DataContext as BranoDTO;
             BranoClient.DeleteBranoAsync(row.Id.Value);
         }
+
+
+
+
+        public void ShowCreateBranoView(MainWindow owner)
+        {
+            var inputBranoView = new CreateBranoWindow();
+            inputBranoView.Owner = owner;
+            inputBranoView.addBranoEvent += new EventHandler(addBrano_Event);
+            inputBranoView.Show();
+        }
+
+
+        private void addBrano_Event(object sender, EventArgs e)
+        {
+            var branoBO = ((CreateBranoWindow)sender).branoBO;
+            BranoClient.AddBranoAsync(branoBO);
+        }
+
 
         private BranoBO Map(BranoDTO DTO)
         {

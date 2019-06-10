@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using Music.WPF.MyDataGrid;
+using Music.WPF.AddBranoWindow;
 
 namespace Music.WPF
 {
@@ -37,6 +38,8 @@ namespace Music.WPF
             MenuDirection();
 
             this.WindowState = WindowState.Maximized;
+
+            
         }
 
         
@@ -58,6 +61,11 @@ namespace Music.WPF
                 field.SetValue(null, false);
                 ifLeft = SystemParameters.MenuDropAlignment;
             }
+        }
+
+        private void NewBrano_Click(object sender, RoutedEventArgs e)
+        {
+            model.ShowCreateBranoView(this);
         }
     }
 }

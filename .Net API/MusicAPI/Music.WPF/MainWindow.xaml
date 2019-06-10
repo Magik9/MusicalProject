@@ -8,8 +8,9 @@
         Name="mainWindow">
     <DockPanel Name="MainPanel">
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File" HorizontalAlignment="Right">
-                <MenuItem Header="Load" Click="Load_Click" HorizontalAlignment="Right" />
+            <MenuItem Header="_File" HorizontalAlignment="Left">
+                <MenuItem Header="Load" Click="Load_Click" HorizontalAlignment="Left" />
+                <MenuItem Header="New Brano" Click="NewBrano_Click" HorizontalAlignment="Left" />
             </MenuItem>
         </Menu>
         <!--<DataGrid ItemsSource="{Binding Brani}"  AutoGenerateColumns="False">
@@ -23,4 +24,5 @@
             </DataGrid.Columns>
         </DataGrid>-->
     </DockPanel>
+
 </Window>
