@@ -49,9 +49,9 @@ namespace Music.API.Controllers.API
 
         [HttpPut]
         [Route("Update")]
-        public void UpdateBrano(BranoDTO branoDTO)
+        public void UpdateBrano(BranoBO branoBO)
         {
-            _branoService.UpdateBrano(branoDTO);
+            _branoService.UpdateBrano(branoBO);
             
         }
 

@@ -73,15 +73,15 @@ namespace Music.BLL.BL
             }
         }
         
-        public void UpdateBrano(BranoDTO branoDTO)
+        public void UpdateBrano(BranoBO branoBO)
         {
-            Brano brano = _branoRepo.GetSingleBrano(branoDTO.id);
-            Disco disco = _discoRepo.GetDischi().SingleOrDefault(d => d.Titolo == branoDTO.disco && d.Band.Nome == branoDTO.band);
+            Brano brano = _branoRepo.GetSingleBrano(branoBO.id);
+            Disco disco = _discoRepo.GetDischi().SingleOrDefault(d => d.Titolo == branoBO.disco && d.Band.Nome == branoBO.band);
             if (disco != null)
-                _branoRepo.GetSingleBrano(branoDTO.id).Disco_Id = disco.Id;
+                _branoRepo.GetSingleBrano(branoBO.id).Disco_Id = disco.Id;
 
-            brano.Titolo = branoDTO.titolo;
-            brano.Durata = branoDTO.durata;
+            brano.Titolo = branoBO.titolo;
+            brano.Durata = branoBO.durata;
 
             _branoRepo.UpdateSingleBrano(brano);
         }

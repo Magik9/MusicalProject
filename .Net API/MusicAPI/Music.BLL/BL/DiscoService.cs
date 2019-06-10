@@ -61,7 +61,7 @@ namespace Music.BLL.BL
             }
             else
                 newDisco.Band_Id = _bandRepo.GetBands().Last().Id;
-
+            newDisco.Band = null;
             _discoRepo.SaveNewDisco(newDisco);
 
             return null;
@@ -77,8 +77,11 @@ namespace Music.BLL.BL
 
         public void UpdateDisco(DiscoBO discoBO)
         {
+            Band band = new Band();
+            band.Nome = discoBO.band;
+            band = _bandService.AddBandIfNotExist(band);
             Disco disco = _discoRepo.GetSingleDisco(discoBO.Id);
-            Band band = _bandService.AddBandIfNotExist(disco.Band);
+
             if (band != null) //se la band esiste gia
             {
                 var d = _bandRepo.GetSingleBand(band.Id)
@@ -90,16 +93,16 @@ namespace Music.BLL.BL
                 }
                 else
                 {
-                    _discoRepo.MoveDisco(disco.Id, d.Id);
+                    _discoRepo.MoveDisco(discoBO.Id, d.Id);
                 }
             }
             else
             {
                 disco.Band_Id = _bandRepo.GetBands().Last().Id;
             }
-            
+
             disco.Titolo = discoBO.titolo;   
-             _discoRepo.UpdateDisco(disco);
+            _discoRepo.UpdateDisco(disco);
         }
 
         public void DeleteDisco(int id)
