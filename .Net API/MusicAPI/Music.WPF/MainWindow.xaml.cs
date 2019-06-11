@@ -20,7 +20,7 @@ namespace Music.WPF
     public partial class MainWindow : Window
     {
         private MainWindowModel model;
-
+        private ClientHelper clientHelper;
 
 
         public MainWindow()
@@ -31,23 +31,28 @@ namespace Music.WPF
 
             model = DataContext as MainWindowModel;
 
-            DockPanel mainPanel = MainPanel;
-
             mainPanel.Children.Add(model.grid);
 
             MenuDirection();
 
             this.WindowState = WindowState.Maximized;
 
-            
+            clientHelper = new ClientHelper();
+
         }
 
-        
-
-        private void Load_Click(object sender, RoutedEventArgs e)
+ 
+        private async void Load_Click(object sender, RoutedEventArgs e)
         {
-            model.LoadBrani();
+            model.Brani = await clientHelper.LoadBrani();
         }
+
+
+        private void NewBrano_Click(object sender, RoutedEventArgs e)
+        {
+            model.ShowCreateBranoView(this);
+        }
+
 
 
         private void MenuDirection()
@@ -61,11 +66,6 @@ namespace Music.WPF
                 field.SetValue(null, false);
                 ifLeft = SystemParameters.MenuDropAlignment;
             }
-        }
-
-        private void NewBrano_Click(object sender, RoutedEventArgs e)
-        {
-            model.ShowCreateBranoView(this);
         }
     }
 }

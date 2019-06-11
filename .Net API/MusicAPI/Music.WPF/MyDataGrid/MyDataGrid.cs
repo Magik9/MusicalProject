@@ -3,11 +3,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Music.WPF.MyDataGrid
 {
     public class XDataGrid : DataGrid
     {
+        private bool isManualEditCommit;
 
         public XDataGrid()
         {
@@ -22,10 +24,13 @@ namespace Music.WPF.MyDataGrid
             CreateTextColumn("Anno", "Anno");
             CreateTextColumn("Durata", "Durata");
 
-            CreateButtonColumn("Update", "Update").AddHandler(ButtonBase.ClickEvent,  new RoutedEventHandler(MakeUpdateHappen));
-            CreateButtonColumn("Delete", "Delete").AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(MakeDeleteHappen));
+            CreateButtonColumn("Update", "Update")
+                .AddHandler(ButtonBase.ClickEvent,  new RoutedEventHandler(MakeUpdateHappen));
+            CreateButtonColumn("Delete", "Delete")
+                .AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(MakeDeleteHappen));
 
             CellEditEnding += EventHandler_CellEndEdit;
+
         }
 
         
@@ -56,8 +61,10 @@ namespace Music.WPF.MyDataGrid
         }
 
 
-        public event EventHandler UpdateHappened;
-        public event EventHandler DeleteHappened;
+
+        public event RoutedEventHandler UpdateHappened;
+        public event RoutedEventHandler DeleteHappened;
+
 
         private void MakeUpdateHappen(object sender, RoutedEventArgs e)
         {
@@ -72,7 +79,14 @@ namespace Music.WPF.MyDataGrid
 
         void EventHandler_CellEndEdit(object sender, DataGridCellEditEndingEventArgs e)
         {
-            //this.CommitEdit();
+            if (!isManualEditCommit)
+            {
+                isManualEditCommit = true;
+                DataGrid grid = (DataGrid)sender;
+                grid.CommitEdit(DataGridEditingUnit.Row, true);
+                e.Row.Background = Brushes.Yellow;
+                isManualEditCommit = false;
+            }
         }
 
 

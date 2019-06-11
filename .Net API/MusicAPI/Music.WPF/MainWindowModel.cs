@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using APIClient;
 using Music.WPF.AddBranoWindow;
@@ -11,29 +13,11 @@ namespace Music.WPF
 {
     public class MainWindowModel
     {
-        private HttpClient _client = null;
-        private BranoClient _branoClient = null;
+        private ClientHelper ClientHelper;
+
         public XDataGrid grid;
 
-        public HttpClient Client
-        {
-            get => _client;
-            set
-            {
-                _client = value;
-            }
-        }
-
-        public BranoClient BranoClient
-        {
-            get => _branoClient;
-            set
-            {
-                _branoClient = value;
-            }
-        }
-
-        private List<BranoDTO> _brani = null;
+        private List<BranoDTO> _brani;
 
         public List<BranoDTO> Brani
         {
@@ -49,29 +33,29 @@ namespace Music.WPF
 
         public MainWindowModel()
         {
-            _client = new HttpClient();
-            _branoClient = new BranoClient(_client);
+            this.ClientHelper = new ClientHelper();
+            
             Brani = new List<BranoDTO>();
 
             grid = new XDataGrid();
-            grid.UpdateHappened += new EventHandler(update_eventHandler);
-            grid.DeleteHappened += new EventHandler(delete_eventHandler);
+            grid.UpdateHappened += new RoutedEventHandler(update_eventHandler);
+            grid.DeleteHappened += new RoutedEventHandler(delete_eventHandler);
         }
 
 
 
-        public async void LoadBrani()
+        private void addBrano_Event(object sender, RoutedEventArgs e)
         {
-            var Task = await BranoClient.ListaBraniAsync();
-            Brani = Task.ToList();
+            var branoBO = ((CreateBranoWindow)sender).BO;
+            ClientHelper.AddBrano(branoBO);
         }
 
 
 
-        private void update_eventHandler(object sender, EventArgs e)
+        private void update_eventHandler(object sender, RoutedEventArgs e)
         {
-            var row = ((ButtonBase)sender).DataContext as BranoDTO;
-            BranoClient.UpdateBranoAsync(Map(row));
+            var DTO = ((ButtonBase)sender).DataContext as BranoDTO;
+            ClientHelper.UpdateBrano(DTO);
         }
 
 
@@ -79,39 +63,16 @@ namespace Music.WPF
         private void delete_eventHandler(object sender, EventArgs e)
         {
             var row = ((ButtonBase)sender).DataContext as BranoDTO;
-            BranoClient.DeleteBranoAsync(row.Id.Value);
+            ClientHelper.DeleteBrano(row.Id.Value);
         }
-
 
 
 
         public void ShowCreateBranoView(MainWindow owner)
         {
-            var inputBranoView = new CreateBranoWindow();
-            inputBranoView.Owner = owner;
-            inputBranoView.addBranoEvent += new EventHandler(addBrano_Event);
+            var inputBranoView = new CreateBranoWindow(owner);
+            inputBranoView.addBranoEvent += new RoutedEventHandler(addBrano_Event);
             inputBranoView.Show();
-        }
-
-
-        private void addBrano_Event(object sender, EventArgs e)
-        {
-            var branoBO = ((CreateBranoWindow)sender).branoBO;
-            BranoClient.AddBranoAsync(branoBO);
-        }
-
-
-        private BranoBO Map(BranoDTO DTO)
-        {
-            return new BranoBO
-            {
-                Id = DTO.Id,
-                Titolo = DTO.Titolo,
-                Disco = DTO.Disco,
-                Band = DTO.Band,
-                Anno = DTO.Anno,
-                Durata = DTO.Durata
-            };
         }
 
 

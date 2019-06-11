@@ -23,15 +23,15 @@
 
         </Grid.RowDefinitions>
 
-        <TextBox Name="txtTitolo" Margin="10" Grid.Column="1" Grid.Row="1" MinHeight="25" MinWidth="250">Titolo</TextBox>
-        <TextBox Name="txtDisco" Margin="10" Grid.Column="1" Grid.Row="2" MinHeight="25" MinWidth="250">Disco</TextBox>
-        <TextBox Name="txtBand" Margin="10" Grid.Column="1" Grid.Row="3" MinHeight="25" MinWidth="250">Band</TextBox>
-        <TextBox Name="txtAnno" Margin="10" Grid.Column="1" Grid.Row="4" MinHeight="25" MinWidth="250">Anno</TextBox>
-        <TextBox Name="txtDurata" Margin="10" Grid.Column="1" Grid.Row="5" MinHeight="25" MinWidth="250">Durata</TextBox>
+        <TextBox Name="txtTitolo" Margin="10" Grid.Column="1" Grid.Row="1" MinHeight="25" MinWidth="250" GotFocus="TxtTitolo_GotFocus">Titolo</TextBox>
+        <TextBox Name="txtDisco" Margin="10" Grid.Column="1" Grid.Row="2" MinHeight="25" MinWidth="250" GotFocus="TxtDisco_GotFocus">Disco</TextBox>
+        <TextBox Name="txtBand" Margin="10" Grid.Column="1" Grid.Row="3" MinHeight="25" MinWidth="250" GotFocus="TxtBand_GotFocus">Band</TextBox>
+        <TextBox Name="txtAnno" Margin="10" Grid.Column="1" Grid.Row="4" MinHeight="25" MinWidth="250" GotFocus="TxtAnno_GotFocus">Anno</TextBox>
+        <TextBox Name="txtDurata" Margin="10" Grid.Column="1" Grid.Row="5" MinHeight="25" MinWidth="250" GotFocus="TxtDurata_GotFocus">Durata</TextBox>
 
         <WrapPanel Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,18,-48" RenderTransformOrigin="0.519,2" Height="24" VerticalAlignment="Bottom">
             <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
-            <Button IsCancel="True" MinWidth="60" Height="20" Width="56" Content="_Cancel"/>
+            <Button IsCancel="True" MinWidth="60" Height="20" Width="56" Content="_Cancel" Click="Close_Click"/>
         </WrapPanel>
     </Grid>
 </Window>
