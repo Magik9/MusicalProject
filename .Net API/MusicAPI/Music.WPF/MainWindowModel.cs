@@ -38,6 +38,7 @@ namespace Music.WPF
             Brani = new List<BranoDTO>();
 
             grid = new XDataGrid();
+            
             grid.UpdateHappened += new RoutedEventHandler(update_eventHandler);
             grid.DeleteHappened += new RoutedEventHandler(delete_eventHandler);
         }

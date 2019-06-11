@@ -25,32 +25,36 @@ namespace Music.WPF
 
         public MainWindow()
         {
+
             InitializeComponent();
-
+            this.WindowState = WindowState.Maximized;
+            MenuDirection();
             DataContext = new MainWindowModel();
-
             model = DataContext as MainWindowModel;
 
-            mainPanel.Children.Add(model.grid);
-
-            MenuDirection();
-
-            this.WindowState = WindowState.Maximized;
+            //braniPanel.MaxWidth = 600;
+            braniPanel.HorizontalAlignment = HorizontalAlignment.Left;
+            braniPanel.Children.Add(model.grid);
 
             clientHelper = new ClientHelper();
 
         }
 
+
  
         private async void Load_Click(object sender, RoutedEventArgs e)
         {
+
             model.Brani = await clientHelper.LoadBrani();
+
         }
 
 
         private void NewBrano_Click(object sender, RoutedEventArgs e)
         {
+
             model.ShowCreateBranoView(this);
+
         }
 
 

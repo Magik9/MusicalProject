@@ -14,7 +14,8 @@ namespace Music.WPF.MyDataGrid
         public XDataGrid()
         {
             this.AutoGenerateColumns = false;
-
+            this.MaxWidth = 600;
+            this.HorizontalAlignment = HorizontalAlignment.Left;
             this.RowHeaderWidth = 0;
 
             CreateTextColumn("Id", "Id");
@@ -30,7 +31,6 @@ namespace Music.WPF.MyDataGrid
                 .AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(MakeDeleteHappen));
 
             CellEditEnding += EventHandler_CellEndEdit;
-
         }
 
         
@@ -56,6 +56,7 @@ namespace Music.WPF.MyDataGrid
             buttonColumn.Header = columnName;
             buttonColumn.CellTemplate = buttonTemplate;
             this.Columns.Add(buttonColumn);
+            
 
             return buttonFactory;
         }
@@ -69,6 +70,8 @@ namespace Music.WPF.MyDataGrid
         private void MakeUpdateHappen(object sender, RoutedEventArgs e)
         {
             UpdateHappened?.Invoke(sender, e);
+            DataGridRow Row = (DataGridRow)ItemContainerGenerator.ContainerFromIndex(SelectedIndex);
+            Row.Background = Brushes.White;
         }
 
         private void MakeDeleteHappen(object sender, RoutedEventArgs e)

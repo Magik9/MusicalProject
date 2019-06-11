@@ -13,16 +13,18 @@
                 <MenuItem Header="New Brano" Click="NewBrano_Click" HorizontalAlignment="Left" />
             </MenuItem>
         </Menu>
-        <!--<DataGrid ItemsSource="{Binding Brani}"  AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Titolo" Binding="{Binding Titolo}"/>
-                <DataGridTextColumn Header="Disco" Binding="{Binding Disco}"/>
-                <DataGridTextColumn Header="Band" Binding="{Binding Band}"/>
-                <DataGridTextColumn Header="Anno" Binding="{Binding Anno}"/>
-                <DataGridTextColumn Header="Durata" Binding="{Binding Durata}"/>
-            </DataGrid.Columns>
-        </DataGrid>-->
+        <StackPanel Name="braniPanel" Width="Auto" Orientation="Horizontal">
+            <DataGrid ItemsSource="{Binding Artisti}"  AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Titolo" Binding="{Binding Titolo}"/>
+                    <DataGridTextColumn Header="Disco" Binding="{Binding Disco}"/>
+                    <DataGridTextColumn Header="Band" Binding="{Binding Band}"/>
+                    <DataGridTextColumn Header="Anno" Binding="{Binding Anno}"/>
+                    <DataGridTextColumn Header="Durata" Binding="{Binding Durata}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </DockPanel>
 
 </Window>
