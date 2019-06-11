@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Windows;
@@ -11,11 +12,11 @@ using Music.WPF.MyDataGrid;
 
 namespace Music.WPF
 {
-    public class MainWindowModel
+    public class MainWindowModel : INotifyPropertyChanged
     {
         private ClientHelper ClientHelper;
 
-        public XDataGrid grid;
+        public XDataGrid gridBrani;
 
         private List<BranoDTO> _brani;
 
@@ -25,9 +26,28 @@ namespace Music.WPF
             set
             {
                 _brani = value;
-                if (grid != null)
-                    grid.ItemsSource = Brani;
+                if (gridBrani != null)
+                    gridBrani.ItemsSource = Brani;
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private List<DiscoDTO> _dischi;
+
+        public List<DiscoDTO> Dischi
+        {
+            get => _dischi;
+            set
+            {
+                _dischi = value;
+                OnPropertyChanged("Dischi");
+            }
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 
@@ -37,10 +57,10 @@ namespace Music.WPF
             
             Brani = new List<BranoDTO>();
 
-            grid = new XDataGrid();
+            gridBrani = new XDataGrid();
             
-            grid.UpdateHappened += new RoutedEventHandler(update_eventHandler);
-            grid.DeleteHappened += new RoutedEventHandler(delete_eventHandler);
+            gridBrani.UpdateHappened += new RoutedEventHandler(update_eventHandler);
+            gridBrani.DeleteHappened += new RoutedEventHandler(delete_eventHandler);
         }
 
 

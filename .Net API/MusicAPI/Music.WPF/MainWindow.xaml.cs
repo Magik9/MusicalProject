@@ -11,6 +11,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using Music.WPF.MyDataGrid;
 using Music.WPF.AddBranoWindow;
+using System.Drawing;
+using System.Windows.Media;
 
 namespace Music.WPF
 {
@@ -32,9 +34,7 @@ namespace Music.WPF
             DataContext = new MainWindowModel();
             model = DataContext as MainWindowModel;
 
-            //braniPanel.MaxWidth = 600;
-            braniPanel.HorizontalAlignment = HorizontalAlignment.Left;
-            braniPanel.Children.Add(model.grid);
+            braniPanel.Children.Add(model.gridBrani);
 
             clientHelper = new ClientHelper();
 
@@ -58,6 +58,12 @@ namespace Music.WPF
         }
 
 
+        private async void LoadDischi_Click(object sender, RoutedEventArgs e)
+        {
+            model.Dischi = await clientHelper.LoadDischi();
+        }
+
+
 
         private void MenuDirection()
         {
@@ -70,6 +76,15 @@ namespace Music.WPF
                 field.SetValue(null, false);
                 ifLeft = SystemParameters.MenuDropAlignment;
             }
+        }
+
+
+        private async void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)sender;
+            DataGridRow Row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(grid.SelectedIndex);
+            int id = int.Parse((grid.SelectedCells[0].Column.GetCellContent(Row.Item) as TextBlock).Text);
+            model.Brani = await clientHelper.LoadBraniDisco(id);
         }
     }
 }

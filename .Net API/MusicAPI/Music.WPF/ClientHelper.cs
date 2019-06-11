@@ -11,10 +11,12 @@ namespace Music.WPF
     public class ClientHelper
     {
         private BranoClient BranoClient;
+        private DiscoClient DiscoClient;
 
         public ClientHelper()
         {
             BranoClient = new BranoClient(new HttpClient());
+            DiscoClient = new DiscoClient(new HttpClient());
         }
 
 
@@ -22,6 +24,13 @@ namespace Music.WPF
         {
             var Task = await BranoClient.ListaBraniAsync();
             return Task.ToList();
+        }
+
+
+        public async Task<List<BranoDTO>> LoadBraniDisco(int id)
+        {
+            var Task = await BranoClient.BraniDiscoAsync(id);
+            return Task.ToList(); 
         }
 
 
@@ -43,6 +52,15 @@ namespace Music.WPF
         public void DeleteBrano(int id)
         {
             BranoClient.DeleteBranoAsync(id);
+        }
+
+
+
+
+        public async Task<List<DiscoDTO>> LoadDischi()
+        {
+            var Task = await DiscoClient.ListaDischiAllAsync();
+            return Task.ToList();
         }
 
 

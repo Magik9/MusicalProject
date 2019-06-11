@@ -65,7 +65,7 @@ namespace Music.WPF.MyDataGrid
 
         public event RoutedEventHandler UpdateHappened;
         public event RoutedEventHandler DeleteHappened;
-
+        public event RoutedEventHandler DiscoHappened;
 
         private void MakeUpdateHappen(object sender, RoutedEventArgs e)
         {

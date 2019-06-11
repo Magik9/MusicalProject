@@ -9,21 +9,23 @@
     <DockPanel Name="mainPanel">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File" HorizontalAlignment="Left">
-                <MenuItem Header="Load" Click="Load_Click" HorizontalAlignment="Left" />
+                <MenuItem Header="Load Brani" Click="Load_Click" HorizontalAlignment="Left" />
+                <MenuItem Header="Load Dischi" Click="LoadDischi_Click" HorizontalAlignment="Left" />
                 <MenuItem Header="New Brano" Click="NewBrano_Click" HorizontalAlignment="Left" />
             </MenuItem>
         </Menu>
-        <StackPanel Name="braniPanel" Width="Auto" Orientation="Horizontal">
-            <DataGrid ItemsSource="{Binding Artisti}"  AutoGenerateColumns="False">
+        <StackPanel Name="discoPanel" Height="Auto" Width="Auto">
+            <DataGrid ItemsSource="{Binding Dischi}"  AutoGenerateColumns="False" MaxWidth="400" HorizontalAlignment="Left" SelectionChanged="DataGrid_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Titolo" Binding="{Binding Titolo}"/>
-                    <DataGridTextColumn Header="Disco" Binding="{Binding Disco}"/>
                     <DataGridTextColumn Header="Band" Binding="{Binding Band}"/>
                     <DataGridTextColumn Header="Anno" Binding="{Binding Anno}"/>
-                    <DataGridTextColumn Header="Durata" Binding="{Binding Durata}"/>
                 </DataGrid.Columns>
             </DataGrid>
+        </StackPanel>
+        <StackPanel Name="braniPanel" Height="Auto" Width="Auto">
+            
         </StackPanel>
     </DockPanel>
 
