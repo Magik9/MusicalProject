@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Music.WPF
@@ -64,6 +63,20 @@ namespace Music.WPF
         }
 
 
+        public void UpdateDisco(object obj)
+        {
+            var BO = Map(obj as DiscoDTO);
+            DiscoClient.UpdateDiscoAsync(BO);
+        }
+
+
+        public void DeleteDisco(object obj)
+        {
+            int id = Map(obj as DiscoDTO).Id.Value;
+            DiscoClient.DeleteSingleDiscoAsync(id);
+        }
+
+
 
         private BranoBO Map(BranoDTO DTO)
         {
@@ -77,5 +90,18 @@ namespace Music.WPF
                 Durata = DTO.Durata
             };
         }
+
+
+        private DiscoBO Map(DiscoDTO DTO)
+        {
+            return new DiscoBO
+            {
+                Id = DTO.Id,
+                Titolo = DTO.Titolo,
+                Band = DTO.Band,
+                Anno = DTO.Anno
+            };
+        }
+
     }
 }

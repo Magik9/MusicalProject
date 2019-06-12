@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using APIClient;
 using Music.WPF.AddBranoWindow;
 using Music.WPF.MyDataGrid;
@@ -33,6 +32,11 @@ namespace Music.WPF
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         private List<DiscoDTO> _dischi;
 
         public List<DiscoDTO> Dischi
@@ -45,9 +49,53 @@ namespace Music.WPF
             }
         }
 
-        private void OnPropertyChanged(string propertyName)
+
+
+        private ICommand __selDiscoChange;
+        public ICommand SelDiscoChange
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get
+            {
+                if (__selDiscoChange == null)
+                    __selDiscoChange = new RelayCommand(o => SelectionDiscoChange_Event(o), o => true);
+                return __selDiscoChange;
+            }
+            set
+            {
+                __selDiscoChange = value;
+            }
+        }
+
+
+        private ICommand _deleteDisco;
+        public ICommand DeleteDisco
+        {
+            get
+            {
+                if (_deleteDisco == null)
+                    _deleteDisco = new RelayCommand(o => DiscoDelete_Click(o), o => true);
+                return _deleteDisco;
+            }
+            set
+            {
+                _deleteDisco = value;
+            }
+        }
+
+
+        private ICommand _updateDisco;
+        public ICommand UpdateDisco
+        {
+            get
+            {
+                if (_updateDisco == null)
+                    _updateDisco = new RelayCommand(o => DiscoUpdate_Click(o), o => true);
+                return _updateDisco;
+            }
+            set
+            {
+                _updateDisco = value;
+            }
         }
 
 
@@ -61,6 +109,15 @@ namespace Music.WPF
             
             gridBrani.UpdateHappened += new RoutedEventHandler(update_eventHandler);
             gridBrani.DeleteHappened += new RoutedEventHandler(delete_eventHandler);
+        }
+
+
+
+        public void ShowCreateBranoView(MainWindow owner)
+        {
+            var inputBranoView = new CreateBranoWindow(owner);
+            inputBranoView.addBranoEvent += new RoutedEventHandler(addBrano_Event);
+            inputBranoView.Show();
         }
 
 
@@ -89,11 +146,32 @@ namespace Music.WPF
 
 
 
-        public void ShowCreateBranoView(MainWindow owner)
+        private async void SelectionDiscoChange_Event(object sender)
         {
-            var inputBranoView = new CreateBranoWindow(owner);
-            inputBranoView.addBranoEvent += new RoutedEventHandler(addBrano_Event);
-            inputBranoView.Show();
+            DataGrid grid = (DataGrid)sender;
+            DataGridRow Row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(grid.SelectedIndex);
+
+            if (Row != null)
+            {
+                int id = int.Parse((grid.SelectedCells[0].Column.GetCellContent(Row.Item) as TextBlock).Text);
+                Brani = await ClientHelper.LoadBraniDisco(id);
+            }
+        }
+
+
+        private void DiscoUpdate_Click(object item)
+        {
+
+            ClientHelper.UpdateDisco(item);
+
+        }
+
+
+        private void DiscoDelete_Click(object item)
+        {
+
+            ClientHelper.DeleteDisco(item);
+
         }
 
 

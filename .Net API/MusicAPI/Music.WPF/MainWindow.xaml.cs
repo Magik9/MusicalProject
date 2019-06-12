@@ -1,18 +1,6 @@
-﻿using APIClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using Music.WPF.MyDataGrid;
-using Music.WPF.AddBranoWindow;
-using System.Drawing;
-using System.Windows.Media;
 
 namespace Music.WPF
 {
@@ -29,7 +17,7 @@ namespace Music.WPF
         {
 
             InitializeComponent();
-            this.WindowState = WindowState.Maximized;
+            WindowState = WindowState.Maximized;
             MenuDirection();
             DataContext = new MainWindowModel();
             model = DataContext as MainWindowModel;
@@ -46,6 +34,7 @@ namespace Music.WPF
         {
 
             model.Brani = await clientHelper.LoadBrani();
+            braniPanel.Visibility = Visibility.Visible;
 
         }
 
@@ -54,13 +43,16 @@ namespace Music.WPF
         {
 
             model.ShowCreateBranoView(this);
-
+            
         }
 
 
         private async void LoadDischi_Click(object sender, RoutedEventArgs e)
         {
+
             model.Dischi = await clientHelper.LoadDischi();
+            discoPanel.Visibility = Visibility.Visible;
+
         }
 
 
@@ -78,13 +70,5 @@ namespace Music.WPF
             }
         }
 
-
-        private async void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataGrid grid = (DataGrid)sender;
-            DataGridRow Row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(grid.SelectedIndex);
-            int id = int.Parse((grid.SelectedCells[0].Column.GetCellContent(Row.Item) as TextBlock).Text);
-            model.Brani = await clientHelper.LoadBraniDisco(id);
-        }
     }
 }

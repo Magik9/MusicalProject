@@ -13,10 +13,12 @@ namespace Music.WPF.MyDataGrid
 
         public XDataGrid()
         {
-            this.AutoGenerateColumns = false;
-            this.MaxWidth = 600;
-            this.HorizontalAlignment = HorizontalAlignment.Left;
-            this.RowHeaderWidth = 0;
+            AutoGenerateColumns = false;
+            HorizontalAlignment = HorizontalAlignment.Left;
+            RowHeaderWidth = 0;
+            CanUserAddRows = false;
+            FontSize = 17;
+            Margin = new Thickness(0, 10, 10, 0);
 
             CreateTextColumn("Id", "Id");
             CreateTextColumn("Titolo", "Titolo");
@@ -65,7 +67,6 @@ namespace Music.WPF.MyDataGrid
 
         public event RoutedEventHandler UpdateHappened;
         public event RoutedEventHandler DeleteHappened;
-        public event RoutedEventHandler DiscoHappened;
 
         private void MakeUpdateHappen(object sender, RoutedEventArgs e)
         {
