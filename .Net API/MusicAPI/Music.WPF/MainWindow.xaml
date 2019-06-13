@@ -26,8 +26,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Update" Command="{Binding DataContext.UpdateDisco,
-         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                        CommandParameter="{Binding}" />
+                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -35,7 +35,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Delete" Command="{Binding DataContext.DeleteDisco,
-         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                         CommandParameter="{Binding}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -44,7 +44,11 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding SelDiscoChange}" 
-        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="CellEditEnding">
+                        <i:InvokeCommandAction Command="{Binding CellEditEnd}" 
+                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </DataGrid>

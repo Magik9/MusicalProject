@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 using APIClient;
 using Music.WPF.AddBranoWindow;
 using Music.WPF.MyDataGrid;
@@ -16,6 +17,8 @@ namespace Music.WPF
         private ClientHelper ClientHelper;
 
         public XDataGrid gridBrani;
+
+        private bool isManualEditCommit;
 
         private List<BranoDTO> _brani;
 
@@ -51,18 +54,34 @@ namespace Music.WPF
 
 
 
-        private ICommand __selDiscoChange;
+        private ICommand _selDiscoChange;
         public ICommand SelDiscoChange
         {
             get
             {
-                if (__selDiscoChange == null)
-                    __selDiscoChange = new RelayCommand(o => SelectionDiscoChange_Event(o), o => true);
-                return __selDiscoChange;
+                if (_selDiscoChange == null)
+                    _selDiscoChange = new RelayCommand(o => SelectionDiscoChange_Event(o), o => true);
+                return _selDiscoChange;
             }
             set
             {
-                __selDiscoChange = value;
+                _selDiscoChange = value;
+            }
+        }
+
+
+        private ICommand _cellEditEnd;
+        public ICommand CellEditEnd
+        {
+            get
+            {
+                if (_cellEditEnd == null)
+                    _cellEditEnd = new RelayCommand(o => DiscoEditEnd_Event(o), o => true);
+                return _cellEditEnd;
+            }
+            set
+            {
+                _cellEditEnd = value;
             }
         }
 
@@ -159,11 +178,26 @@ namespace Music.WPF
         }
 
 
-        private void DiscoUpdate_Click(object item)
+        private void DiscoEditEnd_Event(object sender)
         {
+            if (!isManualEditCommit)
+            {
+                isManualEditCommit = true;
+                DataGrid grid = (DataGrid)sender;
+                grid.CommitEdit(DataGridEditingUnit.Row, true);
+                DataGridRow Row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(grid.SelectedIndex);
+                Row.Background = Brushes.Yellow;
+                isManualEditCommit = false;
+            }
+        }
 
-            ClientHelper.UpdateDisco(item);
 
+        private void DiscoUpdate_Click(object sender)
+        {
+            DataGrid grid = (DataGrid)sender;
+            DataGridRow Row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(grid.SelectedIndex);
+            ClientHelper.UpdateDisco(Row.Item);
+            Row.Background = Brushes.White;
         }
 
 
