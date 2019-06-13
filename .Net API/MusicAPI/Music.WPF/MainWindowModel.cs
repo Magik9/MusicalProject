@@ -183,10 +183,12 @@ namespace Music.WPF
             if (!isManualEditCommit)
             {
                 isManualEditCommit = true;
-                DataGrid grid = (DataGrid)sender;
+                var obj = (object[])sender;
+                var e = (DataGridCellEditEndingEventArgs)obj[0];
+                var grid = (DataGrid)obj[1];
                 grid.CommitEdit(DataGridEditingUnit.Row, true);
-                DataGridRow Row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(grid.SelectedIndex);
-                Row.Background = Brushes.Yellow;
+
+                e.Row.Background = Brushes.Yellow;
                 isManualEditCommit = false;
             }
         }
