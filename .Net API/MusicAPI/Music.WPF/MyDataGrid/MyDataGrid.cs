@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Music.WPF.MyDataGrid
 {
@@ -27,9 +28,9 @@ namespace Music.WPF.MyDataGrid
             CreateTextColumn("Anno", "Anno");
             CreateTextColumn("Durata", "Durata");
 
-            CreateButtonColumn("Update", "Update")
+            CreateButtonColumn("Update", "pack://application:,,,/save-button.png")
                 .AddHandler(ButtonBase.ClickEvent,  new RoutedEventHandler(MakeUpdateHappen));
-            CreateButtonColumn("Delete", "Delete")
+            CreateButtonColumn("Delete", "pack://application:,,,/delete-button.png")
                 .AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(MakeDeleteHappen));
 
             CellEditEnding += EventHandler_CellEndEdit;
@@ -48,17 +49,27 @@ namespace Music.WPF.MyDataGrid
 
 
 
-        public FrameworkElementFactory CreateButtonColumn(string columnName, string buttonName)
+        public FrameworkElementFactory CreateButtonColumn(string columnName, string imagePath)
         {
             DataGridTemplateColumn buttonColumn = new DataGridTemplateColumn();
             DataTemplate buttonTemplate = new DataTemplate();
             FrameworkElementFactory buttonFactory = new FrameworkElementFactory(typeof(Button));
             buttonTemplate.VisualTree = buttonFactory;
-            buttonFactory.SetValue(ContentControl.ContentProperty, buttonName);
             buttonColumn.Header = columnName;
             buttonColumn.CellTemplate = buttonTemplate;
+            BitmapImage bitImg = new BitmapImage(new Uri(imagePath,
+                UriKind.RelativeOrAbsolute));
+
+            FrameworkElementFactory img = new FrameworkElementFactory(typeof(Image));
+
+            img.SetValue(Image.SourceProperty, bitImg);
+            img.SetValue(HeightProperty, 23.0);
+
+            buttonFactory.AppendChild(img);
+            buttonFactory.SetValue(BackgroundProperty, Brushes.White);
+            buttonFactory.SetValue(BorderBrushProperty, Brushes.White);
+
             this.Columns.Add(buttonColumn);
-            
 
             return buttonFactory;
         }

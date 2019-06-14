@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Music.WPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <local:Converter x:Key="Converter" />
+        <local:MultivalueConverter x:Key="MultiConverter" />
+        <local:ArgsConverter x:Key="ArgsConverter" />
     </Application.Resources>
 </Application>

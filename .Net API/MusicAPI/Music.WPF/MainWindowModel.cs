@@ -15,7 +15,7 @@ namespace Music.WPF
     public class MainWindowModel : INotifyPropertyChanged
     {
         private ClientHelper ClientHelper;
-
+        
         public XDataGrid gridBrani;
 
         private bool isManualEditCommit;
@@ -187,7 +187,6 @@ namespace Music.WPF
                 var e = (DataGridCellEditEndingEventArgs)obj[0];
                 var grid = (DataGrid)obj[1];
                 grid.CommitEdit(DataGridEditingUnit.Row, true);
-
                 e.Row.Background = Brushes.Yellow;
                 isManualEditCommit = false;
             }

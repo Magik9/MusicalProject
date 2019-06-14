@@ -97,7 +97,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter.cs" />
+    <Compile Include="ArgsConverter.cs" />
+    <Compile Include="MultiValueConverter.cs" />
     <Compile Include="RelayCommand.cs" />
     <Page Include="AddBranoWindow\CreateBranoWindow.xaml">
       <SubType>Designer</SubType>
@@ -156,6 +157,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="update-button.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="save-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="delete-button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

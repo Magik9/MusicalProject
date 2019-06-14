@@ -28,18 +28,26 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Update" Command="{Binding DataContext.UpdateDisco,
+                                <Button Background="White" BorderBrush="White" Command="{Binding DataContext.UpdateDisco,
                                         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}">
+                                    <DockPanel Background="White">
+                                            <Image Source="pack://application:,,,/save-button.png" Height="23"/>
+                                    </DockPanel>
+                                </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Delete" Command="{Binding DataContext.DeleteDisco,
+                                <Button Background="White" BorderBrush="White" Command="{Binding DataContext.DeleteDisco,
                                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                        CommandParameter="{Binding}"/>
+                                        CommandParameter="{Binding}">
+                                    <DockPanel Background="White">
+                                        <Image Source="pack://application:,,,/delete-button.png" Height="23"/>
+                                    </DockPanel>
+                                </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -51,9 +59,15 @@
                     </i:EventTrigger>
                     <i:EventTrigger EventName="CellEditEnding">
                         <cmd:EventToCommand Command="{Binding Mode=OneWay, Path=CellEditEnd}"
-                                        EventArgsConverter="{StaticResource ResourceKey=Converter}"
+                                        EventArgsConverter="{StaticResource ResourceKey=ArgsConverter}"
                                         EventArgsConverterParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                        PassEventArgsToCommand="True" />
+                                        PassEventArgsToCommand="True">
+                            <!--<cmd:EventToCommand.CommandParameter>
+                                <MultiBinding Converter="{StaticResource ResourceKey=MultiConverter}">
+                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=DataGrid}" />
+                                </MultiBinding>
+                            </cmd:EventToCommand.CommandParameter>-->
+                        </cmd:EventToCommand>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </DataGrid>

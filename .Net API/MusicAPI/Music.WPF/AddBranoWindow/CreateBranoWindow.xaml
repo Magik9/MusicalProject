@@ -6,7 +6,32 @@
         xmlns:local="clr-namespace:Music.WPF.AddBranoWindow"
         mc:Ignorable="d"
         Title="CreateBranoWindow" Height="335" Width="457.5">
-
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="BaseStyle">
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <ControlTemplate x:Key="TextBoxControlTemplate" TargetType="{x:Type TextBox}">
+            <Border Background="{TemplateBinding Background}" 
+                x:Name="Bd" BorderBrush="Black"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid Margin="15,15,14.5,7.5">
 
         <Grid.ColumnDefinitions>
@@ -23,14 +48,16 @@
 
         </Grid.RowDefinitions>
 
-        <TextBox Name="txtTitolo" Margin="10" Grid.Column="1" Grid.Row="1" MinHeight="25" MinWidth="250" GotFocus="TxtTitolo_GotFocus">Titolo</TextBox>
-        <TextBox Name="txtDisco" Margin="10" Grid.Column="1" Grid.Row="2" MinHeight="25" MinWidth="250" GotFocus="TxtDisco_GotFocus">Disco</TextBox>
-        <TextBox Name="txtBand" Margin="10" Grid.Column="1" Grid.Row="3" MinHeight="25" MinWidth="250" GotFocus="TxtBand_GotFocus">Band</TextBox>
-        <TextBox Name="txtAnno" Margin="10" Grid.Column="1" Grid.Row="4" MinHeight="25" MinWidth="250" GotFocus="TxtAnno_GotFocus">Anno</TextBox>
-        <TextBox Name="txtDurata" Margin="10" Grid.Column="1" Grid.Row="5" MinHeight="25" MinWidth="250" GotFocus="TxtDurata_GotFocus">Durata</TextBox>
+        <TextBox Style="{StaticResource BaseStyle}" Template="{StaticResource TextBoxControlTemplate}" Name="txtTitolo" Margin="10" Grid.Column="1" Grid.Row="1" MinHeight="25" MinWidth="250" GotFocus="TxtTitolo_GotFocus">Titolo</TextBox>
+        <TextBox Style="{StaticResource BaseStyle}" Template="{StaticResource TextBoxControlTemplate}" Name="txtDisco" Margin="10" Grid.Column="1" Grid.Row="2" MinHeight="25" MinWidth="250" GotFocus="TxtDisco_GotFocus">Disco</TextBox>
+        <TextBox Style="{StaticResource BaseStyle}" Template="{StaticResource TextBoxControlTemplate}" Name="txtBand" Margin="10" Grid.Column="1" Grid.Row="3" MinHeight="25" MinWidth="250" GotFocus="TxtBand_GotFocus">Band</TextBox>
+        <TextBox Style="{StaticResource BaseStyle}" Template="{StaticResource TextBoxControlTemplate}" Name="txtAnno" Margin="10" Grid.Column="1" Grid.Row="4" MinHeight="25" MinWidth="250" GotFocus="TxtAnno_GotFocus">Anno</TextBox>
+        <TextBox Style="{StaticResource BaseStyle}" Template="{StaticResource TextBoxControlTemplate}" Name="txtDurata" Margin="10" Grid.Column="1" Grid.Row="5" MinHeight="25" MinWidth="250" GotFocus="TxtDurata_GotFocus">Durata</TextBox>
 
         <WrapPanel Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,18,-48" RenderTransformOrigin="0.519,2" Height="24" VerticalAlignment="Bottom">
-            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" >
+                
+            </Button>
             <Button IsCancel="True" MinWidth="60" Height="20" Width="56" Content="_Cancel" Click="Close_Click"/>
         </WrapPanel>
     </Grid>
