@@ -1,6 +1,8 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace Music.WPF
 {
@@ -11,7 +13,8 @@ namespace Music.WPF
     {
         private MainWindowModel model;
         private ClientHelper clientHelper;
-
+        private Storyboard sb = new Storyboard();
+        private DoubleAnimation da = new DoubleAnimation();
 
         public MainWindow()
         {
@@ -44,14 +47,18 @@ namespace Music.WPF
             model.Brani = await clientHelper.LoadBrani();
             braniPanel.Visibility = Visibility.Visible;
 
+            model.RenderGrid(model.gridBrani, sb, da);
+
         }
 
 
         private async void LoadDischi_Click(object sender, RoutedEventArgs e)
         {
-
+            
             model.Dischi = await clientHelper.LoadDischi();
             discoPanel.Visibility = Visibility.Visible;
+
+            model.RenderGrid(dischiGrid, sb, da);
 
         }
 
@@ -70,7 +77,7 @@ namespace Music.WPF
             }
         }
 
-
+        
         
     }
 }

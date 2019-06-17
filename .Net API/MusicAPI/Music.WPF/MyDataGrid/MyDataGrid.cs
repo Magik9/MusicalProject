@@ -20,6 +20,7 @@ namespace Music.WPF.MyDataGrid
             CanUserAddRows = false;
             FontSize = 17;
             Margin = new Thickness(0, 10, 10, 0);
+            Background = Brushes.White;
 
             CreateTextColumn("Id", "Id");
             CreateTextColumn("Titolo", "Titolo");

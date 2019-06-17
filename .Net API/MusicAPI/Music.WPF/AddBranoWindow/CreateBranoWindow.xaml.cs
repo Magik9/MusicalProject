@@ -42,31 +42,95 @@ namespace Music.WPF.AddBranoWindow
 
         private void TxtTitolo_GotFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).Clear();
+
+            if (((TextBox)sender).Text == "Titolo")
+                ((TextBox)sender).Clear();
+
         }
 
+        private void TxtTitolo_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            if (((TextBox)sender).Text == "")
+            {
+                ((TextBox)sender).Text = "Titolo";
+            }
+
+        }
 
         private void TxtDisco_GotFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).Clear();
+
+            if (((TextBox)sender).Text == "Disco")
+                ((TextBox)sender).Clear();
+
+        }
+
+        private void TxtDisco_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            if (((TextBox)sender).Text == "")
+            {
+                ((TextBox)sender).Text = "Disco";
+            }
+
         }
 
 
         private void TxtBand_GotFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).Clear();
+
+            if (((TextBox)sender).Text == "Band")
+                ((TextBox)sender).Clear();
+
+        }
+
+        private void TxtBand_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            if (((TextBox)sender).Text == "")
+            {
+                ((TextBox)sender).Text = "Band";
+            }
+
         }
 
 
         private void TxtAnno_GotFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).Clear();
+
+            if (((TextBox)sender).Text == "Anno")
+                ((TextBox)sender).Clear();
+
+        }
+
+        private void TxtAnno_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            if (((TextBox)sender).Text == "")
+            {
+                ((TextBox)sender).Text = "Anno";
+            }
+
         }
 
 
         private void TxtDurata_GotFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).Clear();
+
+            if (((TextBox)sender).Text == "Durata")
+                ((TextBox)sender).Clear();
+
+        }
+
+        private void TxtDurata_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            if (((TextBox)sender).Text == "")
+            {
+                ((TextBox)sender).Text = "Durata";
+            }
+
         }
 
 
@@ -96,8 +160,11 @@ namespace Music.WPF.AddBranoWindow
 
         protected override void OnClosing(CancelEventArgs e)
         {
+
             base.OnClosing(e);
             if (!e.Cancel && this.Owner != null) this.Owner.Focus();
+
         }
+
     }
 }

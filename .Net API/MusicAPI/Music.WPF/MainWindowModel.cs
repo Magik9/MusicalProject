@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using APIClient;
 using Music.WPF.AddBranoWindow;
 using Music.WPF.MyDataGrid;
@@ -14,6 +15,9 @@ namespace Music.WPF
 {
     public class MainWindowModel : INotifyPropertyChanged
     {
+        public Storyboard sb = new Storyboard();
+        public DoubleAnimation da = new DoubleAnimation();
+
         private ClientHelper ClientHelper;
         
         public XDataGrid gridBrani;
@@ -159,8 +163,13 @@ namespace Music.WPF
 
         private void delete_eventHandler(object sender, EventArgs e)
         {
-            var row = ((ButtonBase)sender).DataContext as BranoDTO;
-            ClientHelper.DeleteBrano(row.Id.Value);
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                var row = ((ButtonBase)sender).DataContext as BranoDTO;
+                ClientHelper.DeleteBrano(row.Id.Value);
+            }
+            
         }
 
 
@@ -174,6 +183,8 @@ namespace Music.WPF
             {
                 int id = int.Parse((grid.SelectedCells[0].Column.GetCellContent(Row.Item) as TextBlock).Text);
                 Brani = await ClientHelper.LoadBraniDisco(id);
+
+                RenderGrid(gridBrani, sb, da);
             }
         }
 
@@ -205,8 +216,23 @@ namespace Music.WPF
         private void DiscoDelete_Click(object item)
         {
 
-            ClientHelper.DeleteDisco(item);
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                ClientHelper.DeleteDisco(item);
+            }
 
+        }
+
+        public void RenderGrid(DataGrid grid, Storyboard sb, DoubleAnimation da)
+        {
+            da.From = grid.ActualHeight;
+            da.To = (grid.Items.Count + 1) * 30.30;
+            da.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            Storyboard.SetTargetProperty(da, new PropertyPath(FrameworkElement.HeightProperty));
+            sb.Children.Add(da);
+            grid.BeginStoryboard(sb);
+            grid.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
         }
 
 

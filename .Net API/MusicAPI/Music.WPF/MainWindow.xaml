@@ -17,7 +17,7 @@
                     <MenuItem.Icon>
                         <Image Source="pack://application:,,,/Img/Brani.jpg" />
                     </MenuItem.Icon>
-                    <MenuItem Header="Brani" Click="Load_Click">
+                    <MenuItem Header="Tutti" Click="Load_Click">
                         <MenuItem.Icon>
                             <Image Source="pack://application:,,,/Img/Brani.jpg" />
                         </MenuItem.Icon>
@@ -35,8 +35,8 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <StackPanel Name="discoPanel" Height="Auto" Width="Auto" Margin="0 10 10 0" Visibility="Hidden">
-            <DataGrid ItemsSource="{Binding Dischi}"  FontSize="17" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left">
+        <StackPanel  Name="discoPanel" Height="Auto" Width="Auto" Margin="0 10 10 0" Visibility="Hidden">
+            <DataGrid Name="dischiGrid" ItemsSource="{Binding Dischi}"  FontSize="17" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Titolo" Binding="{Binding Titolo}"/>
@@ -87,6 +87,7 @@
                         </cmd:EventToCommand>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
+                
             </DataGrid>
         </StackPanel>
         <StackPanel Name="braniPanel" Height="Auto" Width="Auto" Visibility="Hidden">
