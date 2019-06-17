@@ -55,9 +55,7 @@
         <TextBox Style="{StaticResource BaseStyle}" Template="{StaticResource TextBoxControlTemplate}" Name="txtDurata" Margin="10" Grid.Column="1" Grid.Row="5" MinHeight="25" MinWidth="250" GotFocus="TxtDurata_GotFocus">Durata</TextBox>
 
         <WrapPanel Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,18,-48" RenderTransformOrigin="0.519,2" Height="24" VerticalAlignment="Bottom">
-            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" >
-                
-            </Button>
+            <Button Content="_Add" IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" />
             <Button IsCancel="True" MinWidth="60" Height="20" Width="56" Content="_Cancel" Click="Close_Click"/>
         </WrapPanel>
     </Grid>

@@ -159,13 +159,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="update-button.jpg" />
+    <Resource Include="Dischi.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="save-button.png" />
+    <Resource Include="Img\Artisti.png" />
+    <Resource Include="Img\Brani.jpg" />
+    <Resource Include="Img\delete-button.png" />
+    <Resource Include="Img\Dischi.png" />
+    <Resource Include="Img\save-button.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="delete-button.png" />
+    <Resource Include="Img\Add.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

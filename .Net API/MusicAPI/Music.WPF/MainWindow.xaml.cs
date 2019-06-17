@@ -29,21 +29,21 @@ namespace Music.WPF
         }
 
 
- 
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+
+            model.ShowCreateBranoView(this);
+
+        }
+
+
+
         private async void Load_Click(object sender, RoutedEventArgs e)
         {
 
             model.Brani = await clientHelper.LoadBrani();
             braniPanel.Visibility = Visibility.Visible;
 
-        }
-
-
-        private void NewBrano_Click(object sender, RoutedEventArgs e)
-        {
-
-            model.ShowCreateBranoView(this);
-            
         }
 
 
@@ -70,5 +70,7 @@ namespace Music.WPF
             }
         }
 
+
+        
     }
 }

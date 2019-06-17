@@ -28,9 +28,9 @@ namespace Music.WPF.MyDataGrid
             CreateTextColumn("Anno", "Anno");
             CreateTextColumn("Durata", "Durata");
 
-            CreateButtonColumn("Update", "pack://application:,,,/save-button.png")
+            CreateButtonColumn("Update", "pack://application:,,,/Img/save-button.png")
                 .AddHandler(ButtonBase.ClickEvent,  new RoutedEventHandler(MakeUpdateHappen));
-            CreateButtonColumn("Delete", "pack://application:,,,/delete-button.png")
+            CreateButtonColumn("Delete", "pack://application:,,,/Img/delete-button.png")
                 .AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(MakeDeleteHappen));
 
             CellEditEnding += EventHandler_CellEndEdit;
