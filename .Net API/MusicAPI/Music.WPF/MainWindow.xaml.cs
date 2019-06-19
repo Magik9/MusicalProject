@@ -1,8 +1,12 @@
-﻿using System;
+﻿using APIClient;
+using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace Music.WPF
 {
@@ -15,6 +19,7 @@ namespace Music.WPF
         private ClientHelper clientHelper;
         private Storyboard sb = new Storyboard();
         private DoubleAnimation da = new DoubleAnimation();
+        private DispatcherTimer timer;
 
         public MainWindow()
         {
@@ -77,7 +82,27 @@ namespace Music.WPF
             }
         }
 
+
+        private void Show_PopupToolTip(object sender, MouseEventArgs e)
+        {
+            DataGridRow row = e.Source as DataGridRow;
+
+            var x = (ToolTip)row.ToolTip;
+
+            x.Placement = PlacementMode.MousePoint;
+        }
+
+
+        private void Hide_PopupToolTip(object sender, MouseEventArgs e)
+        {
+            DataGridRow row = e.Source as DataGridRow;
+
+            var x = row.ToolTip as ToolTip;
+
+            x.IsOpen = false;
+        }
+
         
-        
+
     }
 }
