@@ -98,6 +98,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ArgsConverter.cs" />
+    <Compile Include="Behaviors\Behavior.cs" />
+    <Compile Include="Behaviors\DebugAction.cs" />
+    <Compile Include="Behaviors\MouseLeaveAction.cs" />
+    <Compile Include="EventBinding.cs" />
     <Compile Include="MultiValueConverter.cs" />
     <Compile Include="RelayCommand.cs" />
     <Page Include="AddBranoWindow\CreateBranoWindow.xaml">

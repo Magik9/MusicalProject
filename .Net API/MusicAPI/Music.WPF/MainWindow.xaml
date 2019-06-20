@@ -7,9 +7,22 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        xmlns:behave="clr-namespace:Music.WPF.Behaviors"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Name="mainWindow">
+
+    <Window.Resources>
+        <behave:Triggers x:Key="debugTriggers" x:Shared="False">
+            <i:EventTrigger EventName="MouseEnter">
+                <behave:DebugAction Message="Mentor: {0}" MessageParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+            </i:EventTrigger>
+            <i:EventTrigger EventName="MouseLeave">
+                <behave:MouseLeaveAction MouseLeave="Mentor: {0}" MouseLeaveParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+            </i:EventTrigger>
+        </behave:Triggers>
+    </Window.Resources>
+    
     <DockPanel Name="mainPanel">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File" FontSize="17">
@@ -35,7 +48,6 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        
 
         <StackPanel  Name="discoPanel" Height="Auto" Width="Auto" Margin="0 10 10 0" Visibility="Hidden">
             <DataGrid Name="dischiGrid" ItemsSource="{Binding Dischi}"  FontSize="17" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" RowHeaderWidth="0">
@@ -71,13 +83,12 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <EventSetter Event="MouseEnter" Handler="Show_PopupToolTip" />
-                        <EventSetter Event="MouseLeave" Handler="Hide_PopupToolTip" />
+                <DataGrid.RowStyle >
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="behave:SupplementaryInteraction.Triggers" Value="{StaticResource debugTriggers}"/>
                         <Setter Property="ToolTip">
                             <Setter.Value>
-                                <ToolTip  Height="Auto" Width="Auto" Name="MyToolTip" StaysOpen="True" >
+                                <ToolTip Height="Auto" Width="Auto" Name="MyToolTip" StaysOpen="True">
                                     <Border BorderThickness="1" Background="Azure" >
                                         <StackPanel Margin="30"  Orientation="Horizontal">
                                             <TextBlock  Text="{Binding Titolo}" />
@@ -106,11 +117,9 @@
                         </cmd:EventToCommand>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                
             </DataGrid>
         </StackPanel>
         <StackPanel Name="braniPanel" Height="Auto" Width="Auto" Visibility="Hidden">
-            
         </StackPanel>
     </DockPanel>
 
