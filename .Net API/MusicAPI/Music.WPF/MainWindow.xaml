@@ -15,14 +15,32 @@
     <Window.Resources>
         <behave:Triggers x:Key="debugTriggers" x:Shared="False">
             <i:EventTrigger EventName="MouseEnter">
-                <behave:DebugAction Message="Mentor: {0}" MessageParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                <behave:MouseEnterAction MouseEnterParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
             </i:EventTrigger>
             <i:EventTrigger EventName="MouseLeave">
-                <behave:MouseLeaveAction MouseLeave="Mentor: {0}" MouseLeaveParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                <behave:MouseLeaveAction MouseLeaveParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
             </i:EventTrigger>
         </behave:Triggers>
+
+        <ToolTip x:Key="xtooltip" Height="Auto" Width="Auto" Name="MyToolTip" StaysOpen="True">
+            <Border BorderThickness="1" Background="Azure" >
+                <StackPanel Margin="30"  Orientation="Horizontal">
+                    <TextBlock  Text="{Binding Titolo}" />
+                </StackPanel>
+            </Border>
+        </ToolTip>
     </Window.Resources>
-    
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="00:00:3" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <DockPanel Name="mainPanel">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File" FontSize="17">
@@ -86,17 +104,8 @@
                 <DataGrid.RowStyle >
                     <Style TargetType="{x:Type DataGridRow}">
                         <Setter Property="behave:SupplementaryInteraction.Triggers" Value="{StaticResource debugTriggers}"/>
-                        <Setter Property="ToolTip">
-                            <Setter.Value>
-                                <ToolTip Height="Auto" Width="Auto" Name="MyToolTip" StaysOpen="True">
-                                    <Border BorderThickness="1" Background="Azure" >
-                                        <StackPanel Margin="30"  Orientation="Horizontal">
-                                            <TextBlock  Text="{Binding Titolo}" />
-                                        </StackPanel>
-                                    </Border>
-                                </ToolTip>
-                            </Setter.Value>
-                        </Setter>
+                        <Setter Property="ToolTip" Value="{StaticResource ResourceKey=xtooltip}" />
+                        <Setter Property="ToolTipService.InitialShowDelay" Value="800" />
                     </Style>
                 </DataGrid.RowStyle>
                 <i:Interaction.Triggers>

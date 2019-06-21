@@ -7,7 +7,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using APIClient;
+using Client;
 using Music.WPF.AddBranoWindow;
 using Music.WPF.MyDataGrid;
 
@@ -15,9 +15,6 @@ namespace Music.WPF
 {
     public class MainWindowModel : INotifyPropertyChanged
     {
-        public Storyboard sb = new Storyboard();
-        public DoubleAnimation da = new DoubleAnimation();
-
         private ClientHelper ClientHelper;
         
         public XDataGrid gridBrani;
@@ -55,7 +52,6 @@ namespace Music.WPF
                 OnPropertyChanged("Dischi");
             }
         }
-
 
 
         private ICommand _selDiscoChange;
@@ -122,6 +118,34 @@ namespace Music.WPF
         }
 
 
+        private ICommand _mouseEnter;
+        public ICommand MouseEnter
+        {
+            get
+            {
+                if (_mouseEnter == null)
+                    _mouseEnter = new RelayCommand(o => mouseenterevent(o), o => true);
+                return _mouseEnter;
+            }
+            set
+            {
+                _updateDisco = value;
+            }
+        }
+
+
+        private void mouseenterevent(object parameter)
+        {
+            MouseEventArgs x = (MouseEventArgs)parameter;
+
+            DataGridRow row = x.Source as DataGridRow;
+
+            var y = (ToolTip)row.ToolTip;
+
+            y.Placement = PlacementMode.MousePoint;
+        }
+
+
         public MainWindowModel()
         {
             this.ClientHelper = new ClientHelper();
@@ -184,7 +208,7 @@ namespace Music.WPF
                 int id = int.Parse((grid.SelectedCells[0].Column.GetCellContent(Row.Item) as TextBlock).Text);
                 Brani = await ClientHelper.LoadBraniDisco(id);
 
-                RenderGrid(gridBrani, sb, da);
+                RenderGrid(gridBrani);
             }
         }
 
@@ -224,10 +248,13 @@ namespace Music.WPF
 
         }
 
-        public void RenderGrid(DataGrid grid, Storyboard sb, DoubleAnimation da)
+        public void RenderGrid(DataGrid grid)
         {
+            Storyboard sb = new Storyboard();
+            DoubleAnimation da = new DoubleAnimation();
+
             da.From = grid.ActualHeight;
-            da.To = (grid.Items.Count + 1) * 30.30;
+            da.To = (grid.Items.Count + 1) * 30.10;
             da.Duration = new Duration(TimeSpan.FromSeconds(0.2));
             Storyboard.SetTargetProperty(da, new PropertyPath(FrameworkElement.HeightProperty));
             sb.Children.Add(da);

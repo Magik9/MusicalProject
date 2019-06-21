@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Interactivity;
 
@@ -13,6 +9,10 @@ namespace Music.WPF.Behaviors
     }
 
     public class Triggers : List<System.Windows.Interactivity.TriggerBase>
+    {
+    }
+
+    public class TriggerEvent : System.Windows.Interactivity.EventTrigger
     {
     }
 

@@ -99,16 +99,12 @@
     </ApplicationDefinition>
     <Compile Include="ArgsConverter.cs" />
     <Compile Include="Behaviors\Behavior.cs" />
-    <Compile Include="Behaviors\DebugAction.cs" />
+    <Compile Include="Behaviors\MouseEnterAation.cs" />
     <Compile Include="Behaviors\MouseLeaveAction.cs" />
     <Compile Include="EventBinding.cs" />
     <Compile Include="MultiValueConverter.cs" />
     <Compile Include="RelayCommand.cs" />
     <Page Include="AddBranoWindow\CreateBranoWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DischiWindow\DiscoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,15 +115,12 @@
     <Compile Include="AddBranoWindow\CreateBranoWindow.xaml.cs">
       <DependentUpon>CreateBranoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="APIClient.cs" />
+    <Compile Include="Client\APIClient.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ClientHelper.cs" />
-    <Compile Include="DischiWindow\DiscoWindow.xaml.cs">
-      <DependentUpon>DiscoWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Client\ClientHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -163,9 +156,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Dischi.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Img\Artisti.png" />
     <Resource Include="Img\Brani.jpg" />
     <Resource Include="Img\delete-button.png" />
@@ -175,5 +165,6 @@
   <ItemGroup>
     <Resource Include="Img\Add.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
