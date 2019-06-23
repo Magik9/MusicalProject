@@ -2,9 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Music.WPF"
+             xmlns:converters="clr-namespace:Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <local:MultivalueConverter x:Key="MultiConverter" />
-        <local:ArgsConverter x:Key="ArgsConverter" />
+        <converters:MultivalueConverter x:Key="MultiConverter" />
+        <converters:ArgsConverter x:Key="ArgsConverter" />
     </Application.Resources>
 </Application>

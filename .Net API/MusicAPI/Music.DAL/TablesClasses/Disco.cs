@@ -13,6 +13,7 @@ namespace Music.DAL.TablesClasses
         public string Titolo { get; set; }
         
         public int Anno { get; set; }
+        public string Image { get; set; }
 
         [Required]
         [ForeignKey("Band")]

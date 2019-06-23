@@ -97,14 +97,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ArgsConverter.cs" />
+    <Compile Include="AddImageWindow\AddImageWindow.xaml.cs">
+      <DependentUpon>AddImageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\ArgsConverter.cs" />
     <Compile Include="Behaviors\Behavior.cs" />
     <Compile Include="Behaviors\MouseEnterAation.cs" />
     <Compile Include="Behaviors\MouseLeaveAction.cs" />
     <Compile Include="EventBinding.cs" />
-    <Compile Include="MultiValueConverter.cs" />
+    <Compile Include="Converters\MultiValueConverter.cs" />
     <Compile Include="RelayCommand.cs" />
     <Page Include="AddBranoWindow\CreateBranoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddImageWindow\AddImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\Add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Revolver.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

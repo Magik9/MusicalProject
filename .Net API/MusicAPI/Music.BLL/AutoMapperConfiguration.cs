@@ -19,7 +19,9 @@ namespace Music.BLL
                     .ForMember(x => x.Disco, opt => opt.Ignore());
 
                 cfg.CreateMap<Disco, DiscoDTO>()
-                    .ForMember(d => d.band, opt => opt.MapFrom(s => s.Band.Nome));
+                    .ForMember(d => d.band, opt => opt.MapFrom(s => s.Band.Nome))
+                    .ForMember(d => d.image, opt => opt.MapFrom(s => s.Image));
+
 
                 cfg.CreateMap<BranoBO, Disco>()
                     .ForMember(d => d.Titolo, opt => opt.MapFrom(s => s.disco))
@@ -28,6 +30,7 @@ namespace Music.BLL
                 cfg.CreateMap<DiscoBO, Disco>()
                     .ForMember(d => d.Titolo, opt => opt.MapFrom(s => s.titolo))
                     .ForMember(d => d.Anno, opt => opt.MapFrom(s => s.anno))
+                    .ForMember(d => d.Image, opt => opt.MapFrom(s => s.img))
                     .ForPath(d => d.Band.Nome, opt => opt.MapFrom(s => s.band));
 
             });

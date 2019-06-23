@@ -1838,7 +1838,10 @@ namespace Client
     
         [Newtonsoft.Json.JsonProperty("genere", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Genere { get; set; }
-    
+
+        [Newtonsoft.Json.JsonProperty("image", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Img { get; set; }
+
         [Newtonsoft.Json.JsonProperty("Band_Id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Band_Id { get; set; }
     
@@ -1871,7 +1874,10 @@ namespace Client
     
         [Newtonsoft.Json.JsonProperty("genere", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Genere { get; set; }
-    
+
+        [Newtonsoft.Json.JsonProperty("img", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Img { get; set; }
+
         public string ToJson() 
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);

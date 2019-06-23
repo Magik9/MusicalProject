@@ -101,7 +101,8 @@ namespace Music.BLL.BL
                 disco.Band_Id = _bandRepo.GetBands().Last().Id;
             }
 
-            disco.Titolo = discoBO.titolo;   
+            disco.Titolo = discoBO.titolo;
+            disco.Image = discoBO.img;
             _discoRepo.UpdateDisco(disco);
         }
 
@@ -109,6 +110,7 @@ namespace Music.BLL.BL
         {
             _discoRepo.DeleteDisco(id);
         }
+
 
     }
 }

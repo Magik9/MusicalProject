@@ -13,6 +13,7 @@ namespace Music.BLL.DTO
         public int anno { get; set; }
         public string band { get; set; }
         public string genere { get; set; }
+        public string image { get; set; }
         public int Band_Id { get; set; }
     }
 }

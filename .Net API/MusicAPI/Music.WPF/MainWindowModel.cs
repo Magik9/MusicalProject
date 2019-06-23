@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using Client;
 using Music.WPF.AddBranoWindow;
 using Music.WPF.MyDataGrid;
+using Music.WPF.AddImageWindow;
 
 namespace Music.WPF
 {
@@ -134,6 +135,21 @@ namespace Music.WPF
         }
 
 
+        private ICommand _addImageDisco;
+        public ICommand AddImageDisco
+        {
+            get
+            {
+                if (_addImageDisco == null)
+                    _addImageDisco = new RelayCommand(o => AddImageDisco_Event(o), o => true);
+                return _addImageDisco;
+            }
+            set
+            {
+                _addImageDisco = value;
+            }
+        }
+
         private void mouseenterevent(object parameter)
         {
             MouseEventArgs x = (MouseEventArgs)parameter;
@@ -246,6 +262,14 @@ namespace Music.WPF
                 ClientHelper.DeleteDisco(item);
             }
 
+        }
+
+
+        private void AddImageDisco_Event(object discoItem)
+        {
+            AddImageWindow.AddImageWindow imgWindow = new AddImageWindow.AddImageWindow(discoItem);
+            imgWindow.Show();
+            
         }
 
         public void RenderGrid(DataGrid grid)

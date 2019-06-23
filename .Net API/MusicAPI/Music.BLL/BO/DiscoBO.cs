@@ -13,5 +13,6 @@ namespace Music.BLL.BO
         public int anno { get; set; }
         public string band { get; set; }
         public string genere { get; set; }
+        public string img { get; set; }
     }
 }

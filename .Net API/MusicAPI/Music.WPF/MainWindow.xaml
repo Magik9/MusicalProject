@@ -24,8 +24,8 @@
 
         <ToolTip x:Key="xtooltip" Height="Auto" Width="Auto" Name="MyToolTip" StaysOpen="True">
             <Border BorderThickness="1" Background="Azure" >
-                <StackPanel Margin="30"  Orientation="Horizontal">
-                    <TextBlock  Text="{Binding Titolo}" />
+                <StackPanel Margin="10"  Orientation="Horizontal">
+                    <Image Source="{Binding Img}" />
                 </StackPanel>
             </Border>
         </ToolTip>
@@ -126,6 +126,12 @@
                         </cmd:EventToCommand>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Add Image" Command="{Binding AddImageDisco}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
             </DataGrid>
         </StackPanel>
         <StackPanel Name="braniPanel" Height="Auto" Width="Auto" Visibility="Hidden">

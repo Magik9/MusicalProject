@@ -99,7 +99,9 @@ namespace Music.WPF
                 Id = DTO.Id,
                 Titolo = DTO.Titolo,
                 Band = DTO.Band,
-                Anno = DTO.Anno
+                Anno = DTO.Anno,
+                Genere = DTO.Genere,
+               Img = DTO.Img
             };
         }
 
