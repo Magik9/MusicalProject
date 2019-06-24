@@ -265,9 +265,11 @@ namespace Music.WPF
         }
 
 
-        private void AddImageDisco_Event(object discoItem)
+        private void AddImageDisco_Event(object parameter)
         {
-            AddImageWindow.AddImageWindow imgWindow = new AddImageWindow.AddImageWindow(discoItem);
+            object[] parameters = (object[])parameter;
+            MainWindowModel model = (MainWindowModel)parameters[0];
+            AddImageWindow.AddImageWindow imgWindow = new AddImageWindow.AddImageWindow(model, parameters[1]);
             imgWindow.Show();
             
         }

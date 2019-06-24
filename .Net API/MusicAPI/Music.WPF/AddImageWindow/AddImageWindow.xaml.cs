@@ -22,7 +22,9 @@ namespace Music.WPF.AddImageWindow
     /// </summary>
     public partial class AddImageWindow : Window, INotifyPropertyChanged
     {
-        private DiscoDTO DiscoItem;
+        private MainWindowModel _model;
+
+        private DiscoDTO _discoItem;
 
         private string _imageDropped;
 
@@ -44,11 +46,12 @@ namespace Music.WPF.AddImageWindow
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public AddImageWindow(object discoItem)
+        public AddImageWindow(MainWindowModel model, object discoItem)
         {
             InitializeComponent();
             DataContext = this;
-            DiscoItem = discoItem as DiscoDTO;
+            _model = model;
+            _discoItem = discoItem as DiscoDTO;
         }
 
 
@@ -62,7 +65,9 @@ namespace Music.WPF.AddImageWindow
 
         private void AddImage_Event(object sender, RoutedEventArgs e)
         {
-            DiscoItem.Img = ImageDropped;
+            _discoItem.Img = ImageDropped;
+            DiscoDTO disco = _model.Dischi.FirstOrDefault(x => x.Id == _discoItem.Id);
+            disco.Img = _discoItem.Img;
         }
     }
 }
