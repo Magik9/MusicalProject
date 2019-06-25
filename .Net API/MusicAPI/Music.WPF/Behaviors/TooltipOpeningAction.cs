@@ -9,7 +9,7 @@ using Client;
 
 namespace Music.WPF.Behaviors
 {
-    public class MouseEnterAction : TriggerAction<DependencyObject>
+    public class TooltipOpeningAction : TriggerAction<DependencyObject>
     {
         public string MouseEnter
         {
@@ -18,7 +18,7 @@ namespace Music.WPF.Behaviors
         }
 
         public static readonly DependencyProperty MouseEnterProperty =
-            DependencyProperty.Register("MouseEnter", typeof(string), typeof(MouseEnterAction), new UIPropertyMetadata(""));
+            DependencyProperty.Register("MouseEnter", typeof(string), typeof(TooltipOpeningAction), new UIPropertyMetadata(""));
 
         public object MouseEnterParameter
         {
@@ -27,7 +27,7 @@ namespace Music.WPF.Behaviors
         }
 
         public static readonly DependencyProperty MouseEnterParameterProperty =
-            DependencyProperty.Register("MouseEnterParameter", typeof(object), typeof(MouseEnterAction), new UIPropertyMetadata(null));
+            DependencyProperty.Register("MouseEnterParameter", typeof(object), typeof(TooltipOpeningAction), new UIPropertyMetadata(null));
 
 
         protected override void Invoke(object parameter)

@@ -15,7 +15,7 @@
     <Window.Resources>
         <behave:Triggers x:Key="debugTriggers" x:Shared="False">
             <i:EventTrigger EventName="ToolTipOpening">
-                <behave:MouseEnterAction MouseEnterParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
+                <behave:TooltipOpeningAction MouseEnterParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
             </i:EventTrigger>
             <i:EventTrigger EventName="MouseLeave">
                 <behave:MouseLeaveAction MouseLeaveParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
@@ -99,8 +99,7 @@
                         <Setter Property="behave:SupplementaryInteraction.Triggers" Value="{StaticResource debugTriggers}" />
                         <Setter Property="ToolTip">
                             <Setter.Value>
-                                <ToolTip>
-                                </ToolTip>
+                                <ToolTip />
                             </Setter.Value>
                         </Setter>
                         <Setter Property="ToolTipService.InitialShowDelay" Value="800" />

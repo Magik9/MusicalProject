@@ -102,7 +102,7 @@
     </Compile>
     <Compile Include="Converters\ArgsConverter.cs" />
     <Compile Include="Behaviors\Behavior.cs" />
-    <Compile Include="Behaviors\MouseEnterAation.cs" />
+    <Compile Include="Behaviors\TooltipOpeningAction.cs" />
     <Compile Include="Behaviors\MouseLeaveAction.cs" />
     <Compile Include="EventBinding.cs" />
     <Compile Include="Converters\MultiValueConverter.cs" />

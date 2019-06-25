@@ -136,6 +136,27 @@ namespace Music.WPF
         }
 
 
+        private ICommand _openCommand;
+        public ICommand OpenCommand
+        {
+            get
+            {
+                if (_openCommand == null)
+                    _openCommand = new RelayCommand(o => OpenCommand_Event(o), o => true);
+                return _openCommand;
+            }
+            set
+            {
+                _openCommand = value;
+            }
+        }
+
+        private void OpenCommand_Event(object param)
+        {
+
+        }
+
+
         public MainWindowModel()
         {
             this.ClientHelper = new ClientHelper();
