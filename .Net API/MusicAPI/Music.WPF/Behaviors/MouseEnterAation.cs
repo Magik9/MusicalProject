@@ -32,9 +32,7 @@ namespace Music.WPF.Behaviors
 
         protected override void Invoke(object parameter)
         {
-            MouseEventArgs x = (MouseEventArgs)parameter;
-
-            DataGridRow row = x.Source as DataGridRow;
+            DataGridRow row = MouseEnterParameter as DataGridRow;
 
             var y = row.ToolTip as ToolTip;
 

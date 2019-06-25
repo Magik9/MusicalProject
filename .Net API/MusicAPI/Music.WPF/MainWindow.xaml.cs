@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace Music.WPF
@@ -78,7 +79,6 @@ namespace Music.WPF
                 ifLeft = SystemParameters.MenuDropAlignment;
             }
         }
-
 
     }
 }
