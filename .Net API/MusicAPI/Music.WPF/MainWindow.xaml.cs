@@ -1,4 +1,5 @@
 ﻿using Client;
+using Music.WPF.AddBranoWindow;
 using System;
 using System.Reflection;
 using System.Windows;
@@ -38,10 +39,10 @@ namespace Music.WPF
         private void Add_Click(object sender, RoutedEventArgs e)
         {
 
-            model.ShowCreateBranoView(this);
+            var inputBranoView = new CreateBranoWindow(this);
+            inputBranoView.Show();
 
         }
-
 
 
         private async void Load_Click(object sender, RoutedEventArgs e)
@@ -64,7 +65,6 @@ namespace Music.WPF
             model.RenderGrid(dischiGrid);
 
         }
-
 
 
         private void MenuDirection()

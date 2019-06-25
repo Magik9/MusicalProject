@@ -8,6 +8,7 @@
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:behave="clr-namespace:Music.WPF.Behaviors"
+        xmlns:commands="clr-namespace:Music.WPF.Commands"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Name="mainWindow">
@@ -21,6 +22,8 @@
                 <behave:MouseLeaveAction MouseLeaveParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
             </i:EventTrigger>
         </behave:Triggers>
+
+        <commands:DischiGridCommands x:Key="DischiGridCommands" />
     </Window.Resources>
 
     <Window.Triggers>
@@ -70,8 +73,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Background="White" BorderBrush="White" Command="{Binding DataContext.UpdateDisco,
-                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                <Button Background="White" BorderBrush="White" Command="{Binding Source={StaticResource DischiGridCommands}, Path=UpdateDisco}"
                                         CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}">
                                     <DockPanel Background="White">
                                             <Image Source="pack://application:,,,/Img/save-button.png" Height="23"/>
@@ -83,9 +85,8 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Background="White" BorderBrush="White" Command="{Binding DataContext.DeleteDisco,
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                        CommandParameter="{Binding}">
+                                <Button Background="White" BorderBrush="White" Command="{Binding Source={StaticResource DischiGridCommands}, Path=DeleteDisco}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}">
                                     <DockPanel Background="White">
                                         <Image Source="pack://application:,,,/Img/delete-button.png" Height="23"/>
                                     </DockPanel>
@@ -107,11 +108,12 @@
                 </DataGrid.RowStyle>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding SelDiscoChange}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+                        <cmd:EventToCommand Command="{Binding Source={StaticResource DischiGridCommands}, Path=SelDiscoChange}"
+                                            PassEventArgsToCommand="True"
+                        CommandParameter="{Binding Path=DataContext}" />
                     </i:EventTrigger>
                     <i:EventTrigger EventName="CellEditEnding">
-                        <cmd:EventToCommand Command="{Binding Mode=OneWay, Path=CellEditEnd}"
+                        <cmd:EventToCommand Command="{Binding Source={StaticResource DischiGridCommands}, Path=CellEditEnd}"
                                         EventArgsConverter="{StaticResource ResourceKey=ArgsConverter}"
                                         EventArgsConverterParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                         PassEventArgsToCommand="True">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -77,19 +78,24 @@ namespace Music.WPF.MyDataGrid
 
 
 
-        public event RoutedEventHandler UpdateHappened;
-        public event RoutedEventHandler DeleteHappened;
-
         private void MakeUpdateHappen(object sender, RoutedEventArgs e)
         {
-            UpdateHappened?.Invoke(sender, e);
+            var DTO = ((ButtonBase)sender).DataContext as BranoDTO;
+            ClientHelper helper = new ClientHelper();
+            helper.UpdateBrano(DTO);
             DataGridRow Row = (DataGridRow)ItemContainerGenerator.ContainerFromIndex(SelectedIndex);
             Row.Background = Brushes.White;
         }
 
         private void MakeDeleteHappen(object sender, RoutedEventArgs e)
         {
-            DeleteHappened?.Invoke(sender, e);
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                var row = ((ButtonBase)sender).DataContext as BranoDTO;
+                ClientHelper helper = new ClientHelper();
+                helper.DeleteBrano(row.Id.Value);
+            }
         }
 
 

@@ -1,17 +1,13 @@
 ﻿using Client;
-using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Music.WPF.AddBranoWindow
 {
-    /// <summary>
-    /// Logica di interazione per CreateBranoWindow.xaml
-    /// </summary>
     public partial class CreateBranoWindow : Window
     {
-        public BranoBO BO { get; private set; }
+        private BranoBO BO;
         
         public CreateBranoWindow(MainWindow owner)
         {
@@ -20,7 +16,7 @@ namespace Music.WPF.AddBranoWindow
             CenterWindowOnScreen();
         }
 
-        public RoutedEventHandler addBranoEvent;
+
 
         private void btnDialogOk_Click(object sender, RoutedEventArgs e)
         {
@@ -28,9 +24,16 @@ namespace Music.WPF.AddBranoWindow
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 BO = GetInput();
-                addBranoEvent?.Invoke(this, e);
+                ClientHelper helper = new ClientHelper();
+                helper.AddBrano(BO);
             }
             Close();
+        }
+
+
+        private void addBrano_Event(object sender, RoutedEventArgs e)
+        {
+            
         }
 
 

@@ -106,7 +106,8 @@
     <Compile Include="Behaviors\MouseLeaveAction.cs" />
     <Compile Include="EventBinding.cs" />
     <Compile Include="Converters\MultiValueConverter.cs" />
-    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\DischiGridCommands.cs" />
     <Page Include="AddBranoWindow\CreateBranoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
