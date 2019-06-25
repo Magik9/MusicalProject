@@ -3,6 +3,9 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interactivity;
+using System.Windows.Media.Imaging;
+using System;
+using Client;
 
 namespace Music.WPF.Behaviors
 {
@@ -33,9 +36,29 @@ namespace Music.WPF.Behaviors
 
             DataGridRow row = x.Source as DataGridRow;
 
-            var y = (ToolTip)row.ToolTip;
+            var y = row.ToolTip as ToolTip;
 
-            y.Placement = PlacementMode.MousePoint;
+            DiscoDTO disco = (DiscoDTO)row.Item;
+
+            if (disco.Img != null)
+            {
+                BitmapImage src = new BitmapImage();
+
+                src.BeginInit();
+                src.UriSource = new Uri(disco.Img, UriKind.Absolute);
+                src.CacheOption = BitmapCacheOption.OnLoad;
+                src.EndInit();
+
+                Image img = new Image();
+                img.Source = src;
+
+                y.Content = img;
+
+                y.Placement = PlacementMode.MousePoint;
+                y.Visibility = Visibility.Visible;
+            }
+            else
+                y.Visibility = Visibility.Hidden;
         }
     }
 }

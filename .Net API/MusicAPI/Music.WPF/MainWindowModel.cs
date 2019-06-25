@@ -37,7 +37,7 @@ namespace Music.WPF
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged(string propertyName)
+        public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -255,24 +255,20 @@ namespace Music.WPF
 
         private void DiscoDelete_Click(object item)
         {
-
             MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 ClientHelper.DeleteDisco(item);
             }
-
         }
 
 
         private void AddImageDisco_Event(object parameter)
         {
-            object[] parameters = (object[])parameter;
-            MainWindowModel model = (MainWindowModel)parameters[0];
-            AddImageWindow.AddImageWindow imgWindow = new AddImageWindow.AddImageWindow(model, parameters[1]);
+            AddImageWindow.AddImageWindow imgWindow = new AddImageWindow.AddImageWindow(parameter);
             imgWindow.Show();
-            
         }
+
 
         public void RenderGrid(DataGrid grid)
         {

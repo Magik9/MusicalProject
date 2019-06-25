@@ -21,14 +21,6 @@
                 <behave:MouseLeaveAction MouseLeaveParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
             </i:EventTrigger>
         </behave:Triggers>
-
-        <ToolTip x:Key="xtooltip" Height="Auto" Width="Auto" Name="MyToolTip" StaysOpen="True">
-            <Border BorderThickness="1" Background="Azure" >
-                <StackPanel Margin="10"  Orientation="Horizontal">
-                    <Image Source="{Binding Img}" />
-                </StackPanel>
-            </Border>
-        </ToolTip>
     </Window.Resources>
 
     <Window.Triggers>
@@ -104,8 +96,13 @@
                 </DataGrid.Columns>
                 <DataGrid.RowStyle >
                     <Style TargetType="{x:Type DataGridRow}">
-                        <Setter Property="behave:SupplementaryInteraction.Triggers" Value="{StaticResource debugTriggers}"/>
-                        <Setter Property="ToolTip" Value="{StaticResource ResourceKey=xtooltip}" />
+                        <Setter Property="behave:SupplementaryInteraction.Triggers" Value="{StaticResource debugTriggers}" />
+                        <Setter Property="ToolTip">
+                            <Setter.Value>
+                                <ToolTip>
+                                </ToolTip>
+                            </Setter.Value>
+                        </Setter>
                         <Setter Property="ToolTipService.InitialShowDelay" Value="800" />
                     </Style>
                 </DataGrid.RowStyle>
@@ -119,11 +116,6 @@
                                         EventArgsConverter="{StaticResource ResourceKey=ArgsConverter}"
                                         EventArgsConverterParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                         PassEventArgsToCommand="True">
-                            <!--<cmd:EventToCommand.CommandParameter>
-                                <MultiBinding Converter="{StaticResource ResourceKey=MultiConverter}">
-                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=DataGrid}" />
-                                </MultiBinding>
-                            </cmd:EventToCommand.CommandParameter>-->
                         </cmd:EventToCommand>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
@@ -138,6 +130,7 @@
                                             <MultiBinding Converter="{StaticResource MultiConverter}" >
                                                 <MultiBinding.Bindings>
                                                     <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}" Path="PlacementTarget.Tag" />
+                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}" Path="PlacementTarget" />
                                                     <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}" Path="PlacementTarget.SelectedItem" />
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
@@ -146,8 +139,6 @@
                                 </Style>
                             </MenuItem.Style>
                         </MenuItem>
-                        <!--<MenuItem Header="Add Image" Command="{Binding AddImageDisco}"
-                                  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>-->
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>

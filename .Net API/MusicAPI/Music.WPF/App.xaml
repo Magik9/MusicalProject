@@ -7,5 +7,6 @@
     <Application.Resources>
         <converters:MultivalueConverter x:Key="MultiConverter" />
         <converters:ArgsConverter x:Key="ArgsConverter" />
+        <converters:TooltipConverter x:Key="TooltipConverter" />
     </Application.Resources>
 </Application>

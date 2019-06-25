@@ -24,6 +24,8 @@ namespace Music.WPF.AddImageWindow
     {
         private MainWindowModel _model;
 
+        private DataGrid _dischiGrid;
+
         private DiscoDTO _discoItem;
 
         private string _imageDropped;
@@ -46,12 +48,15 @@ namespace Music.WPF.AddImageWindow
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public AddImageWindow(MainWindowModel model, object discoItem)
+        public AddImageWindow(object parameter)
         {
             InitializeComponent();
             DataContext = this;
-            _model = model;
-            _discoItem = discoItem as DiscoDTO;
+
+            object[] parameters = (object[])parameter;
+            _model = (MainWindowModel)parameters[0];
+            _dischiGrid = (DataGrid)parameters[1];
+            _discoItem = parameters[2] as DiscoDTO;
         }
 
 
@@ -59,15 +64,17 @@ namespace Music.WPF.AddImageWindow
         private void DropPanel_Drop(object sender, DragEventArgs e)
         {
             e.Handled = true;
-
             ImageDropped = e.Data.GetData("Text") as string;
         }
+
 
         private void AddImage_Event(object sender, RoutedEventArgs e)
         {
             _discoItem.Img = ImageDropped;
             DiscoDTO disco = _model.Dischi.FirstOrDefault(x => x.Id == _discoItem.Id);
             disco.Img = _discoItem.Img;
+            //_dischiGrid.ItemsSource = _model.Dischi;
+            _model.OnPropertyChanged("Dischi");
         }
     }
 }
