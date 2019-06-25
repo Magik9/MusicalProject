@@ -104,7 +104,6 @@
     <Compile Include="Behaviors\Behavior.cs" />
     <Compile Include="Behaviors\MouseEnterAation.cs" />
     <Compile Include="Behaviors\MouseLeaveAction.cs" />
-    <Compile Include="Converters\TooltipConverter.cs" />
     <Compile Include="EventBinding.cs" />
     <Compile Include="Converters\MultiValueConverter.cs" />
     <Compile Include="RelayCommand.cs" />

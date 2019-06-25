@@ -119,21 +119,6 @@ namespace Music.WPF
         }
 
 
-        private ICommand _mouseEnter;
-        public ICommand MouseEnter
-        {
-            get
-            {
-                if (_mouseEnter == null)
-                    _mouseEnter = new RelayCommand(o => mouseenterevent(o), o => true);
-                return _mouseEnter;
-            }
-            set
-            {
-                _updateDisco = value;
-            }
-        }
-
 
         private ICommand _addImageDisco;
         public ICommand AddImageDisco
@@ -148,17 +133,6 @@ namespace Music.WPF
             {
                 _addImageDisco = value;
             }
-        }
-
-        private void mouseenterevent(object parameter)
-        {
-            MouseEventArgs x = (MouseEventArgs)parameter;
-
-            DataGridRow row = x.Source as DataGridRow;
-
-            var y = (ToolTip)row.ToolTip;
-
-            y.Placement = PlacementMode.MousePoint;
         }
 
 
@@ -263,9 +237,9 @@ namespace Music.WPF
         }
 
 
-        private void AddImageDisco_Event(object parameter)
+        private void AddImageDisco_Event(object selectedItem)
         {
-            AddImageWindow.AddImageWindow imgWindow = new AddImageWindow.AddImageWindow(parameter);
+            AddImageWindow.AddImageWindow imgWindow = new AddImageWindow.AddImageWindow(selectedItem);
             imgWindow.Show();
         }
 

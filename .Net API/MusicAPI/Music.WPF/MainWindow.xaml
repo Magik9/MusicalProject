@@ -127,13 +127,7 @@
                                     <Setter Property="Command" Value="{Binding AddImageDisco}" />
                                     <Setter Property="CommandParameter" >
                                         <Setter.Value>
-                                            <MultiBinding Converter="{StaticResource MultiConverter}" >
-                                                <MultiBinding.Bindings>
-                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}" Path="PlacementTarget.Tag" />
-                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}" Path="PlacementTarget" />
-                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}" Path="PlacementTarget.SelectedItem" />
-                                                </MultiBinding.Bindings>
-                                            </MultiBinding>
+                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}" Path="PlacementTarget.SelectedItem" />
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
