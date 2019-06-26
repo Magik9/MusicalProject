@@ -52,9 +52,9 @@ namespace Music.WPF
         }
 
 
-        public MainWindowModel()
+        public MainWindowModel(ClientHelper clientHelper)
         {
-            this.ClientHelper = new ClientHelper();
+            ClientHelper = clientHelper;
             
             Brani = new List<BranoDTO>();
 

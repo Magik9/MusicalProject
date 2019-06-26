@@ -8,7 +8,6 @@
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:behave="clr-namespace:Music.WPF.Behaviors"
-        xmlns:commands="clr-namespace:Music.WPF.Commands"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Name="mainWindow">
@@ -22,8 +21,6 @@
                 <behave:MouseLeaveAction MouseLeaveParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"/>
             </i:EventTrigger>
         </behave:Triggers>
-
-        <commands:DischiGridCommands x:Key="DischiGridCommands" />
     </Window.Resources>
 
     <Window.Triggers>

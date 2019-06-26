@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Music.WPF"
              xmlns:converters="clr-namespace:Converters"
-             StartupUri="MainWindow.xaml">
+             xmlns:commands="clr-namespace:Music.WPF.Commands">
     <Application.Resources>
         <converters:MultivalueConverter x:Key="MultiConverter" />
         <converters:ArgsConverter x:Key="ArgsConverter" />
+        <commands:DischiGridCommands x:Key="DischiGridCommands" />
     </Application.Resources>
 </Application>

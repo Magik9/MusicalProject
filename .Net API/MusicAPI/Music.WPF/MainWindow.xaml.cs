@@ -17,19 +17,18 @@ namespace Music.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowModel model;
-        private ClientHelper clientHelper;
+        private MainWindowModel _mainModel;
 
-        public MainWindow()
+        public MainWindow(MainWindowModel mainModel)
         {
 
             InitializeComponent();
             WindowState = WindowState.Maximized;
             MenuDirection();
-            DataContext = new MainWindowModel();
-            model = DataContext as MainWindowModel;
+            DataContext = mainModel;
+            _mainModel = mainModel;
 
-            braniPanel.Children.Add(model.gridBrani);
+            braniPanel.Children.Add(_mainModel.gridBrani);
 
         }
 

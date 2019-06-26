@@ -13,6 +13,12 @@ namespace Music.WPF.Commands
 
         private MainWindowModel _mainViewModel;
 
+        private ClientHelper _helper;
+
+        public DischiGridCommands()
+        {
+            _helper = new ClientHelper();
+        }
 
         public ICommand SelDiscoChange => new RelayCommand(async o => await SelectionDiscoChange_EventAsync(o), o => true);
 
@@ -27,8 +33,7 @@ namespace Music.WPF.Commands
             {
                 int id = int.Parse((grid.SelectedCells[0].Column.GetCellContent(Row) as TextBlock).Text);
 
-                ClientHelper helper = new ClientHelper();
-                _mainViewModel.Brani = await helper.LoadBraniDisco(id);
+                _mainViewModel.Brani = await _helper.LoadBraniDisco(id);
 
                 _mainViewModel.RenderGrid(_mainViewModel.gridBrani);
             }
@@ -68,8 +73,7 @@ namespace Music.WPF.Commands
             MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                ClientHelper helper = new ClientHelper();
-                helper.DeleteDisco(((DataGrid)grid).SelectedItem);
+                _helper.DeleteDisco(((DataGrid)grid).SelectedItem);
             }
         }
 
@@ -80,8 +84,7 @@ namespace Music.WPF.Commands
         {
             DataGrid grid = (DataGrid)sender;
             DataGridRow Row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(grid.SelectedIndex);
-            ClientHelper helper = new ClientHelper();
-            helper.UpdateDisco(Row.Item);
+            _helper.UpdateDisco(Row.Item);
             Row.Background = Brushes.White;
         }
 
