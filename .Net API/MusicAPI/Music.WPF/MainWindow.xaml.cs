@@ -31,39 +31,6 @@ namespace Music.WPF
 
             braniPanel.Children.Add(model.gridBrani);
 
-            clientHelper = new ClientHelper();
-
-        }
-
-
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-
-            var inputBranoView = new CreateBranoWindow(this);
-            inputBranoView.Show();
-
-        }
-
-
-        private async void Load_Click(object sender, RoutedEventArgs e)
-        {
-
-            model.Brani = await clientHelper.LoadBrani();
-            braniPanel.Visibility = Visibility.Visible;
-
-            model.RenderGrid(model.gridBrani);
-
-        }
-
-
-        private async void LoadDischi_Click(object sender, RoutedEventArgs e)
-        {
-            
-            model.Dischi = await clientHelper.LoadDischi();
-            discoPanel.Visibility = Visibility.Visible;
-
-            model.RenderGrid(dischiGrid);
-
         }
 
 

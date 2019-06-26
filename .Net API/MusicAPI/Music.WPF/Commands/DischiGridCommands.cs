@@ -13,85 +13,8 @@ namespace Music.WPF.Commands
 
         private MainWindowModel _mainViewModel;
 
-        private ICommand _selDiscoChange;
-        public ICommand SelDiscoChange
-        {
-            get
-            {
-                if (_selDiscoChange == null)
-                    _selDiscoChange = new RelayCommand(async o => await SelectionDiscoChange_EventAsync(o), o => true);
-                return _selDiscoChange;
-            }
-            set
-            {
-                _selDiscoChange = value;
-            }
-        }
 
-
-        private ICommand _addImageDisco;
-        public ICommand AddImageDisco
-        {
-            get
-            {
-                if (_addImageDisco == null)
-                    _addImageDisco = new RelayCommand(o => AddImageDisco_Event(o), o => true);
-                return _addImageDisco;
-            }
-            set
-            {
-                _addImageDisco = value;
-            }
-        }
-
-
-        private ICommand _cellEditEnd;
-        public ICommand CellEditEnd
-        {
-            get
-            {
-                if (_cellEditEnd == null)
-                    _cellEditEnd = new RelayCommand(o => DiscoEditEnd_Event(o), o => true);
-                return _cellEditEnd;
-            }
-            set
-            {
-                _cellEditEnd = value;
-            }
-        }
-
-
-        private ICommand _deleteDisco;
-        public ICommand DeleteDisco
-        {
-            get
-            {
-                if (_deleteDisco == null)
-                    _deleteDisco = new RelayCommand(o => DiscoDelete_Click(o), o => true);
-                return _deleteDisco;
-            }
-            set
-            {
-                _deleteDisco = value;
-            }
-        }
-
-
-        private ICommand _updateDisco;
-        public ICommand UpdateDisco
-        {
-            get
-            {
-                if (_updateDisco == null)
-                    _updateDisco = new RelayCommand(o => DiscoUpdate_Click(o), o => true);
-                return _updateDisco;
-            }
-            set
-            {
-                _updateDisco = value;
-            }
-        }
-
+        public ICommand SelDiscoChange => new RelayCommand(async o => await SelectionDiscoChange_EventAsync(o), o => true);
 
         private async Task SelectionDiscoChange_EventAsync(object sender)
         {
@@ -112,6 +35,8 @@ namespace Music.WPF.Commands
         }
 
 
+        public ICommand AddImageDisco => new RelayCommand(o => AddImageDisco_Event(o), o => true);
+
         private void AddImageDisco_Event(object selectedItem)
         {
             AddImageWindow.AddImageWindow imgWindow = new AddImageWindow.AddImageWindow(selectedItem);
@@ -119,26 +44,7 @@ namespace Music.WPF.Commands
         }
 
 
-        private void DiscoUpdate_Click(object sender)
-        {
-            DataGrid grid = (DataGrid)sender;
-            DataGridRow Row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(grid.SelectedIndex);
-            ClientHelper helper = new ClientHelper();
-            helper.UpdateDisco(Row.Item);
-            Row.Background = Brushes.White;
-        }
-
-
-        private void DiscoDelete_Click(object grid)
-        {
-            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.Yes)
-            {
-                ClientHelper helper = new ClientHelper();
-                helper.DeleteDisco(((DataGrid)grid).SelectedItem);
-            }
-        }
-
+        public ICommand CellEditEnd => new RelayCommand(o => DiscoEditEnd_Event(o), o => true);
 
         private void DiscoEditEnd_Event(object sender)
         {
@@ -153,5 +59,42 @@ namespace Music.WPF.Commands
                 isManualEditCommit = false;
             }
         }
+
+
+        public ICommand DeleteDisco => new RelayCommand(o => DiscoDelete_Click(o), o => true);
+
+        private void DiscoDelete_Click(object grid)
+        {
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                ClientHelper helper = new ClientHelper();
+                helper.DeleteDisco(((DataGrid)grid).SelectedItem);
+            }
+        }
+
+
+        public ICommand UpdateDisco => new RelayCommand(o => DiscoUpdate_Click(o), o => true);
+
+        private void DiscoUpdate_Click(object sender)
+        {
+            DataGrid grid = (DataGrid)sender;
+            DataGridRow Row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(grid.SelectedIndex);
+            ClientHelper helper = new ClientHelper();
+            helper.UpdateDisco(Row.Item);
+            Row.Background = Brushes.White;
+        }
+
+
+        public ICommand AddImageWindowCommand => new RelayCommand(o => AddImageWindow_Click(o), o => true);
+
+        private void AddImageWindow_Click(object sender)
+        {
+
+            AddImageWindow.AddImageWindow addImageWindow = new AddImageWindow.AddImageWindow(sender);
+            addImageWindow.Show();
+
+        }
+
     }
 }

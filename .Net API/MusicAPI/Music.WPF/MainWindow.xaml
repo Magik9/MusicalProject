@@ -43,21 +43,51 @@
                     <MenuItem.Icon>
                         <Image Source="pack://application:,,,/Img/Brani.jpg" />
                     </MenuItem.Icon>
-                    <MenuItem Header="Tutti" Click="Load_Click">
+                    <MenuItem Header="Tutti" >
                         <MenuItem.Icon>
                             <Image Source="pack://application:,,,/Img/Brani.jpg" />
                         </MenuItem.Icon>
+                        <MenuItem.Style>
+                            <Style TargetType="{x:Type MenuItem}">
+                                <Setter Property="Command" Value="{Binding LoadBraniCommand}" />
+                                <Setter Property="CommandParameter" >
+                                    <Setter.Value>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </MenuItem.Style>
                     </MenuItem>
-                    <MenuItem Header="New" Click="Add_Click">
+                    <MenuItem Header="New" >
                         <MenuItem.Icon>
                             <Image Source="pack://application:,,,/Img/Add.ico" />
                         </MenuItem.Icon>
+                        <MenuItem.Style>
+                            <Style TargetType="{x:Type MenuItem}">
+                                <Setter Property="Command" Value="{Binding AddBranoCommand}" />
+                                <Setter Property="CommandParameter" >
+                                    <Setter.Value>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </MenuItem.Style>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Dischi" Click="LoadDischi_Click">
+                <MenuItem Header="Dischi" >
                     <MenuItem.Icon>
                         <Image Source="pack://application:,,,/Img/Dischi.png" />
                     </MenuItem.Icon>
+                    <MenuItem.Style>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="Command" Value="{Binding LoadDischiCommand}" />
+                            <Setter Property="CommandParameter" >
+                                <Setter.Value>
+                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </MenuItem.Style>
                 </MenuItem>
             </MenuItem>
         </Menu>
@@ -128,7 +158,7 @@
                             </MenuItem.Icon>
                             <MenuItem.Style>
                                 <Style TargetType="{x:Type MenuItem}">
-                                    <Setter Property="Command" Value="{Binding AddImageDisco}" />
+                                    <Setter Property="Command" Value="{Binding Source={StaticResource DischiGridCommands}, Path=AddImageDisco}" />
                                     <Setter Property="CommandParameter" >
                                         <Setter.Value>
                                             <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}" Path="PlacementTarget.SelectedItem" />

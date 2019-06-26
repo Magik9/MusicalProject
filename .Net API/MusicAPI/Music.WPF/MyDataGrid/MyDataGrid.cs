@@ -31,9 +31,9 @@ namespace Music.WPF.MyDataGrid
             CreateTextColumn("Durata", "Durata");
 
             CreateButtonColumn("Update", "pack://application:,,,/Img/save-button.png")
-                .AddHandler(ButtonBase.ClickEvent,  new RoutedEventHandler(MakeUpdateHappen));
+                .AddHandler(ButtonBase.ClickEvent,  new RoutedEventHandler(UpdateHandler));
             CreateButtonColumn("Delete", "pack://application:,,,/Img/delete-button.png")
-                .AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(MakeDeleteHappen));
+                .AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(DeleteHandler));
 
             CellEditEnding += EventHandler_CellEndEdit;
         }
@@ -78,7 +78,7 @@ namespace Music.WPF.MyDataGrid
 
 
 
-        private void MakeUpdateHappen(object sender, RoutedEventArgs e)
+        private void UpdateHandler(object sender, RoutedEventArgs e)
         {
             var DTO = ((ButtonBase)sender).DataContext as BranoDTO;
             ClientHelper helper = new ClientHelper();
@@ -87,7 +87,7 @@ namespace Music.WPF.MyDataGrid
             Row.Background = Brushes.White;
         }
 
-        private void MakeDeleteHappen(object sender, RoutedEventArgs e)
+        private void DeleteHandler(object sender, RoutedEventArgs e)
         {
             MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)

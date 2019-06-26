@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Animation;
 using Client;
+using Music.WPF.AddBranoWindow;
+using Music.WPF.Commands;
 using Music.WPF.MyDataGrid;
 
 namespace Music.WPF
@@ -28,13 +31,6 @@ namespace Music.WPF
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private List<DiscoDTO> _dischi;
 
         public List<DiscoDTO> Dischi
@@ -48,6 +44,13 @@ namespace Music.WPF
         }
 
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
 
         public MainWindowModel()
         {
@@ -58,7 +61,45 @@ namespace Music.WPF
             gridBrani = new XDataGrid();
         }
 
-        
+
+        public ICommand AddBranoCommand => new RelayCommand(o => Add_Click(o), o => true);
+
+        private void Add_Click(object sender)
+        {
+
+            var inputBranoView = new CreateBranoWindow(sender);
+            inputBranoView.Show();
+
+        }
+
+
+        public ICommand LoadBraniCommand => new RelayCommand(o => LoadBrani_Click(o), o => true);
+
+        private async void LoadBrani_Click(object sender)
+        {
+
+            Brani = await ClientHelper.LoadBrani();
+
+            MainWindow mainWindow = sender as MainWindow;
+            mainWindow.braniPanel.Visibility = Visibility.Visible;
+            RenderGrid(gridBrani);
+
+        }
+
+
+        public ICommand LoadDischiCommand => new RelayCommand(o => LoadDischi_Click(o), o => true);
+
+        private async void LoadDischi_Click(object sender)
+        {
+
+            Dischi = await ClientHelper.LoadDischi();
+
+            MainWindow mainWindow = sender as MainWindow;
+            mainWindow.discoPanel.Visibility = Visibility.Visible;
+            RenderGrid(mainWindow.dischiGrid);
+
+        }
+
 
         public void RenderGrid(DataGrid grid)
         {

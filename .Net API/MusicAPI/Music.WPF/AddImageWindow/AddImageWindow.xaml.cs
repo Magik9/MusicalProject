@@ -44,6 +44,7 @@ namespace Music.WPF.AddImageWindow
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
         public AddImageWindow(object selectedItem)
         {
             InitializeComponent();
@@ -51,7 +52,6 @@ namespace Music.WPF.AddImageWindow
 
             _discoItem = selectedItem as DiscoDTO;
         }
-
 
 
         private void DropPanel_Drop(object sender, DragEventArgs e)

@@ -9,10 +9,10 @@ namespace Music.WPF.AddBranoWindow
     {
         private BranoBO BO;
         
-        public CreateBranoWindow(MainWindow owner)
+        public CreateBranoWindow(object owner)
         {
             InitializeComponent();
-            this.Owner = owner;
+            Owner = owner as MainWindow;
             CenterWindowOnScreen();
         }
 
